@@ -22,3 +22,6 @@
         - Mutators
         - Usar mutators para mudar nomes de variáveis e similares
         - arquivo.mtt.js
+
+
+        '*.js', '*.rep.js', '*.bs.js', '*.mw.js', '*.util.js', '*.ctrl.js', '*.cfg.js', '*.mtt.js'

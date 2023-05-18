@@ -7,6 +7,9 @@ module.exports = {
 	'extends': 'eslint:recommended',
 	'overrides': [
 	],
+	'files': [
+		'*.js', '*.rep.js', '*.bs.js', '*.mw.js', '*.util.js', '*.ctrl.js', '*.cfg.js', '*.mtt.js'
+	],
 	'parserOptions': {
 		'ecmaVersion': 'latest'
 	},
