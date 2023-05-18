@@ -4,8 +4,22 @@
   "description": "Backend do projeto midivide",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "dev": "nodemon index.js"
   },
   "author": "caio vieira",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.3.1",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0"
+  }
 }
