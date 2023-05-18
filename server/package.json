@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend do projeto midivide",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "caio vieira",
+  "license": "ISC"
+}
