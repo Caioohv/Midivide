@@ -53,3 +53,5 @@ A rota retornará status 200 para sucesso, com o seguinte corpo:
 O token será diferente para cada login e deverá ser usado para consumir as outras rotas da aplicação.
 
 Caso erro, retornará status 401 
+
+As rotas estão disponíveis para o postman, basta importar o arquivo `collections/Auth.postman_collection.json`

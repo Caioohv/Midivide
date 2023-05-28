@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "250057fb-51ff-4493-b312-3635a72f5af7",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21933512",
+		"_collection_link": "https://interstellar-shadow-806739.postman.co/workspace/Midivide~fef76775-60f8-498c-b910-5d5ea135b90f/collection/21933512-250057fb-51ff-4493-b312-3635a72f5af7?action=share&creator=21933512&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Start Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Caio Vieira\",\n    \"email\": \"caio.vieira@gmail.com\",\n    \"password\": \"testeaa\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{midivide}}/auth/register/start",
+					"host": [
+						"{{midivide}}"
+					],
+					"path": [
+						"auth",
+						"register",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-registration-target",
+						"value": "caio.vieira@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\": 313852\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{midivide}}/auth/register/confirm",
+					"host": [
+						"{{midivide}}"
+					],
+					"path": [
+						"auth",
+						"register",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-registration-target",
+						"value": "caio.vieira@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"midivide@midivide.com\",\n    \"password\": \"midivide\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{midivide}}/auth/login",
+					"host": [
+						"{{midivide}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
