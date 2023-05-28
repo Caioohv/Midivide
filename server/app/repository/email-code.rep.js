@@ -7,7 +7,13 @@ class emailCode {
 			{ user_id, factor, expiration })
 	}
 
-	verify(user_id){
+	resend(user_id, factor, expiration){
+		console.log('Email Code --> Resending for: ', (user_id))
+		return EmailCode.update(
+			{ factor, expiration }, {	where: {user_id} })
+	}
+
+	findByUserId(user_id){
 		console.log('Email Code --> Verifying for: ', (user_id))
 		return EmailCode.findByPk(user_id)
 	}

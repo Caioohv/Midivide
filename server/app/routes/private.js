@@ -10,5 +10,10 @@ module.exports = (app) => {
 			auth.startRegister
 		)
 
+	app.route('/auth/register/confirm')
+		.post(
+			auth.confirmSecondFactor
+		)
+
 	console.log('Private routes ok')
 } 

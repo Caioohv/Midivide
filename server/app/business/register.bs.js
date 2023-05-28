@@ -13,6 +13,7 @@ class Register {
 	constructor(req){
 		this.req = req
 		this.payload = req.body
+		this.keys = req.headers
 		this.userDB = new userRep()
 		this.authDB = new authRep()
 		this.emailCodeDB = new emailCodeRep()
@@ -24,6 +25,10 @@ class Register {
 
 	defineExpirationTime(){
 		return moment(moment.now()).add(15, 'minutes')
+	}
+	
+	isCodeValid(expiration){
+		return moment(moment.now()).diff(expiration) <= 0
 	}
 
 	async sendSecondFactorEmail(email, code){
@@ -74,6 +79,48 @@ class Register {
 		}
 	}
 
+	async confirmSecondFactor(){
+		try{
+			let finished = false
+
+			let theirCode = this.payload.code
+			let email = this.keys['x-registration-target']
+			
+			let user = await this.userDB.findByEmail(email)
+			let ourCode = await this.emailCodeDB.findByUserId(user.id)
+
+			if(this.isCodeValid(ourCode.expiration)){
+				if(ourCode.factor == theirCode){
+					await this.userDB.activate(user.id)
+					finished = true
+				}
+			}
+
+			if(!finished) {
+				const code = this.generateSecondFactor()
+				await this.emailCodeDB.resend(user.id, code, this.defineExpirationTime())
+				await this.sendSecondFactorEmail(email, code)
+
+				throw {identifier: 'resend-second-factor'}
+			}
+
+		}catch(err){
+			if(err.identifier == 'resend-second-factor'){
+				throw {
+					message: 'Um novo código foi enviado para o seu email.',
+					identifier: err.identifier,
+					status: status['INVALID-DATA']
+				}
+			}
+
+			throw {
+				message: 'Ops! ocorreu um erro ao validar a sua conta.',
+				identifier: err.identifier,
+				status: status['INVALID-DATA']
+			}
+				
+		}
+	}
 
 
 

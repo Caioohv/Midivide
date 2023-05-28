@@ -18,6 +18,20 @@ class Auth {
 
 	}
 
+	async confirmSecondFactor(req, res) {
+		const register = new Register(req, res)
+
+		try{
+			await register.confirmSecondFactor()
+			res.json(status['COMPLETED']).send()
+
+		}catch(err){
+			error(err, res)
+			
+		}
+
+	}
+
 
 }
 
