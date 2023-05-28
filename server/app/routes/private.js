@@ -1,5 +1,14 @@
-module.exports = (app) => {
-	console.log('Loading server routes')
+console.log('Loading private routes')
+const authCtrl = require('../controllers/auth.ctrl')
 
-	console.log('Server routes ok')
+const auth = new authCtrl()
+
+module.exports = (app) => {
+
+	app.route('/auth/register/start')
+		.post(
+			auth.startRegister
+		)
+
+	console.log('Private routes ok')
 } 

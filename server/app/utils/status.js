@@ -1,0 +1,6 @@
+module.exports = {
+	'STARTED': 201,
+	'COMPLETED': 202,
+	'INVALID-DATA': 400,
+	'WRONG-CREDENTIALS': 401
+}

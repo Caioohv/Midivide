@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer')
 
-const emailConfig = require('./app/config/email.cfg')
+const emailConfig = require('../config/email.cfg')
 
-module.exports = (subject, content) => {
+module.exports = (email, subject, content) => {
 	let message = {
 		from: 'from@email.com',
-		to: 'to@email.com',
+		to: email,
 		subject: subject,
 		html: content
 	}
@@ -13,7 +13,7 @@ module.exports = (subject, content) => {
 	const transporter = nodemailer.createTransport(emailConfig)
 	
 	transporter
-		.verify(console.log('Email service: running'))
+		.sendMail(message)
 		.catch(console.log)
 }
 
