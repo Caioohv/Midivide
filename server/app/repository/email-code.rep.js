@@ -17,6 +17,11 @@ class emailCode {
 		console.log('Email Code --> Verifying for: ', (user_id))
 		return EmailCode.findByPk(user_id)
 	}
+
+	clear(user_id){
+		console.log('Email Code --> Deleting all for: ', (user_id))
+		return EmailCode.destroy({where: {user_id} })
+	}
 }
 
 module.exports = emailCode

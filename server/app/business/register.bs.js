@@ -92,6 +92,7 @@ class Register {
 			if(this.isCodeValid(ourCode.expiration)){
 				if(ourCode.factor == theirCode){
 					await this.userDB.activate(user.id)
+					await this.emailCodeDB.clear(user.id)
 					finished = true
 				}
 			}

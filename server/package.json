@@ -4,7 +4,7 @@
   "description": "Backend do projeto midivide",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "clear && nodemon index.js",
     "resetdb": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && clear && npm run dev"
   },
   "author": "caio vieira",

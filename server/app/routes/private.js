@@ -15,5 +15,10 @@ module.exports = (app) => {
 			auth.confirmSecondFactor
 		)
 
+	app.route('/auth/login')
+		.post(
+			auth.login
+		)
+
 	console.log('Private routes ok')
 } 

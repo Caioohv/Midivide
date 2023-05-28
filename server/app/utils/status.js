@@ -1,4 +1,5 @@
 module.exports = {
+	'SUCCESS': 200,
 	'STARTED': 201,
 	'COMPLETED': 202,
 	'INVALID-DATA': 400,
