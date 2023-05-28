@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "clear && nodemon index.js",
-    "resetdb": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && clear && npm run dev"
+		"db-setup": "npx sequelize-cli db:create && npx sequelize-cli db:migrate && clear",
+    "db-reset": "npx sequelize-cli db:drop && npm run db-setup",
+		"db-seed": "npx sequelize-cli db:seed:all",
+		"all": "npm run db-reset && npm run db-seed && npm run dev"
   },
   "author": "caio vieira",
   "license": "ISC",

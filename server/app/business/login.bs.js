@@ -49,7 +49,7 @@ class Login {
 					authenticated = true
 					let token = await this.generateAuthToken(user.id)
 					return {
-						token: token.token
+						token: 'Basic '+token.token
 					}
 				}
 			}
@@ -66,7 +66,7 @@ class Login {
 			throw {
 				message: 'Ops! ocorreu um erro ao acessar a sua conta!',
 				identifier: err.identifier,
-				status: status['INVALID-DATA']
+				status: status['WRONG-CREDENTIALS']
 			}
 		}
 	}
