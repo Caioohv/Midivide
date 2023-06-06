@@ -1,7 +1,5 @@
-module.exports = () => {
-	return {
-		app: {
-			port: 8080
-		}
+module.exports = {
+	app: {
+		port: 8080
 	}
 }

@@ -13,3 +13,6 @@ O único que deve ser mudado é o usuário e senha.
 
 As configurações de Database são informações relacionadas ao banco de dados
 da aplicação. Use o MySQL e coloque suas credenciais.
+
+
+Para configurar tudo duma vez, basta rodar `npm run setup`

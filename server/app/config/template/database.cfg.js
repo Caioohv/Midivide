@@ -1,13 +1,15 @@
-module.exports = () => {
-	return {
-		dialect: 'mysql', 
-		host: 'localhost',
-		username: 'viier',
-		password: 'toor',
-		database: 'midivide', 
-		define: {
-			timestamps: true,
-			underscored: true
-		}
+module.exports = {
+	dialect: 'mysql', 
+	host: 'localhost',
+	username: 'root',
+	password: '',
+	database: 'midivide', 
+	define: {
+		timestamps: true,
+		underscored: true
+	},
+	logging: false, 
+	query: {
+		raw: true
 	}	
 }

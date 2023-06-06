@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "clear && nodemon index.js",
+		"setup": "npm install && npm run db-setup",
 		"db-setup": "npx sequelize-cli db:create && npx sequelize-cli db:migrate && clear",
     "db-reset": "npx sequelize-cli db:drop && npm run db-setup",
 		"db-seed": "npx sequelize-cli db:seed:all",
