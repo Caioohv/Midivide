@@ -16,3 +16,4 @@ da aplicação. Use o MySQL e coloque suas credenciais.
 
 
 Para configurar tudo duma vez, basta rodar `npm run setup`
+Esse comando instala as dependências (módulos), configura o banco de dados e faz a cópia dos templates para a pasta config (basta alterar as informações presentes)

@@ -1,8 +1,11 @@
 ### Configurar o banco de dados
 
-Basta rodar o comando `npm run db-setup`
+O banco de dados é configurado no momento que você executa o comando `npm run setup`
+Caso não ocorra, use o comando `npm run db-setup`
 
-Para criar uma conta local de maneira rápida, rode o comando `npm run db-seed`
+Lembre-se de copiar os templates para a pasta config e atualizar as informações
+
+Para criar uma conta local de maneira rápida, rode o comando `npm run create-local-account`
 
 O Login (já ativo) inicial criado é:
 
