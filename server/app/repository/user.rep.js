@@ -7,6 +7,12 @@ class user {
 			{ where: { email: email }})
 	}
 
+	findById(id) {
+		console.log('User --> Searching for: ', (id))
+		return User.findOne(
+			{ where: { id: id }})
+	}
+
 	register(email, name, verified){
 		console.log('User --> Creating: ', (email))
 		return User.create(
