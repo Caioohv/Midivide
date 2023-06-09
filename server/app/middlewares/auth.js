@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
 	if(!tokenData){
 		res.status(status['UNAUTHORIZED-TOKEN']).send()
 
-	}else if(moment(moment.now()).diff(tokenData.expiration) <= 0){
+	}else if(moment(moment.now()).add(3, 'hours').diff(tokenData.expiration) <= 0){
 		res.status(status['EXPIRATED-TOKEN']).send()
 
 	}else{
@@ -28,8 +28,10 @@ module.exports = async (req, res, next) => {
 			name: userData.name,
 			email: userData.email
 		}
+		
+		let expiration = new Date(moment(moment.now()).add(15, 'minutes').subtract(3, 'hours'))
 
-		await authDB.refresh(userData.id, moment(moment.now()).add(15, 'minutes'))
+		await authDB.refresh(expiration, userData.id)
 
 		next()
 	}

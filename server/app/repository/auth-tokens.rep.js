@@ -2,15 +2,13 @@ const AuthTokens = require('../database/models/Auth-token')
 
 class auth {
 	register(user_id, token, expiration){
-		console.log('Auth Token --> Creating: ', (user_id))
 		return AuthTokens.create(
 			{ user_id, token, expiration }, {raw: true})
 	}
 
-	refresh(user_id, expiration){
-		console.log('Auth Token --> Refreshing: ', (user_id))
+	refresh(expiration, user_id){
 		return AuthTokens.update(
-			{ expiration }, {where: {user_id}, raw: true})
+			{ expiration }, {where: { user_id },raw: true})
 	}
 
 	find(user_id){

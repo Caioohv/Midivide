@@ -30,7 +30,7 @@ class Login {
 		let expiration = moment(moment.now()).add(15, 'minutes')
 
 		await this.authTokensDB.clear(user_id)
-		return this.authTokensDB.register(user_id, token, expiration)
+		return this.authTokensDB.register(user_id, token, new Date(expiration))
 	}
 
 
