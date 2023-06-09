@@ -4,22 +4,32 @@ const auth = require('../repository/auth-tokens.rep')
 const user = require('../repository/user.rep')
 const status = require('../utils/status')
 
-module.exports = (req, res, next) => {
-	let authorizationToken = req.headers.authorization.split(' ')[1]
+module.exports = async (req, res, next) => {
+	const authDB = new auth()
+	const userDB = new user()
 
-	let tokenData = auth.findByToken(authorizationToken)
-	
-	if(moment(moment.now()).diff(tokenData.expiration) > 0){
+
+	let authorizationToken = req.headers.authorization
+		? req.headers.authorization.split(' ')[1] : 'unauthorized'
+
+	let tokenData = await authDB.findByToken(authorizationToken)
+
+	if(!tokenData){
+		res.status(status['UNAUTHORIZED-TOKEN']).send()
+
+	}else if(moment(moment.now()).diff(tokenData.expiration) <= 0){
 		res.status(status['EXPIRATED-TOKEN']).send()
 
 	}else{
-		let userData = user.findById(tokenData.user_id)
+		let userData = await userDB.findById(tokenData.user_id)
 
 		req.user = {
 			id: userData.id,
 			name: userData.name,
 			email: userData.email
 		}
+
+		await authDB.refresh(userData.id, moment(moment.now()).add(15, 'minutes'))
 
 		next()
 	}

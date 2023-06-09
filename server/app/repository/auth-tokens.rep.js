@@ -10,7 +10,7 @@ class auth {
 	refresh(user_id, expiration){
 		console.log('Auth Token --> Refreshing: ', (user_id))
 		return AuthTokens.update(
-			{ user_id, expiration }, {raw: true})
+			{ expiration }, {where: {user_id}, raw: true})
 	}
 
 	find(user_id){
