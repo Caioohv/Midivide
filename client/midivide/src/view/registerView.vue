@@ -1,5 +1,5 @@
 <template>
-    <boxComponent heights="547" widths="652">
+    <boxComponent heights="547">
         <div class="leftSize">
 
             <div class="logoBox">
@@ -19,7 +19,7 @@
             </div>
 
             
-            <buttonComponent value="Registar" bgc="#9E76DB" color="#E8E8E8" width="150" height="30"/>
+            <buttonComponent value="Registar" bgc="#9E76DB" color="#E8E8E8" height="30"/>
             
 
         </div>
@@ -30,7 +30,7 @@
             </div>
 
             <router-link to="/">
-                <buttonComponent value="Entrar" bgc="#35FF69" color="#262626" width="150" height="30"/>
+                <buttonComponent value="Entrar" bgc="#35FF69" color="#262626" height="30"/>
             </router-link>
 
             <div class="toogleBox">

@@ -43,7 +43,7 @@ export default {
 
 <style scoped>
 .default {
-  width: 300px;
+  width: 100%;
   height: 40px;
 
   display: flex;
@@ -69,10 +69,11 @@ export default {
 }
 
 input {
-  width: 270px;
+  width: 100%;
   height: 30px;
   background-color: transparent;
   border: none;
   outline: none;
+  padding-left: 10px;
 }
 </style>

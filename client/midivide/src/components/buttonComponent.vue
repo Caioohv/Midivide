@@ -1,6 +1,6 @@
 <template>
 
-    <button :style="'background-color: ' + bgc + '; color: ' + color + '; height: ' + height + 'px; width: ' + width + 'px;'" >{{ value }}</button>
+    <button :style="'background-color: ' + bgc + '; color: ' + color + '; height: ' + height + '%; width: ' + width + '%;'" >{{ value }}</button>
 
 </template>
 

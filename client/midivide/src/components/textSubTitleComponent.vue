@@ -51,6 +51,13 @@
       .themeDark{
         color: #E8E8E8;
       }
+
+      /* Responsividade */
+      @media (max-width: 870px) {
+        .default{
+            font-size: 22px;
+        }
+      }
   
   </style>
   

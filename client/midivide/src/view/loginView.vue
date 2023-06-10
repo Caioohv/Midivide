@@ -1,14 +1,21 @@
 <template>
-        <boxComponent heights="547" widths="652">
+        <boxComponent heights="100" widths="100">
             <div class="leftSize">
 
-                <div class="logoBox">
-                    <logo1Component/>
+                <div class="header">
+                    <div class="logoBox">
+                        <logo1Component/>
+                    </div>
+
+                    <div class="toogleBox toogleBoxMobile">
+                        <textSubTitleComponent content="Tema Escuro:" color="#333333" height="30" size="20"/>
+                        <buttonToogleComponent />
+                    </div>
                 </div>
 
                 <div class="titleBox">
-                    <titleTextComponent content="Bem vindo"/>
-                    <titleTextComponent content="de volta!"/>
+                    <titleTextComponent content="Bem vindo" height="0"/>
+                    <titleTextComponent content="de volta!" height="0"/>
                 </div>
 
                 <div class="inputBox">
@@ -17,31 +24,37 @@
                 </div>
 
                 <div class="buttonBox">
-                    <buttonComponent value="Entrar" bgc="#35FF69" color="#001011" width="150" height="30"/>
+                    <buttonComponent value="Entrar" bgc="#35FF69" color="#001011" width="100" height="100"/>
                 </div>
 
                 <div class="fogetBox">
                     <textBodyComponent content="Esqueci minha senha!"/>
                 </div>
 
+                <div class="buttonBox buttonBoxCelular">
+                    <router-link to="/register">
+                        <textBodyComponent content="Não possui conta? Crie sua conta aqui!"/>
+                    </router-link>
+                </div> 
+
             </div>
             <div class="rightSize">
 
                 <div class="merchanBox">
-                    <TextTitleComponent content="O sistema que" size="24" color="#333333" height="29"/>
-                    <TextTitleComponent content="organiza sua" size="24" color="#333333" height="29"/>
-                    <TextTitleComponent content="moradia" size="24" color="#333333" height="29"/>
-                    <textSubTitleComponent content="E facilita sua vida!" color="#333333" height="40" size="20"/>
+                    <TextTitleComponent content="O sistema que" size="24" color="#333333" height="2"/>
+                    <TextTitleComponent content="organiza sua" size="24" color="#333333" height="2"/>
+                    <TextTitleComponent content="moradia" size="24" color="#333333" height="2"/>
+                    <textSubTitleComponent content="E facilita sua vida!" color="#333333" height="20" size="20"/>
                 </div>
                 
                 <div class="buttonBox">
                     <router-link to="/register">
-                        <buttonComponent value="Crie sua conta!" bgc="#9E76DB" color="#F4F7F5" width="150" height="30"/>
+                        <buttonComponent value="Crie sua conta!" bgc="#9E76DB" color="#F4F7F5" width="100" height="100"/>
                     </router-link>
                 </div> 
 
                 <div class="toogleBox">
-                    <textSubTitleComponent content="Tema Escuro:" color="#333333" height="40" size="20"/>
+                    <textSubTitleComponent content="Tema Escuro:" color="#333333" height="30" size="20"/>
                     <buttonToogleComponent />
                 </div>
 
@@ -100,6 +113,10 @@ export default {
         margin-top: 31px;
     }
 
+    .buttonBox button{
+        padding: 15px;
+    }
+
     .fogetBox{
         margin-top: 9.5px;
     }
@@ -124,8 +141,8 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 380px;
-        height: 549px;
+        width: 40%;
+        height: 100%;
     }
 
     .rightSize{
@@ -133,12 +150,61 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 272px;
-        height: 547px;
+        width: 25%;
+        height: 100%;
         background-color: #35FF69;
         border-radius: 0px 16px 16px 0px;
     }
 
+    .buttonBoxCelular {
+        display: none;
+    }
 
+    /* Responsividade */
+    @media (max-width: 870px) {
+      .rightSize{
+        width: 30% !important;
+      }
+    }
+    @media (max-width: 700px) {
+        .rightSize{
+            width: 35% !important;
+        }
+        .leftSize{
+            width: 50%;
+        }
+    }
+    @media (max-width: 500px) {
+        .rightSize{
+            display: none;
+        }
+        .leftSize{
+            width: 100%;
+            padding: 50px;
+            align-items: normal;
+        }
+        .buttonBoxCelular{
+            display: flex;
+        }
+        .buttonBoxCelular a{
+            text-decoration: none !important;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logoBox {
+            margin-bottom: 40px;
+            align-self: flex-start;
+            width: 50%;
+        }
+
+        .toogleBox {
+            margin-top: 0;
+            margin-bottom: 40px;
+            align-self: flex-end;
+        }
+    }
 
 </style>

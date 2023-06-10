@@ -17,7 +17,7 @@
 
         data(){
             return{
-                size: `height: ${this.heights}px; width: ${this.widths}px;`
+                size: `height: ${this.heights}%; width: ${this.widths}%;`
             }
         },
 

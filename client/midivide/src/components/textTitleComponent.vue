@@ -1,5 +1,5 @@
 <template>
-  <span :class="themeClassChange" :style="'color: ' + color + '; font-size: ' + size + 'px; line-height: ' + height + 'px;'">{{ content }}</span>
+  <span :class="themeClassChange" :style="'color: ' + color + '; font-size: ' + size + 'px; padding: ' + height + 'px;'">{{ content }}</span>
 </template>
 
 <script>
@@ -40,7 +40,7 @@ export default {
     .default{
         font-size: 32px;
         font-weight: 700;
-        line-height: 39px;
+        padding: 20px;
         font-family: 'Montserrat';
     }
 
@@ -51,5 +51,13 @@ export default {
     .themeDark{
       color: #E8E8E8;
     }
+
+    /* Responsividade */
+    @media (max-width: 870px) {
+      .default{
+        font-size: 20px !important;
+      }
+    }
+
 
 </style>
