@@ -133,7 +133,7 @@ export default {
         flex-direction: column;
         align-items: center;
         position: absolute;
-        margin-top: 400px;
+        margin-top: 75vh;
     }
 
     .leftSize{
@@ -160,11 +160,32 @@ export default {
         display: none;
     }
 
+    .toogleBoxMobile{
+        display: none;
+    }
+    
+    .logoBox{
+        height: 71px;
+        width: 71px;
+    }
+
     /* Responsividade */
+    @media (max-width: 900px) {
+        .header{
+            height: 71px;
+            margin-bottom: 20px;
+        }
+        .titleBox{
+            margin-bottom: 20px;
+        }
+        .textTitle{
+            font-size: 15px;
+        }
+    }
     @media (max-width: 870px) {
-      .rightSize{
-        width: 30% !important;
-      }
+        .rightSize{
+            width: 30% !important;
+        }
     }
     @media (max-width: 700px) {
         .rightSize{
@@ -200,10 +221,24 @@ export default {
             width: 50%;
         }
 
-        .toogleBox {
+        .toogleBoxMobile {
             margin-top: 0;
             margin-bottom: 40px;
             align-self: flex-end;
+            display: flex;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .toogleBoxMobile {
+            max-width: 60px;
+        }
+        .toogleBoxMobile span{
+            font-size: 60px;
+        }
+        .logoBox{
+            width: 60px;
+            height: 60px;
         }
     }
 

@@ -70,7 +70,7 @@ export default {
 
 input {
   width: 100%;
-  height: 30px;
+  height: 45px;
   background-color: transparent;
   border: none;
   outline: none;

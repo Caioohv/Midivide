@@ -27,6 +27,7 @@ export default {
         font-size: 16px;
         font-weight: 400;
         transition: 0.3s;
+        height: 45px;   
     }
 
     button:hover{

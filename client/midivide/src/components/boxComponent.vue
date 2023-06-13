@@ -44,6 +44,7 @@
 
     .default{
         border-radius: 20px;
+        width: 100%;
     }
     .themeLight{
         background-color: #F4F7F5;
