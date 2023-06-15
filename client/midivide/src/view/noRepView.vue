@@ -56,7 +56,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px 30px 0px 30px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -91,7 +91,7 @@ export default {
 
 @media (max-width: 1100px) {
   .box {
-    width: 60% !important;
+    width: 70% !important;
   }
 
 }
