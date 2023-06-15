@@ -1,6 +1,6 @@
 <template>
 
-    <button :style="'background-color: ' + bgc + '; color: ' + color + '; height: ' + height + 'px; width: ' + width + 'px;'" >{{ value }}</button>
+    <button :style="'background-color: ' + bgc + '; color: ' + color + '; height: ' + height + '%; width: ' + width + '%;'" >{{ value }}</button>
 
 </template>
 
@@ -27,6 +27,8 @@ export default {
         font-size: 16px;
         font-weight: 400;
         transition: 0.3s;
+        height: 45px;   
+        padding: 10px;
     }
 
     button:hover{

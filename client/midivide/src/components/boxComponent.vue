@@ -17,7 +17,7 @@
 
         data(){
             return{
-                size: `height: ${this.heights}px; width: ${this.widths}px;`
+                size: `height: ${this.heights}%; width: ${this.widths}%;`
             }
         },
 
@@ -44,6 +44,7 @@
 
     .default{
         border-radius: 20px;
+        width: 100%;
     }
     .themeLight{
         background-color: #F4F7F5;
