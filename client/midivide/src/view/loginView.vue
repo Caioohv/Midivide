@@ -237,10 +237,11 @@ export default {
     width: 100%;
     padding: 50px;
     align-items: center;
-    row-gap: 5px;
+    row-gap: 0px;
   }
 
   .inputBox {
+    margin-top: -20px;
     width: 90%;
   }
 
@@ -251,14 +252,14 @@ export default {
   .buttonBoxMobile {
     display: flex;
     margin-top: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
   .buttonBoxMobile a {
     text-decoration: none !important;
   }
 
   .toogleBoxMobile {
-    margin-top: 70vh;
+    margin-top: 62vh;
     display: flex;
   }
 }

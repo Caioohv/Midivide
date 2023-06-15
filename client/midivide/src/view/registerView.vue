@@ -104,7 +104,7 @@ export default {
   align-items: center;
   width: 60%;
   height: 100%;
-  row-gap: 15px;
+  row-gap: 5px;
 }
 
 .rightSize {
@@ -195,6 +195,7 @@ export default {
 }
 @media (max-width: 500px) {
   .body {
+    text-align: center;
     width: 90% !important;
   }
 
@@ -206,9 +207,8 @@ export default {
     align-items: center;
     padding: 50px;
   }
-
   .inputBox {
-    width: 90%;
+    margin-bottom: 10px;
   }
   .buttonBoxCelular {
     display: flex;
@@ -218,7 +218,7 @@ export default {
   }
 
   .toogleBoxMobile {
-    margin-top: 70vh;
+    margin-top: 62vh;
     display: flex;
   }
   .buttonBoxCelular {
