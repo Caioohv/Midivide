@@ -17,7 +17,9 @@
                 </div>
 
                 <div class="buttonBox">
-                    <buttonComponent value="Entrar" bgc="#35FF69" color="#001011" width="150" height="30"/>
+                    <router-link to="/norep">
+                        <buttonComponent value="Entrar" bgc="#35FF69" color="#001011" width="150" height="30"/>
+                    </router-link>
                 </div>
 
                 <div class="fogetBox">
