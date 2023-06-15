@@ -44,7 +44,7 @@ export default {
 }
 
 .themeDark{
-  background-color: #1E1E1E;
+  background-color: #001011;
 }
 
 </style>

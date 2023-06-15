@@ -28,6 +28,7 @@ export default {
         font-weight: 400;
         transition: 0.3s;
         height: 45px;   
+        padding: 5px 30px 5px 30px;
     }
 
     button:hover{
