@@ -2,6 +2,7 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 
 import login from './view/loginView.vue'
 import register from './view/registerView.vue'
+import norep from './view/noRepView.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -16,6 +17,11 @@ const router = createRouter({
             name: 'register',
             component: register
         },
+        {
+            path: '/norep',
+            name: 'norep',
+            component: norep
+        }
     ]
 })
  /*
