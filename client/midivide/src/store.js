@@ -7,7 +7,8 @@ const store = createStore({
         user:{
             token: '',
             logged: false,
-        }
+        },
+        registerEmail: '',
     },
 
     getters: {
@@ -18,6 +19,10 @@ const store = createStore({
 
         getToken(state){
             return state.user.token;
+        },
+
+        getRegisterEmail(state){
+          return state.registerEmail;
         }
 
     },
@@ -61,6 +66,12 @@ const store = createStore({
             .catch((error) => {
               console.log(error);
             }); 
+
+        },
+
+        setRegisterEmail(state, email){
+
+          state.registerEmail = email;
 
         }
 

@@ -3,6 +3,7 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 import login from './view/loginView.vue'
 import register from './view/registerView.vue'
 import norep from './view/noRepView.vue'
+import verify from './view/verifyView.vue'
 import store from './store'
 
 const router = createRouter({
@@ -22,6 +23,11 @@ const router = createRouter({
             path: '/norep',
             name: 'norep',
             component: norep
+        },
+        {
+          path: '/verify',
+          name: 'verify',
+          component: verify
         }
     ]
 })
@@ -32,7 +38,7 @@ router.beforeEach((to, from, next) => {
       next() // Permite a navegação para a primeira rota
     } else {
       // Verifica se a variável do Vuex é verdadeira
-      if (store.state.user.logged || to.path === '/register') {
+      if (store.state.user.logged || to.path === '/register' || to.path === '/verify') {
         next() // Permite a navegação para a rota atual
       } else {
         next('/') // Redireciona para a primeira rota
