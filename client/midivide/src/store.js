@@ -1,10 +1,12 @@
 import { createStore } from "vuex";
+import router from "./routes";
 
 const store = createStore({
     state: {
         theme: 'dark',
         user:{
-            token: ''
+            token: '',
+            logged: false,
         }
     },
 
@@ -30,7 +32,9 @@ const store = createStore({
             state.theme = "light";
         },
 
-        tryLogin(info){
+        tryLogin(state, info){
+
+            const API = require('./config');
 
             const axios = require('axios');
             let data = JSON.stringify({
@@ -41,9 +45,8 @@ const store = createStore({
             let config = {
               method: 'post',
               maxBodyLength: Infinity,
-              url: 'http://localhost:8000/auth/login',
+              url: `${API.url}/auth/login`,
               headers: { 
-                'x-registration-target': 'caio.vieira@gmail.com', 
                 'Content-Type': 'application/json',
               },
               data : data
@@ -51,7 +54,9 @@ const store = createStore({
             
             axios.request(config)
             .then((response) => {
-              console.log(JSON.stringify(response.data));
+              state.user.token = response.data.token
+              state.user.logged = true;
+              router.push('/norep');
             })
             .catch((error) => {
               console.log(error);

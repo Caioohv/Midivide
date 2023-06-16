@@ -16,7 +16,6 @@
       </div>
 
       <div class="buttonBox">
-        <router-link to="/">
           <buttonComponent
             @click="login"
             value="Entrar"
@@ -25,7 +24,6 @@
             width="100"
             height="100"
           />
-        </router-link>
       </div>
 
       <div class="forgetBox">
@@ -130,7 +128,7 @@ export default {
       var username = document.querySelector("#user").childNodes[0].childNodes[0].value;
       var password = document.querySelector("#pass").childNodes[0].childNodes[0].value;
 
-      var info = {username, password};
+      var info = {username, password} 
 
       this.tryLogin(info);
 
