@@ -3,6 +3,7 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 import login from './view/loginView.vue'
 import register from './view/registerView.vue'
 import norep from './view/noRepView.vue'
+import searchRep from './view/searchRepWithCodeView.vue'
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -21,6 +22,11 @@ const router = createRouter({
             path: '/norep',
             name: 'norep',
             component: norep
+        },
+        {
+            path: '/searchRep',
+            name: 'searchRep',
+            component: searchRep
         }
     ]
 })
