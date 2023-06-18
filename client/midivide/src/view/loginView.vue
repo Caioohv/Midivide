@@ -11,20 +11,19 @@
       </div>
 
       <div class="inputBox">
-        <textInputComponent placeholder="Seu usuário" />
-        <textInputComponent placeholder="Sua senha" />
+        <textInputComponent placeholder="Seu usuário" id="user"/>
+        <textInputComponent placeholder="Sua senha" type="password" id="pass"/>
       </div>
 
       <div class="buttonBox">
-        <router-link to="/norep">
           <buttonComponent
+            @click="login"
             value="Entrar"
             bgc="#35FF69"
             color="#001011"
             width="100"
             height="100"
           />
-        </router-link>
       </div>
 
       <div class="forgetBox">
@@ -106,6 +105,8 @@ import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
 import TextTitleComponent from "@/components/textTitleComponent.vue";
 import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 
+import { mapMutations } from "vuex";
+
 export default {
   components: {
     boxComponent,
@@ -118,6 +119,24 @@ export default {
     TextTitleComponent,
     buttonToogleComponent,
   },
+
+
+  methods:{
+    ...mapMutations(['tryLogin']),
+
+    login(){
+      var username = document.querySelector("#user").childNodes[0].childNodes[0].value;
+      var password = document.querySelector("#pass").childNodes[0].childNodes[0].value;
+
+      var info = {username, password} 
+
+      this.tryLogin(info);
+
+    }
+  }
+
+
+
 };
 </script>
 

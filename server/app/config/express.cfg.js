@@ -1,5 +1,6 @@
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const privateRoutes = require('../routes/private')
 const publicRoutes = require('../routes/public')
@@ -27,6 +28,8 @@ module.exports = (app) => {
 	app.use(bodyParser.urlencoded({extended: true}))
 
 	app.use(morgan('\x1b[33m:method\x1b[0m \x1b[36m:url\x1b[0m :statusColor :response-time ms'))
+
+	app.use(cors())
 
 	console.log('Server ok')
 
