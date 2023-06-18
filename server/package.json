@@ -4,7 +4,7 @@
   "description": "Backend do projeto midivide",
   "main": "index.js",
   "scripts": {
-    "dev": "clear && nodemon index.js",
+    "dev": "nodemon index.js",
     "setup": "npm install && npm run copy-templates && npm run db-setup",
     "copy-templates": "npm run copy-template1 && npm run copy-template2 && npm run copy-template3",
     "db-setup": "npx sequelize-cli db:create && npx sequelize-cli db:migrate && clear",

@@ -26,15 +26,14 @@ const router = createRouter({
             component: norep
         },
         {
-<<<<<<< HEAD
-            path: '/searchRep',
-            name: 'searchRep',
-            component: searchRep
-=======
           path: '/verify',
           name: 'verify',
           component: verify
->>>>>>> master
+        },
+        {
+          path: '/searchRep',
+          name: 'searchRep',
+          component: searchRep
         }
     ]
 })
