@@ -24,6 +24,9 @@ module.exports = {
 				type: Sequelize.BOOLEAN, 
 				defaultValue: false
 			},
+			house: {
+				type: Sequelize.STRING
+			},
 			created_at: {
 				type: Sequelize.DATE, 
 				allowNull: false

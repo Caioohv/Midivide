@@ -54,7 +54,7 @@ class Register {
 
 			if(await this.verifyRegistration(email)){
 				throw {
-					identifier: 'email-already-registered'
+					identifier: 'email already registered'
 				}
 			}
 
@@ -102,7 +102,7 @@ class Register {
 				await this.emailCodeDB.resend(user.id, code, this.defineExpirationTime())
 				await this.sendSecondFactorEmail(email, code)
 
-				throw {identifier: 'resend-second-factor'}
+				throw {identifier: 'resend second factor'}
 			}
 
 		}catch(err){

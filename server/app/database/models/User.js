@@ -21,7 +21,10 @@ class User extends Model {
 			verified: {
 				type: DataTypes.BOOLEAN, 
 				defaultValue: false
-			}
+			},
+			house: {
+				type: DataTypes.STRING
+			},
 		}, {
 			sequelize: sequelize
 		})

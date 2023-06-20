@@ -1,3 +1,4 @@
 app/config/general.cfg.js
 app/config/email.cfg.js
 app/config/database.cfg.js
+app/config/services.cfg.js

@@ -56,7 +56,7 @@ class Login {
 
 			if(!authenticated)
 				throw {
-					identifier: 'invalid-credentials'
+					identifier: 'invalid credentials'
 				}
 			
 

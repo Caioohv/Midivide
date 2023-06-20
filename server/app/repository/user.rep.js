@@ -25,6 +25,14 @@ class user {
 			{ verified: true }, 
 			{ where: { id: user_id }})
 	}
+
+	associate(house_identifier, user_id) {
+		return User.update({
+			house: house_identifier
+		}, { where: {
+			id: user_id
+		}})
+	}
 }
 
 module.exports = user

@@ -15,9 +15,11 @@ module.exports = async (req, res, next) => {
 	let tokenData = await authDB.findByToken(authorizationToken)
 
 	if(!tokenData){
+		console.log('Unexistent Token: ' + tokenData)
 		res.status(status['UNAUTHORIZED-TOKEN']).send()
 
 	}else if(moment(moment.now()).add(3, 'hours').diff(tokenData.expiration) <= 0){
+		console.log('Expired Token: ' + tokenData.token)
 		res.status(status['EXPIRATED-TOKEN']).send()
 
 	}else{

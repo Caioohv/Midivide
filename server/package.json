@@ -6,22 +6,25 @@
   "scripts": {
     "dev": "clear && nodemon index.js",
     "setup": "npm install && npm run copy-templates && npm run db-setup",
-    "copy-templates": "npm run copy-template1 && npm run copy-template2 && npm run copy-template3",
+    "copy-templates": "npm run copy-template1 && npm run copy-template2 && npm run copy-template3 && npm run copy-template4",
     "db-setup": "npx sequelize-cli db:create && npx sequelize-cli db:migrate && clear",
     "db-reset": "npx sequelize-cli db:drop && npm run db-setup",
     "create-local-account": "npx sequelize-cli db:seed:all",
     "copy-template1": "cp app/config/template/database.cfg.js ./app/config/database.cfg.js",
     "copy-template2": "cp app/config/template/email.cfg.js ./app/config/email.cfg.js",
-    "copy-template3": "cp app/config/template/general.cfg.js ./app/config/general.cfg.js"
+    "copy-template3": "cp app/config/template/general.cfg.js ./app/config/general.cfg.js",
+    "copy-template4": "cp app/config/template/services.cfg.js ./app/config/services.cfg.js"
   },
   "author": "caio vieira",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "joi": "^17.9.2",
     "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "mysql2": "^3.3.1",

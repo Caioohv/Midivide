@@ -23,7 +23,7 @@ class Login {
 		}catch(err) {
 			throw {
 				message: 'Ops! ocorreu um erro ao listar seus dados!',
-				identifier: err.identifier ? err.identifier : 'error-while-select',
+				identifier: err.identifier ? err.identifier : 'error while fetching data',
 				status: status['FAILED-PROCESS']
 			}
 		}
