@@ -1,58 +1,29 @@
 ## Criação de nova casa
 
-Para criar uma casa, primeiramente, o usuário deverá fornecer o endereço para que o front end envie ao backend, de forma a buscar as coordenadas no backend: 
-
-`GET /location`
-
-Query String:
-```javascript
-address: {
-	street: 'Rua Octavio Malvaccini',
-	number: '580',
-	neighborhood: 'São Pedro',
-	city: 'Juiz de Fora',
-	district: 'MG',
-	postcode: '36037790'
-}
-```
-o retorno dessa rota será:
-```javascript
-{
-	location: {
-		latitude: -21.778150,
-		longitude: -43.394990
-	}
-}
-```
-
-O front end deverá exibir essas coordenadas em um mapa, para que o usuário confirme a localização
-
-Ao confirmar a localização, prosseguiremos para criar uma casa.
-
 Para isso, basta que o usuário esteja autenticado e faça o consumo da rota `POST /house`
 
 O corpo dessa requisição segue o formato:
 
 ```js
 {
-	name: 'República DNA',
-	vacancies: 5,
-	isPublic: true,
-	address: {
-		street: 'Rua Octavio Malvaccini',
-		number '580',
-		neighborhood: 'São Pedro',
-		city: 'Juiz de Fora',
-		state: 'MG'
-	},
-	location: {
-		latitude: -21.778150,
-		longitude: -43.394990
+	"name": "República DNA",
+	"isPublic": true, 
+	"vacancies": 10, 
+	"address": {
+		"state": "MG", 
+		"city": "JUIZ DE FORA",
+		"neighborhood": "SÃO PEDRO",
+		"street": "RUA OCTAVIO MALVACCINI",
+		"number": 580
 	}
-
 }
 ```
-
+O retorno dessa requisição é:
+```js
+{
+	house_code: ABCD12
+}
+```
 
 
 Para gerar um código, existem 26 letras disponíveis (A-Z) e 10 números disponíveis (0-9). 
