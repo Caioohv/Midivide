@@ -36,7 +36,6 @@ module.exports = (app) => {
 	app.route('/house')
 		.get(
 			authorize,
-			admin,
 			house.getMyHouse
 		)
 		.post(

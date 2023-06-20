@@ -42,13 +42,14 @@ class Login {
 			let name = this.payload.name
 			let isPublic = this.payload.isPublic
 			let vacancies = this.payload.vacancies
+			let occupied = 1
 			let state = this.payload.address.state
 			let city = this.payload.address.city
 			let neighborhood 	= this.payload.address.neighborhood
 			let street = this.payload.address.street
 			let number = this.payload.address.number
 			
-			let result = await this.houseDB.create(identifier, owner_user_id, name, isPublic, vacancies, state, city, neighborhood, street, number)
+			let result = await this.houseDB.create(identifier, owner_user_id, name, isPublic, vacancies, occupied, state, city, neighborhood, street, number)
 
 			let association = await this.userDB.associate(result.identifier, owner_user_id)
 

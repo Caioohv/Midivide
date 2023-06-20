@@ -2,18 +2,21 @@ const User = require('../database/models/User')
 
 class user {
 	findByEmail(email) {
-		return User.findOne(
-			{ where: { email: email }})
+		return User.findOne({ 
+			where: { email: email }
+		})
 	}
 
 	findById(id) {
-		return User.findOne(
-			{ where: { id: id }})
+		return User.findOne({ 
+			where: { id: id }
+		})
 	}
 
 	register(email, name, verified){
-		return User.create(
-			{ email, name, verified })
+		return User.create({ 
+			email, name, verified 
+		})
 	} 
 
 	activate(user_id) {

@@ -26,6 +26,10 @@ class House extends Model {
 				type: DataTypes.INTEGER,
 				allowNull: false		
 			},
+			occupied: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
 			state: {
 				type: DataTypes.STRING,
 				allowNull: false		
