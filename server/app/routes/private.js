@@ -4,6 +4,7 @@ const userCtrl = require('../controllers/user.ctrl')
 const houseCtrl = require('../controllers/house.ctrl')
 
 const authorize = require('../middlewares/auth')
+const admin = require('../middlewares/admin')
 
 const auth = new authCtrl()
 const user = new userCtrl()
@@ -35,6 +36,7 @@ module.exports = (app) => {
 	app.route('/house')
 		.get(
 			authorize,
+			admin,
 			house.getMyHouse
 		)
 		.post(
