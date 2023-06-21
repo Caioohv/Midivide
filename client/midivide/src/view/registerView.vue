@@ -13,14 +13,14 @@
       </div>
 
       <div class="inputBox">
-        <InputTextComponent placeholder="Seu CPF" />
-        <InputTextComponent placeholder="Seu Email" />
-        <InputTextComponent placeholder="Seu Nome" />
-        <InputTextComponent placeholder="Sua Senha" type="password" />
+        <InputTextComponent placeholder="Seu Nome" id="name" />
+        <InputTextComponent placeholder="Seu Email" id="email"/>
+        <InputTextComponent placeholder="Sua Senha" type="password" id="password"/>
       </div>
 
       <div class="buttonBox">
         <buttonComponent
+          @click="startRegistration"
           value="Registar"
           bgc="#9E76DB"
           color="#E8E8E8"
@@ -82,6 +82,9 @@ import buttonComponent from "@/components/buttonComponent.vue";
 import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textBodyComponent from "@/components/linkComponent.vue";
 
+import { mapMutations } from "vuex";
+import router from '../routes';
+
 export default {
   components: {
     boxComponent,
@@ -92,6 +95,52 @@ export default {
     buttonToogleComponent,
     textBodyComponent,
     textSubTitleComponent,
+  },
+
+  methods: {
+
+    ...mapMutations(['setRegisterEmail']),
+
+    startRegistration() {
+
+      var nameInput = document.querySelector("#name").childNodes[0].childNodes[0].value;
+      var emailInput = document.querySelector("#email").childNodes[0].childNodes[0].value;
+      var passwordInput = document.querySelector("#password").childNodes[0].childNodes[0].value;
+
+
+      if(nameInput != '' && emailInput != '' && passwordInput != ''){
+
+        const API = require("../config");
+
+        const axios = require("axios");
+        let data = JSON.stringify({
+          name: nameInput,
+          email: emailInput,
+          password: passwordInput,
+        });
+
+        let config = {
+          method: "post",
+          maxBodyLength: Infinity,
+          url: `${API.url}/auth/register/start`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: data,
+        };
+
+        axios
+          .request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            router.push("/verify");
+            this.setRegisterEmail(emailInput);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
   },
 };
 </script>

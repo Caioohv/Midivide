@@ -1,32 +1,22 @@
 <template>
-  <boxComponentVue class="box" widths="35" heights="85">
+  <boxComponentVue class="box" widths="75" heights="85">
     <logo1Component />
 
     <div class="textBox">
-      <textTitleComponent content="Vimos que você não está em uma moradia :/" />
+      <textTitleComponent content="Encontre sua república pelo código!" />
     </div>
 
-    <div class="buttonBox">
-      <buttonComponent
-        bgc="#35FF69"
-        color="#001011"
-        height="100"
-        width="100"
-        value="Encontrar uma moradia"
-      />
-      <buttonComponent
-        bgc="#9E76DB"
-        color="#E8E8E8"
-        height="100"
-        width="100"
-        value="Criar uma moradia"
-      />
+    <div class="searchInput">
+      <InputSearchTextComponent  width='100' height='60'/>
     </div>
 
+    <republicBoxComponent title="Republica DNA" addres="Av. Henrrique Givisiez, 312, Givisiez"/>
+    
     <div class="toogleBox">
       <textSubTitleComponent content="Tema Escuro:" />
       <buttonToogleComponent />
     </div>
+
   </boxComponentVue>
 </template>
 
@@ -34,18 +24,20 @@
 import boxComponentVue from "@/components/boxComponent.vue";
 import logo1Component from "@/components/logo1Component.vue";
 import textTitleComponent from "@/components/textTitleComponent.vue";
-import buttonComponent from "@/components/buttonComponent.vue";
 import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
+import InputSearchTextComponent from "@/components/InputSearchTextComponent.vue";
+import republicBoxComponent from "@/components/republicBoxComponent.vue";
 
 export default {
   components: {
     boxComponentVue,
     logo1Component,
     textTitleComponent,
-    buttonComponent,
     buttonToogleComponent,
     textSubTitleComponent,
+    InputSearchTextComponent,
+    republicBoxComponent,
   },
 };
 </script>
@@ -58,6 +50,11 @@ export default {
   align-items: center;
   padding: 20px;
   text-align: center;
+  row-gap: 10px;
+}
+
+.searchInput {
+  width: 30%;
 }
 
 .textBox {
@@ -73,7 +70,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 20px;
+  row-gap: 20px;  
   margin-bottom: 30px;
 }
 
