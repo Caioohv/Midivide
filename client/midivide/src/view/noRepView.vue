@@ -21,7 +21,12 @@
         width="100"
         value="Criar uma moradia"
       />
+       
+      <router-link to="/searchRep">
+        <textBodyComponent content="Já tem um código? Entre direto na sua república" />
+      </router-link>
     </div>
+   
 
     <div class="toogleBox">
       <textSubTitleComponent content="Tema Escuro:" />
@@ -37,6 +42,7 @@ import textTitleComponent from "@/components/textTitleComponent.vue";
 import buttonComponent from "@/components/buttonComponent.vue";
 import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
+import textBodyComponent from "@/components/linkComponent.vue";
 
 export default {
   components: {
@@ -46,6 +52,7 @@ export default {
     buttonComponent,
     buttonToogleComponent,
     textSubTitleComponent,
+    textBodyComponent,
   },
 };
 </script>
