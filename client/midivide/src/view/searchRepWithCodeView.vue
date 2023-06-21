@@ -7,15 +7,16 @@
     </div>
 
     <div class="searchInput">
-      
       <InputSearchTextComponent  width='100' height='60'/>
     </div>
 
-    <miniBoxComponent />
+    <republicBoxComponent title="Republica DNA" addres="Av. Henrrique Givisiez, 312, Givisiez"/>
+    
     <div class="toogleBox">
       <textSubTitleComponent content="Tema Escuro:" />
       <buttonToogleComponent />
     </div>
+
   </boxComponentVue>
 </template>
 
@@ -26,7 +27,7 @@ import textTitleComponent from "@/components/textTitleComponent.vue";
 import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
 import InputSearchTextComponent from "@/components/InputSearchTextComponent.vue";
-import miniBoxComponent from "@/components/miniBoxComponent.vue";
+import republicBoxComponent from "@/components/republicBoxComponent.vue";
 
 export default {
   components: {
@@ -36,7 +37,7 @@ export default {
     buttonToogleComponent,
     textSubTitleComponent,
     InputSearchTextComponent,
-    miniBoxComponent,
+    republicBoxComponent,
   },
 };
 </script>
@@ -49,6 +50,7 @@ export default {
   align-items: center;
   padding: 20px;
   text-align: center;
+  row-gap: 10px;
 }
 
 .searchInput {
@@ -88,6 +90,22 @@ export default {
   .box {
     width: 70% !important;
   }
-
+  .searchInput {
+    width: 70% !important;
+  }
+  .textTitle {
+    padding: 0px;
+  }
+  .textBox {
+    margin: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .box {
+    width: 90% !important;
+  }
+  .searchInput {
+    width: 100% !important;
+  }
 }
 </style>

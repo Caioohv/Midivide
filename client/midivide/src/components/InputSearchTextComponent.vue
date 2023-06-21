@@ -54,10 +54,12 @@ export default {
     background: #E8E8E8;
     border-radius: 20px;
     cursor: pointer;
+    margin-right: 5px;
 }
 
 .search-icon {
   font-size: 16px;
   color: #333;
 }
+
 </style>

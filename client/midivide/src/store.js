@@ -6,7 +6,7 @@ const store = createStore({
         theme: 'dark',
         user:{
             token: '',
-            logged: false,
+            logged: true,
         },
         registerEmail: '',
     },
