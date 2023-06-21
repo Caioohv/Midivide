@@ -7,20 +7,24 @@
     </div>
 
     <div class="buttonBox">
-      <buttonComponent
-        bgc="#35FF69"
-        color="#001011"
-        height="100"
-        width="100"
-        value="Encontrar uma moradia"
-      />
-      <buttonComponent
-        bgc="#9E76DB"
-        color="#E8E8E8"
-        height="100"
-        width="100"
-        value="Criar uma moradia"
-      />
+      <router-link to="/searchRep">
+        <buttonComponent
+          bgc="#35FF69"
+          color="#001011"
+          height="100"
+          width="85"
+          value="Encontrar uma moradia"
+        />
+      </router-link>
+      <router-link to="/createrep">
+        <buttonComponent
+          bgc="#9E76DB"
+          color="#E8E8E8"
+          height="100"
+          width="100"
+          value="Criar uma moradia"
+        />
+      </router-link>
     </div>
 
     <div class="toogleBox">

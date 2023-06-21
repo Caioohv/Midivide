@@ -1,5 +1,5 @@
 <template>
-  <a href="">{{ content }}</a>
+  <a>{{ content }}</a>
 </template>
 
 <script>
@@ -25,6 +25,7 @@ export default {
         font-family: 'Hind';
         color: #9E76DB;
         text-decoration: none;
+        cursor: pointer;
     }
 
     a:hover{
