@@ -26,6 +26,13 @@ class house {
 		})
 	}
 
+	findByCity(city) {
+		return House.findAll({
+			where: {city}, 
+			attributes: {exclude: ['createdAt', 'updatedAt']}
+		})
+	}
+
 	updateOccupation(identifier, occupied){
 		return House.update(
 			{ occupied }, 

@@ -7,6 +7,7 @@ class House {
 	constructor(req){
 		this.req = req
 		this.payload = req.body
+		this.query = req.query
 		this.user = req.user
 		this.houseDB = new houseRep()
 		this.userDB = new userRep()
@@ -43,9 +44,9 @@ class House {
 			let isPublic = this.payload.isPublic
 			let vacancies = this.payload.vacancies
 			let occupied = 1
-			let state = this.payload.address.state
-			let city = this.payload.address.city
-			let neighborhood 	= this.payload.address.neighborhood
+			let state = this.payload.address.state.toUpperCase()
+			let city = this.payload.address.city.toUpperCase()
+			let neighborhood 	= this.payload.address.neighborhood.toUpperCase()
 			let street = this.payload.address.street
 			let number = this.payload.address.number
 			
@@ -81,6 +82,50 @@ class House {
 
 			throw {
 				message: 'Ops! ocorreu um erro ao detalhar a casa!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async getneighborHoodsByCity() {
+		try{
+			let city = this.query.city ? this.query.city.toUpperCase() : null
+			if(!city) throw { identifier: 'city is null' }
+
+			let allHouses = await this.houseDB.findByCity(city)
+			if(allHouses.length == 0) throw { identifier: 'city not found'}
+
+			let neighborhoods = allHouses.map(house => house.neighborhood)
+
+			return neighborhoods
+
+		}catch(err){
+			console.error(err)
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'city not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async getHousesByCity() {
+		try{
+
+			let neighborhood = this.query.neighborhood
+			let city = this.query.city
+
+
+
+
+			
+		}catch(err){
+			console.error(err)
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
 				identifier: err.identifier || 'house not found',
 				status: status['NOT-FOUND']
 			}
