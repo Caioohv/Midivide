@@ -6,9 +6,10 @@ import norep from "./view/noRepView.vue";
 import searchRep from "./view/searchRepWithCodeView.vue";
 import verify from "./view/verifyView.vue";
 import repNear from "./view/repNearView.vue";
+import createrep from "./view/createRepView.vue"
 
 import store from "./store";
-import createrep from "./view/createRepView.vue"
+
 
 const router = createRouter({
   history: createWebHashHistory(),

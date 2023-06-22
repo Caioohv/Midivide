@@ -111,7 +111,7 @@ export default {
 }
 @media (max-width: 500px) {
   .box {
-    width: 90% !important;
+    width: 80% !important;
   }
   .searchInput {
     width: 100% !important;

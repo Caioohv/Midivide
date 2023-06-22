@@ -7,20 +7,24 @@
     </div>
 
     <div class="buttonBox">
-      <buttonComponent
-        bgc="#35FF69"
-        color="#001011"
-        height="100"
-        width="100"
-        value="Encontrar uma moradia"
-      />
-      <buttonComponent
-        bgc="#9E76DB"
-        color="#E8E8E8"
-        height="100"
-        width="100"
-        value="Criar uma moradia"
-      />
+      <router-link to="/repNear">
+        <buttonComponent
+          bgc="#35FF69"
+          color="#001011"
+          height="100"
+          width="100"
+          value="Encontrar uma moradia"
+        />
+      </router-link>
+      <router-link to="/createrep">
+        <buttonComponent
+          bgc="#9E76DB"
+          color="#E8E8E8"
+          height="100"
+          width="100"
+          value="Criar uma moradia"
+        />
+      </router-link>
        
       <router-link to="/searchRep">
         <textBodyComponent content="Já tem um código? Entre direto na sua república" />
@@ -86,6 +90,7 @@ export default {
 
 .buttonBox button {
   height: 60px !important;
+  width: 250px !important;
 }
 
 .toogleBox {
