@@ -2,7 +2,7 @@ const userRep = require('../repository/user.rep')
 
 const status = require('../utils/status')
 
-class Login {
+class User {
 	constructor(req){
 		this.req = req
 		this.payload = req.body
@@ -27,15 +27,7 @@ class Login {
 				status: status['FAILED-PROCESS']
 			}
 		}
-		
-
-		
-
 	}
-
-
-	
-
 }
 
-module.exports = Login
+module.exports = User

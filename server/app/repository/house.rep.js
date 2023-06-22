@@ -1,15 +1,15 @@
 const House = require('../database/models/House')
 
-class emailCode {
+class house {
 	create(identifier, owner_user_id, name, is_public, vacancies, occupied, state, city, neighborhood, street, number){
 		return House.create({ 
 			identifier, owner_user_id, name, is_public, vacancies, occupied, state, city, neighborhood, street, number 
 		})
 	}
 
-	update(identifier, name, is_public, vacancies, state, city, neighborhood, street, number){
+	update(identifier, name, is_public, vacancies, occupied, state, city, neighborhood, street, number){
 		return House.update(
-			{ name, is_public, vacancies, state, city, neighborhood, street, number }, 
+			{ name, is_public, vacancies, occupied, state, city, neighborhood, street, number }, 
 			{	where: {identifier} })
 	}
 
@@ -25,6 +25,13 @@ class emailCode {
 			attributes: {exclude: ['createdAt', 'updatedAt']}
 		})
 	}
+
+	updateOccupation(identifier, occupied){
+		return House.update(
+			{ occupied }, 
+			{	where: {identifier} })
+	} 
+
 }
 
-module.exports = emailCode
+module.exports = house 

@@ -11,5 +11,10 @@ module.exports = {
 	logging: false, 
 	query: {
 		raw: true
-	}	
+	},
+	dialectOptions: {
+		ssl: {
+			rejectUnauthorized: true,        
+		}
+	}
 }

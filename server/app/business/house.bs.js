@@ -3,7 +3,7 @@ const status = require('../utils/status')
 const houseRep = require('../repository/house.rep')
 const userRep = require('../repository/user.rep')
 
-class Login {
+class House {
 	constructor(req){
 		this.req = req
 		this.payload = req.body
@@ -89,4 +89,4 @@ class Login {
 
 }
 
-module.exports = Login
+module.exports = House

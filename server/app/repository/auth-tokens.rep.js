@@ -1,6 +1,6 @@
 const AuthTokens = require('../database/models/Auth-token')
 
-class auth {
+class authTokens {
 	register(user_id, token, expiration){
 		return AuthTokens.create({ 
 			user_id, token, expiration 
@@ -33,4 +33,4 @@ class auth {
 	}
 }
 
-module.exports = auth
+module.exports = authTokens

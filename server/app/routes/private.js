@@ -2,6 +2,7 @@ console.log('Loading private routes')
 const authCtrl = require('../controllers/auth.ctrl')
 const userCtrl = require('../controllers/user.ctrl')
 const houseCtrl = require('../controllers/house.ctrl')
+const requestCtrl = require('../controllers/request.ctrl')
 
 const authorize = require('../middlewares/auth')
 const admin = require('../middlewares/admin')
@@ -9,6 +10,7 @@ const admin = require('../middlewares/admin')
 const auth = new authCtrl()
 const user = new userCtrl()
 const house = new houseCtrl()
+const request = new requestCtrl()
 
 module.exports = (app) => {
 
@@ -41,6 +43,17 @@ module.exports = (app) => {
 		.post(
 			authorize,
 			house.create
+		)
+
+	app.route('/house/request')
+		.post(
+			authorize,
+			request.create
+		)
+		.get(
+			authorize,
+			admin, 
+			request.listByHouse
 		)
 
 	console.log('Private routes ok')

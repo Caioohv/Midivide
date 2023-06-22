@@ -6,6 +6,7 @@ const Auth = require('./models/Auth')
 const EmailCodes = require('./models/Email-code')
 const AuthTokens = require('./models/Auth-token')
 const Houses = require('./models/House')
+const Requests = require('./models/Request')
 
 const db = new Sequelize(config)
 
@@ -14,5 +15,6 @@ Auth.init(db)
 EmailCodes.init(db)
 AuthTokens.init(db)
 Houses.init(db)
+Requests.init(db)
 
 module.exports = db
