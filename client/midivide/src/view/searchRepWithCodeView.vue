@@ -90,6 +90,22 @@ export default {
   .box {
     width: 70% !important;
   }
-
+  .searchInput {
+    width: 70% !important;
+  }
+  .textTitle {
+    padding: 0px;
+  }
+  .textBox {
+    margin: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .box {
+    width: 90% !important;
+  }
+  .searchInput {
+    width: 100% !important;
+  }
 }
 </style>

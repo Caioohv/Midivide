@@ -7,25 +7,26 @@
     </div>
 
     <div class="buttonBox">
+      <buttonComponent
+        bgc="#35FF69"
+        color="#001011"
+        height="100"
+        width="100"
+        value="Encontrar uma moradia"
+      />
+      <buttonComponent
+        bgc="#9E76DB"
+        color="#E8E8E8"
+        height="100"
+        width="100"
+        value="Criar uma moradia"
+      />
+       
       <router-link to="/searchRep">
-        <buttonComponent
-          bgc="#35FF69"
-          color="#001011"
-          height="100"
-          width="85"
-          value="Encontrar uma moradia"
-        />
-      </router-link>
-      <router-link to="/createrep">
-        <buttonComponent
-          bgc="#9E76DB"
-          color="#E8E8E8"
-          height="100"
-          width="100"
-          value="Criar uma moradia"
-        />
+        <textBodyComponent content="Já tem um código? Entre direto na sua república" />
       </router-link>
     </div>
+   
 
     <div class="toogleBox">
       <textSubTitleComponent content="Tema Escuro:" />
@@ -41,6 +42,7 @@ import textTitleComponent from "@/components/textTitleComponent.vue";
 import buttonComponent from "@/components/buttonComponent.vue";
 import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
+import textBodyComponent from "@/components/linkComponent.vue";
 
 export default {
   components: {
@@ -50,6 +52,7 @@ export default {
     buttonComponent,
     buttonToogleComponent,
     textSubTitleComponent,
+    textBodyComponent,
   },
 };
 </script>

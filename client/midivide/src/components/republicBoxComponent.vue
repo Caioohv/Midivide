@@ -62,4 +62,27 @@ export default {
   font-size: 30px;
 }
 
+@media (max-width: 950px) {
+  .body{
+    max-width: 50%;
+  }
+}
+@media (max-width: 950px) {
+  .body{
+    max-width: 57%;
+  }
+}
+@media (max-width: 380px) {
+  .body{
+    max-width: 70%;
+  }
+}
+@media (max-width: 320px) {
+  .fas{
+    display: none;
+  }
+  .textBox{
+    max-width: 100%;
+  }
+}
 </style>
