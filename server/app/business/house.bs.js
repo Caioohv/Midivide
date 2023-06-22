@@ -111,18 +111,19 @@ class House {
 		}
 	}
 
-	async getHousesByCity() {
+	async getHousesByCityAndNeighborhood() {
 		try{
 
 			let neighborhood = this.query.neighborhood
 			let city = this.query.city
 
+			if(!neighborhood) {
+				return await this.houseDB.findByCity(city)
+			}
 
+			return await this.houseDB.findByCityAndNeighborhood(city, neighborhood)
 
-
-			
 		}catch(err){
-			console.error(err)
 
 			throw {
 				message: 'Ops! ocorreu um erro ao listar as casas!',
