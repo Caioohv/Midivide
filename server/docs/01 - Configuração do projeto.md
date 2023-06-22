@@ -9,6 +9,13 @@ As configurações de Email são relativas ao serviço de envio de email.
 Para testar, crie uma conta no `mailtrap.io` e use as credenciais fornecidas.
 O único que deve ser mudado é o usuário e senha.
 
+### Geolocation API
+
+As configurações são relativas ao serviço de geolocalização.
+Para testar, crie uma conta no `geoapify.com` e use as credenciais fornecidas.
+O único que deve ser mudado é o api key.
+
+
 ### Database
 
 As configurações de Database são informações relacionadas ao banco de dados

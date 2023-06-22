@@ -39,7 +39,6 @@ class Auth {
 			res.status(status['SUCCESS']).json(response)
 
 		}catch(err){
-			console.log('\n','----------->err: ', (err))
 			error(err, res)
 			
 		}

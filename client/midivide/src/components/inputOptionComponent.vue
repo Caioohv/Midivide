@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <div :class="themeClassChange">
-      <input :type="setType" :placeholder="placeholder" />
-    </div>
-  </div>
+    <select :class="themeClassChange">
+      <option value="">{{placeholder}}</option>
+      <option :key="item.id" v-for="item in itens" :value="item.id">
+        {{ item.nome }}
+      </option>
+    </select>
 </template>
 
 <script>
@@ -11,9 +12,10 @@ import { mapGetters } from "vuex";
 
 export default {
   props: {
+    itens: [],
     placeholder: String,
-    type: String
   },
+
 
   computed: {
     ...mapGetters({
@@ -27,30 +29,19 @@ export default {
         themeDark: this.theme === "dark",
       };
     },
-
-    setType(){
-      if(this.type == ''){
-        return 'text';
-      }
-      else{
-        return this.type;
-      }
-    }
-
   },
 };
 </script>
 
 <style scoped>
 .default {
-  width: 100%;
   height: 40px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  transition: transform 0.3s;
   border-radius: 5px;
+  width: 115%;
 }
 
 .themeLight {
@@ -61,12 +52,18 @@ export default {
   background: #e8e8e8;
 }
 
-input {
-  width: 100%;
-  height: 45px;
-  background-color: transparent;
+select {
   border: none;
-  outline: none;
-  padding-left: 10px;
+  padding-left: 5px;
+  cursor: pointer;
 }
+
+@media (max-width: 1100px) {
+    
+    .default{
+        width: 120%;
+    }
+
+}
+
 </style>

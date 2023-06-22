@@ -37,7 +37,7 @@ Nesse momento, a conta do usuário estará ativa e pode ser autenticada
 Inicialmente, será feito o seguinte consumo:
 
 **POST** /auth/login
-```
+```json
 {
 	"email": "caio.vieira@gmail.com",
 	"password": "testeaa"
@@ -45,7 +45,7 @@ Inicialmente, será feito o seguinte consumo:
 ```
 
 A rota retornará status 200 para sucesso, com o seguinte corpo:
-```
+```json
 {
 	"token": "Basic jy0h5wr26bky6whmddnuapn8bi8s0ossg"
 }
