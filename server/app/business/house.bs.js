@@ -8,6 +8,7 @@ class House {
 		this.req = req
 		this.payload = req.body
 		this.query = req.query
+		this.params = req.params
 		this.user = req.user
 		this.houseDB = new houseRep()
 		this.userDB = new userRep()
@@ -122,6 +123,23 @@ class House {
 			}
 
 			return await this.houseDB.findByCityAndNeighborhood(city, neighborhood)
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async getHousesByCode() {
+		try{
+
+			let code = this.params.code
+
+			return await this.houseDB.searchByIdentifier(code)
 
 		}catch(err){
 

@@ -57,6 +57,12 @@ module.exports = (app) => {
 			house.getHousesByCityAndNeighborhood
 		)
 
+	app.route('/houses/:code')
+		.get(
+			authorize,
+			house.getHousesByCode
+		)
+
 	app.route('/house/request')
 		.post(
 			authorize,
