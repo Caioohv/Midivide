@@ -101,12 +101,12 @@ class Request {
 
 		try{
 			let requests = await this.requestDB.searchByUserId(user.id)
-			if(!requests) return {status: 'not waiting'}
+			if(!requests) return {waiting: false}
 
 			let house = await this.houseDB.searchByIdentifier(requests.house_identifier)
 			
-			if(requests) return {status: 'waiting', house}
-			else return {status: 'not waiting'}
+			if(requests) return {waiting: true, house}
+			else return {waiting: false}
 
 		}catch(err) {
 			throw {
