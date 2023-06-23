@@ -15,7 +15,7 @@ class user {
 
 	register(email, phone, name, verified){
 		return User.create({ 
-			email, name,phone, verified 
+			email, phone, name, verified 
 		})
 	} 
 
