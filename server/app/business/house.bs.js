@@ -33,10 +33,6 @@ class House {
 		return identifier
 	}
 
-	async getGeolocationFromAddress() {
-		
-	}
-
 	async create() {
 		try{
 			let identifier = this.generateIdentifier()
@@ -122,7 +118,11 @@ class House {
 				return await this.houseDB.findByCity(city)
 			}
 
-			return await this.houseDB.findByCityAndNeighborhood(city, neighborhood)
+			let houses = await this.houseDB.findByCityAndNeighborhood(city, neighborhood)
+
+			houses = houses.filter(house => house.vacancies - house.occupied > 0)
+
+			return houses
 
 		}catch(err){
 
