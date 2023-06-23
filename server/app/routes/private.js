@@ -44,6 +44,10 @@ module.exports = (app) => {
 			authorize,
 			house.create
 		)
+		.delete(
+			authorize,
+			house.leave
+		)
 
 	app.route('/houses/neighborhoods')
 		.get(

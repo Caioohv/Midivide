@@ -32,6 +32,13 @@ class user {
 			id: user_id
 		}})
 	}
+	dissociate(user_id) {
+		return User.update({
+			house: null
+		}, { where: {
+			id: user_id
+		}})
+	}
 }
 
 module.exports = user

@@ -151,6 +151,24 @@ class House {
 		}
 	}
 
+	async leave(){
+		try{
+			let code = this.req.user.house
+
+			let house = await this.houseDB.searchByIdentifier(code)
+			await this.houseDB.updateOccupation(code, house.occupied -1)
+			await this.userDB.dissociate(this.req.user.id)
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
 }
 
 module.exports = House
