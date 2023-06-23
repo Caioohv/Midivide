@@ -74,5 +74,11 @@ module.exports = (app) => {
 			request.listByHouse
 		)
 
+	app.route('/house/request/:request_id/:decision')
+		.put(
+			authorize,
+			request.acceptOrDecline
+		)
+
 	console.log('Private routes ok')
 } 
