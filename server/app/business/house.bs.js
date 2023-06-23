@@ -169,6 +169,24 @@ class House {
 		}
 	}
 
+	async listMembers(){
+		try{
+			let code = this.req.user.house
+
+			let members = await this.userDB.findByHouse(code)
+
+			return members
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
 }
 
 module.exports = House

@@ -13,6 +13,12 @@ class user {
 		})
 	}
 
+	findByHouse(house) {
+		return User.findAll({ 
+			where: { house }
+		})
+	}
+
 	register(email, phone, name, verified){
 		return User.create({ 
 			email, phone, name, verified 

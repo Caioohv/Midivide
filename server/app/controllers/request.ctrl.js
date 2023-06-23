@@ -34,7 +34,6 @@ class House {
 
 			res.status(status['SUCCESS']).json(response)
 		}catch(err) {
-			console.log('\n','----------->err: ', (err))
 			errorHandler(err, res)
 		}
 	}
@@ -46,7 +45,6 @@ class House {
 
 			res.status(status['SUCCESS']).json(response)
 		}catch(err) {
-			console.log('\n','----------->err: ', (err))
 			errorHandler(err, res)
 		}
 	}
@@ -58,7 +56,6 @@ class House {
 
 			res.status(status['SUCCESS']).json(response)
 		}catch(err) {
-			console.log('\n','----------->err: ', (err))
 			errorHandler(err, res)
 		}
 	}
