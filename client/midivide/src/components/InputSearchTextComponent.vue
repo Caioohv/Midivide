@@ -1,8 +1,8 @@
 <template>
   <div class="search-input" :style="{ width: width, height: height }">
-    <input type="text" placeholder="Pesquise aqui - Ex: HEB-01" class="input-field" />
+    <input type="text" placeholder="Pesquise aqui" class="input-field" />
     <div class="search-icon-container">
-      <i class="fas fa-search search-icon"></i>
+      <i class="fas fa-search search-icon" @click="emitSinal"></i>
     </div>
   </div>
 </template>
@@ -21,6 +21,13 @@ export default {
       default: '100%',
     },
   },
+
+  methods:{
+    emitSinal(){
+      this.$emit('searhIconActive');
+    }
+  }
+
 };
 </script>
 

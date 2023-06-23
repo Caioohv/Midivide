@@ -1,5 +1,6 @@
 <template>
   <boxComponent class="body" widths="35" heights="85">
+
     <textTitleComponent content="Cadastro de Moradia" class="title" />
 
     <div class="formBox">
@@ -20,7 +21,6 @@
           @change="cityFilter"
           placeholder="Estados"
           :itens="states"
-          :itemtype="false"
           class="stateInput"
         />
       </div>
@@ -31,7 +31,6 @@
             :itens="cities"
             class="cityInput"
             placeholder="Cidades"
-            :itemtype="true"
           />
           <InputTextComponent placeholder="Bairro" class="hoodInput" />
         </div>

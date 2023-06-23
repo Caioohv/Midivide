@@ -5,7 +5,7 @@ import register from "./view/registerView.vue";
 import norep from "./view/noRepView.vue";
 import searchRep from "./view/searchRepWithCodeView.vue";
 import verify from "./view/verifyView.vue";
-import repNear from "./view/repNearView.vue";
+import repNear from "./view/nearRepView.vue";
 import createrep from "./view/createRepView.vue"
 
 import store from "./store";
