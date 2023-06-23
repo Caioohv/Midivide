@@ -101,5 +101,11 @@ module.exports = (app) => {
 			house.listMembers
 		)
 
+	app.route('/house/members/:memberId')
+		.delete(
+			authorize,
+			house.deleteMember
+		)
+
 	console.log('Private routes ok')
 } 

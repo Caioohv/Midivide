@@ -86,6 +86,17 @@ class House {
 			errorHandler(err, res)
 		}
 	}
+
+	async deleteMember(req, res) {
+		try{
+			let house = new HouseBs(req, res)
+			let response = await house.deleteMember()
+
+			res.status(status['SUCCESS']).json(response)
+		}catch(err) {
+			errorHandler(err, res)
+		}
+	}
 }
 
 module.exports = House

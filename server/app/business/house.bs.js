@@ -187,6 +187,22 @@ class House {
 		}
 	}
 
+	async deleteMember(){
+		try{
+			let memberId = this.req.params.memberId
+
+			return await this.userDB.dissociate(memberId)
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
 }
 
 module.exports = House
