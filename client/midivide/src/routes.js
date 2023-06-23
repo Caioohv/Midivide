@@ -7,6 +7,7 @@ import searchRep from "./view/searchRepWithCodeView.vue";
 import verify from "./view/verifyView.vue";
 import repNear from "./view/repNearView.vue";
 import createrep from "./view/createRepView.vue"
+import allEvents from "./view/allEventsView.vue"
 
 import store from "./store";
 
@@ -50,6 +51,12 @@ const router = createRouter({
       path: "/createrep",
       name: "createrep",
       component: createrep
+    },
+
+    {
+      path: "/allEvents",
+      name: "allEvents",
+      component: allEvents
     }
 
   ],
