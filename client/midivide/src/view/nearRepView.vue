@@ -1,10 +1,16 @@
 <template>
   <boxComponentVue class="box" widths="75" heights="85">
-
-    <boxComponentVue v-if="localChoose" class="localBox box" widths="75" heights="85">
+    <boxComponentVue
+      v-if="localChoose"
+      class="localBox box"
+      widths="75"
+      heights="85"
+    >
       <div class="box">
         <textTitleComponent content="Escolha a localização!" />
-        <textSubTitleComponent content="Para filtrar por cidade, deixe bairro em branco!" />
+        <textSubTitleComponent
+          content="Para filtrar por cidade, deixe bairro em branco!"
+        />
       </div>
       <div class="box">
         <inputOptionComponent
@@ -15,15 +21,18 @@
           class="stateInput optionInput"
         />
         <inputOptionComponent
-            :itens="cities"
-            class="cityInput optionInput"
-            placeholder="Cidades"
-            :itemtype="true"
-          />
-        <InputTextComponent placeholder="Bairro" class="hoodInput optionInput" />
+          :itens="cities"
+          class="cityInput optionInput"
+          placeholder="Cidades"
+          :itemtype="true"
+        />
+        <InputTextComponent
+          placeholder="Bairro"
+          class="hoodInput optionInput"
+        />
       </div>
 
-        <buttonComponent @click="filter" value="Filtrar" bgc="#35FF69"/>
+      <buttonComponent @click="filter" value="Filtrar" bgc="#35FF69" />
     </boxComponentVue>
 
     <div class="textBox">
@@ -31,11 +40,28 @@
     </div>
 
     <div class="republics">
-        <republicBoxComponent :key="house.identifier"  v-for="house in houses" :title="house.name" :addres="`${house.street}, ${house.number}, ${house.neighborhood}`"/>
+      <republicBoxComponent
+        @showHouseDetailsActive="showHouseDeatils"
+        :key="house.identifier"
+        v-for="house in houses"
+        :code="house.identifier"
+        :title="house.name"
+        :addres="`${house.street}, ${house.number}, ${house.neighborhood}`"
+      />
     </div>
 
-    <buttonComponent @click="localChoose=true" value="Trocar localização" bgc="#9E76DB" color="#FFF"/>
-    
+    <entryRequest
+      @closeDetails="showDetails = false"
+      :code="showDetailsCode"
+      v-if="showDetails"
+    />
+
+    <buttonComponent
+      @click="localChoose = true"
+      value="Trocar localização"
+      bgc="#9E76DB"
+      color="#FFF"
+    />
   </boxComponentVue>
 </template>
 
@@ -44,9 +70,10 @@ import boxComponentVue from "@/components/boxComponent.vue";
 import textTitleComponent from "@/components/textTitleComponent.vue";
 import republicBoxComponent from "@/components/republicBoxComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
-import inputOptionComponent from '../components/inputOptionComponent.vue';
+import inputOptionComponent from "../components/inputOptionComponent.vue";
 import InputTextComponent from "@/components/InputTextComponent.vue";
 import buttonComponent from "@/components/buttonComponent.vue";
+import entryRequest from "@/components/entryRequest.vue";
 
 import axios from "axios";
 import { mapGetters } from "vuex";
@@ -60,21 +87,24 @@ export default {
     inputOptionComponent,
     InputTextComponent,
     buttonComponent,
+    entryRequest,
   },
 
-  data(){
-    return{
+  data() {
+    return {
       localChoose: true,
+      showDetails: false,
+      showDetailsCode: "",
       states: [],
       cities: [],
-      houses: []
-    }
+      houses: [],
+    };
   },
 
-  computed:{
+  computed: {
     ...mapGetters({
-      token: 'getToken'
-    })
+      token: "getToken",
+    }),
   },
 
   created() {
@@ -90,9 +120,13 @@ export default {
       });
   },
 
-  methods:{
-    cityFilter() {
+  methods: {
+    showHouseDeatils(code) {
+      this.showDetailsCode = code;
+      this.showDetails = true;
+    },
 
+    cityFilter() {
       var UF = document.querySelector(".stateInput").value;
 
       axios
@@ -107,56 +141,56 @@ export default {
         });
     },
 
-    filter(){
-
-      if(document.querySelector(".cityInput").selectedIndex!=0){
-
-        var city = this.cities[document.querySelector(".cityInput").selectedIndex - 1].nome;
-        var hood = document.querySelector(".hoodInput").childNodes[0].childNodes[0].value;
+    filter() {
+      if (document.querySelector(".cityInput").selectedIndex != 0) {
+        var city =
+          this.cities[document.querySelector(".cityInput").selectedIndex - 1]
+            .nome;
+        var hood =
+          document.querySelector(".hoodInput").childNodes[0].childNodes[0]
+            .value;
 
         const API = require("../config");
 
-        if(hood != ""){
+        if (hood != "") {
           var urlRequest = `${API.url}/houses?city=${city}&neighborhood=${hood}`;
-        }else{
+        } else {
           urlRequest = `${API.url}/houses?city=${city}`;
         }
 
-        const axios = require('axios');
-        let data = '';
+        const axios = require("axios");
+        let data = "";
 
         let config = {
-          method: 'get',
+          method: "get",
           maxBodyLength: Infinity,
           url: urlRequest,
-          headers: { 
-            'Authorization': this.token
+          headers: {
+            Authorization: this.token,
           },
-          data : data
+          data: data,
         };
 
-        axios.request(config)
-        .then((response) => {
-          console.log(JSON.stringify(response.data));
-          if(response.data.length > 0){
-            this.houses = response.data;
-            this.localChoose = false;
-          }else{
-            window.alert("A cidade ou bairro não possui moradias cadastradas em nosso sistema :(");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-      }else{
+        axios
+          .request(config)
+          .then((response) => {
+            if (response.data.length > 0) {
+              this.houses = response.data;
+              this.localChoose = false;
+            } else {
+              window.alert(
+                "A cidade ou bairro não possui moradias cadastradas em nosso sistema :("
+              );
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
         window.alert("Nenhuma cidade selecionada!");
       }
-
-    }
-
-  }
-
+    },
+  },
 };
 </script>
 
@@ -171,11 +205,11 @@ export default {
   row-gap: 10px;
 }
 
-.localBox{
+.localBox {
   position: absolute;
 }
 
-.optionInput{
+.optionInput {
   width: 300px;
   max-width: 300px;
 }
@@ -183,7 +217,6 @@ export default {
 .body {
   margin-bottom: 10px;
   max-width: 70% !important;
-
 }
 
 .textBox {
@@ -193,7 +226,7 @@ export default {
 }
 
 .textTitle {
-    padding: 0px;
+  padding: 0px;
 }
 
 .republics {
@@ -237,7 +270,7 @@ export default {
   .box {
     width: 80% !important;
   }
-  .optionInput{
+  .optionInput {
     width: 100%;
   }
 }

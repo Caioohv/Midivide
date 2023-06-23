@@ -1,6 +1,5 @@
 <template>
   <boxComponent class="body" widths="35" heights="85">
-
     <textTitleComponent content="Cadastro de Moradia" class="title" />
 
     <div class="formBox">
@@ -92,7 +91,7 @@ import linkComponent from "@/components/linkComponent.vue";
 import axios from "axios";
 import { mapGetters } from "vuex";
 import { mapMutations } from "vuex";
-import router from '../routes';
+import router from "../routes";
 
 export default {
   components: {
@@ -113,9 +112,9 @@ export default {
     };
   },
 
-  computed:{
+  computed: {
     ...mapGetters({
-        token: "getToken"
+      token: "getToken",
     }),
   },
 
@@ -133,8 +132,7 @@ export default {
   },
 
   methods: {
-
-    ...mapMutations(['setHouse']),
+    ...mapMutations(["setHouse"]),
 
     cityFilter() {
       var UF = document.querySelector(".stateInput").value;
@@ -152,81 +150,81 @@ export default {
     },
 
     createHouse(e) {
-        if(document.querySelector(".nameInput").childNodes[0].childNodes[0]
-          .value != "" && document.querySelector(".vacInput").childNodes[0].childNodes[0]
-          .value != "" && document
-          .querySelector(".hoodInput")
-          .childNodes[0].childNodes[0].value != "" && document
-          .querySelector(".streetInput")
-          .childNodes[0].childNodes[0].value != "" && document
-          .querySelector(".numberInput")
-          .childNodes[0].childNodes[0].value != ""){
+      if (
+        document.querySelector(".nameInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".vacInput").childNodes[0].childNodes[0].value !=
+          "" &&
+        document.querySelector(".hoodInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".streetInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".numberInput").childNodes[0].childNodes[0]
+          .value != ""
+      ) {
+        var obj = {
+          public: e.target.id,
+          name: document.querySelector(".nameInput").childNodes[0].childNodes[0]
+            .value,
+          vac: document.querySelector(".vacInput").childNodes[0].childNodes[0]
+            .value,
+          state:
+            this.states[document.querySelector(".stateInput").selectedIndex - 1]
+              .sigla,
+          city: this.cities[
+            document.querySelector(".cityInput").selectedIndex - 1
+          ].nome.toUpperCase(),
+          hood: document
+            .querySelector(".hoodInput")
+            .childNodes[0].childNodes[0].value.toUpperCase(),
+          street: document
+            .querySelector(".streetInput")
+            .childNodes[0].childNodes[0].value.toUpperCase(),
+          number: document
+            .querySelector(".numberInput")
+            .childNodes[0].childNodes[0].value.toUpperCase(),
+        };
 
+        const API = require("../config");
 
-      var obj = {
-        public: e.target.id,
-        name: document.querySelector(".nameInput").childNodes[0].childNodes[0]
-          .value,
-        vac: document.querySelector(".vacInput").childNodes[0].childNodes[0]
-          .value,
-        state:
-          this.states[document.querySelector(".stateInput").selectedIndex - 1]
-            .sigla,
-        city: this.cities[
-          document.querySelector(".cityInput").selectedIndex - 1
-        ].nome.toUpperCase(),
-        hood: document
-          .querySelector(".hoodInput")
-          .childNodes[0].childNodes[0].value.toUpperCase(),
-        street: document
-          .querySelector(".streetInput")
-          .childNodes[0].childNodes[0].value.toUpperCase(),
-        number: document
-          .querySelector(".numberInput")
-          .childNodes[0].childNodes[0].value.toUpperCase(),
-      };
-
-      const API = require("../config");
-
-      const axios = require("axios");
-      let data = JSON.stringify({
-        name: obj.name,
-        isPublic: obj.public,
-        vacancies: obj.number,
-        address: {
-          state: obj.state,
-          city: obj.city,
-          neighborhood: obj.hood,
-          street: obj.street,
-          number: obj.number,
-        },
-      });
-
-      let config = {
-        method: "post",
-        maxBodyLength: Infinity,
-        url: `${API.url}/house`,
-        headers: {
-          Authorization: this.token,
-          "Content-Type": "application/json",
-        },
-        data: data,
-      };
-
-      axios
-        .request(config)
-        .then((response) => {
-            this.setHouse(response.data.house_code);
-            window.alert("Moradia criada com sucesso!");
-            router.push('/');
-        })
-        .catch((error) => {
-          console.log(error);
+        const axios = require("axios");
+        let data = JSON.stringify({
+          name: obj.name,
+          isPublic: obj.public,
+          vacancies: obj.vac,
+          address: {
+            state: obj.state,
+            city: obj.city,
+            neighborhood: obj.hood,
+            street: obj.street,
+            number: obj.number,
+          },
         });
 
-        }else{
-            window.alert("Algum campo do cadastro foi deixado em branco!");
-        }
+        let config = {
+          method: "post",
+          maxBodyLength: Infinity,
+          url: `${API.url}/house`,
+          headers: {
+            Authorization: this.token,
+            "Content-Type": "application/json",
+          },
+          data: data,
+        };
+
+        axios
+          .request(config)
+          .then((response) => {
+            this.setHouse(response.data.house_code);
+            window.alert("Moradia criada com sucesso!");
+            router.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        window.alert("Algum campo do cadastro foi deixado em branco!");
+      }
     },
   },
 };

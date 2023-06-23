@@ -14,8 +14,13 @@
 
       <div class="inputBox">
         <InputTextComponent placeholder="Seu Nome" id="name" />
-        <InputTextComponent placeholder="Seu Email" id="email"/>
-        <InputTextComponent placeholder="Sua Senha" type="password" id="password"/>
+        <InputTextComponent placeholder="Telefone" id="phone" />
+        <InputTextComponent placeholder="Seu Email" id="email" />
+        <InputTextComponent
+          placeholder="Sua Senha"
+          type="password"
+          id="password"
+        />
       </div>
 
       <div class="buttonBox">
@@ -83,7 +88,7 @@ import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textBodyComponent from "@/components/linkComponent.vue";
 
 import { mapMutations } from "vuex";
-import router from '../routes';
+import router from "../routes";
 
 export default {
   components: {
@@ -98,18 +103,24 @@ export default {
   },
 
   methods: {
-
-    ...mapMutations(['setRegisterEmail']),
+    ...mapMutations(["setRegisterEmail"]),
 
     startRegistration() {
+      var nameInput =
+        document.querySelector("#name").childNodes[0].childNodes[0].value;
+      var emailInput =
+        document.querySelector("#email").childNodes[0].childNodes[0].value;
+      var passwordInput =
+        document.querySelector("#password").childNodes[0].childNodes[0].value;
+      var phoneInput =
+        document.querySelector("#phone").childNodes[0].childNodes[0].value;
 
-      var nameInput = document.querySelector("#name").childNodes[0].childNodes[0].value;
-      var emailInput = document.querySelector("#email").childNodes[0].childNodes[0].value;
-      var passwordInput = document.querySelector("#password").childNodes[0].childNodes[0].value;
-
-
-      if(nameInput != '' && emailInput != '' && passwordInput != ''){
-
+      if (
+        nameInput != "" &&
+        emailInput != "" &&
+        passwordInput != "" &&
+        phoneInput != ""
+      ) {
         const API = require("../config");
 
         const axios = require("axios");
@@ -117,6 +128,7 @@ export default {
           name: nameInput,
           email: emailInput,
           password: passwordInput,
+          phone: phoneInput,
         });
 
         let config = {
@@ -140,7 +152,7 @@ export default {
             console.log(error);
           });
       }
-    }
+    },
   },
 };
 </script>

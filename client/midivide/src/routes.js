@@ -6,10 +6,10 @@ import norep from "./view/noRepView.vue";
 import searchRep from "./view/searchRepWithCodeView.vue";
 import verify from "./view/verifyView.vue";
 import repNear from "./view/nearRepView.vue";
-import createrep from "./view/createRepView.vue"
+import createrep from "./view/createRepView.vue";
+import waitingrep from "./view/waitingRepView.vue";
 
 import store from "./store";
-
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -40,24 +40,34 @@ const router = createRouter({
       component: verify,
     },
 
-    { 
-      path: "/repNear", 
-      name: "repNear", 
-      component: repNear 
+    {
+      path: "/repNear",
+      name: "repNear",
+      component: repNear,
     },
 
     {
       path: "/createrep",
       name: "createrep",
-      component: createrep
-    }
+      component: createrep,
+    },
 
+    {
+      path: "/waitingrep",
+      name: "waitingrep",
+      component: waitingrep,
+    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   // Verifica se a primeira rota está sendo acessada
-  if (to.path === "/" || to.path === "/register" || to.path === "/verify" || store.state.user.logged) {
+  if (
+    to.path === "/" ||
+    to.path === "/register" ||
+    to.path === "/verify" ||
+    store.state.user.logged
+  ) {
     next(); // Permite a navegação para a primeira rota
   }
 });
