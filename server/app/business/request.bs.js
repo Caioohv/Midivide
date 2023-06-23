@@ -96,7 +96,26 @@ class Request {
 		}
 	}
 
-	
+	async listMyRequest(){
+		let user = this.req.user
+
+		try{
+			let requests = await this.requestDB.searchByUserId(user.id)
+			let house = await this.houseDB.searchByIdentifier(requests.house_identifier)
+			
+			if(requests) return {status: 'waiting', house}
+			else return {status: 'not waiting'}
+
+		}catch(err) {
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as solicitações!',
+				identifier: err.identifier ? err.identifier : 'error while listing requests',
+				status: status['FAILED-PROCESS']
+			}
+		}
+	}
+
+
 }
 
 module.exports = Request

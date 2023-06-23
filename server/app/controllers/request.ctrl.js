@@ -39,6 +39,18 @@ class House {
 		}
 	}
 
+	async listMyRequest(req, res) {
+		try{
+			let request = new RequestBs(req, res)
+			let response = await request.listMyRequest()
+
+			res.status(status['SUCCESS']).json(response)
+		}catch(err) {
+			console.log('\n','----------->err: ', (err))
+			errorHandler(err, res)
+		}
+	}
+
 }
 
 module.exports = House

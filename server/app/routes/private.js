@@ -74,6 +74,12 @@ module.exports = (app) => {
 			request.listByHouse
 		)
 
+	app.route('/my-request')
+		.get(
+			authorize,
+			request.listMyRequest
+		)
+
 	app.route('/house/request/:request_id/:decision')
 		.put(
 			authorize,
