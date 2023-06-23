@@ -83,6 +83,10 @@ module.exports = (app) => {
 			authorize,
 			request.listMyRequest
 		)
+		.delete(
+			authorize,
+			request.cancelRequest
+		)
 
 	app.route('/house/request/:request_id/:decision')
 		.put(

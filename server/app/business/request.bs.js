@@ -115,6 +115,22 @@ class Request {
 		}
 	}
 
+	async cancelRequest(){
+		try{
+			let userId = this.req.user.id
+			let request = await this.requestDB.searchByUserId(userId)
+			
+			return await this.requestDB.deleteById(request.id)	
+
+		}catch(err) {
+			throw {
+				message: 'Ops! ocorreu um erro ao cancelar a solicitaçãi!',
+				identifier: err.identifier ? err.identifier : 'error while cancelling request',
+				status: status['FAILED-PROCESS']
+			}
+		}
+	}
+
 
 }
 
