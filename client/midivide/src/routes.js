@@ -8,6 +8,9 @@ import verify from "./view/verifyView.vue";
 import repNear from "./view/nearRepView.vue";
 import createrep from "./view/createRepView.vue";
 import waitingrep from "./view/waitingRepView.vue";
+import main from "./view/mainView.vue"
+
+import member from "./view/mainSubView/memberView.vue" 
 
 import store from "./store";
 
@@ -56,6 +59,18 @@ const router = createRouter({
       path: "/waitingrep",
       name: "waitingrep",
       component: waitingrep,
+    },
+
+    {
+      path: "/main",
+      name: "main",
+      component: main,
+      children:[
+        {
+          path: '/members',
+          component: member
+        }
+      ]
     },
   ],
 });
