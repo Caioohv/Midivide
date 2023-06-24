@@ -3,23 +3,25 @@
     <div class="logo">
       <logo1Component />
     </div>
-    <div class="links" v-if="theme === 'light' || theme === 'dark'">
-      <a v-for="(link, index) in links" :key="index" class="link-item">
-        {{ link }}
-        <span v-if="index !== 6" class="divider"></span>
-      </a>
+    <div class="menu">
+      <div class="links" v-if="theme === 'light' || theme === 'dark'">
+        <a v-for="(link, index) in links" :key="index" class="link-item">
+          {{ link }}
+          <span v-if="index !== 6" class="divider"></span>
+        </a>
+      </div>
     </div>
     <div class="user-info">
         <div class="user-settings">
             <div class="user-icon">
-                <span class="ico"></span>
+              <i class="fa-solid fa-user icons"></i>
             </div>
             <div class="user-details">
-                <div class="title">Nome do usuário</div>
-                <div class="subtitle">Cargo</div>
+              <div class="title">Nome do usuário</div>
+              <div class="subtitle">Cargo</div>
             </div>
             <div class="settings-icon">
-                <span class="icon"></span>
+              <i class="fa-solid fa-gear icons"></i>
             </div>
         </div>
     </div>
@@ -58,8 +60,9 @@ export default {
 <style>
 .header {
   width: 100%;
-  height: 125px;
+  height: 110px;
   display: flex;
+  justify-content: center;
   position: fixed;
   top: 0;
   background-color: #333;
@@ -79,9 +82,14 @@ export default {
   height: auto;
 }
 
-.links {
-  width: 60%;
+.menu {
+  width: 55%;
   height: 70%;
+}
+
+.links {
+  width: 100%;
+  height: 100%;
   background-color: #e8e8e8;
   border-radius: 50px;
   display: flex;
@@ -96,6 +104,10 @@ export default {
   position: relative;
 }
 
+.link-item:hover {
+  color: #9E76DB;
+}
+
 .divider {
   position: absolute;
   top: 0;
@@ -107,10 +119,6 @@ export default {
 
 .link-item:last-child .divider {
   display: none;
-}
-
-.link-item:hover {
-  background-color: #999;
 }
 
 .link-item:hover .divider {
@@ -155,28 +163,27 @@ export default {
 }
 
 .user-settings {
-  width: 65%;
-  height: 70%;
+  width: 55%;
+  height: 60%;
   background-color: #b7b7b7;
   border-radius: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .user-icon {
-  width: 30px;
-  height: 30px;
+  width: 25%;
+  height: 90%;
   background-color: #9e76db;
   border-radius: 50%;
+  margin-left: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.user-icon img {
-  width: 20px;
-  height: 20px;
+.user-icon i {
+  color: #fff;
 }
 
 .user-details {
@@ -198,10 +205,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
 }
 
 .settings-icon img {
   width: 20px;
   height: 20px;
+}
+
+.icons {
+  font-size: 20px;
 }
 </style>
