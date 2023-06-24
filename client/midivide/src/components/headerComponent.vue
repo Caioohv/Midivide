@@ -1,20 +1,34 @@
 <template>
   <div class="header">
-    <logo1Component />
-
-    <div class="links"  v-if="theme == 'light' ? theme == 'light' : theme == 'dark'">
+    <div class="logo">
+      <logo1Component />
+    </div>
+    <div class="links" v-if="theme === 'light' || theme === 'dark'">
       <a v-for="(link, index) in links" :key="index" class="link-item">
         {{ link }}
-        <span class="divider"></span>
+        <span v-if="index !== 6" class="divider"></span>
       </a>
+    </div>
+    <div class="user-info">
+        <div class="user-settings">
+            <div class="user-icon">
+                <span class="ico"></span>
+            </div>
+            <div class="user-details">
+                <div class="title">Nome do usuário</div>
+                <div class="subtitle">Cargo</div>
+            </div>
+            <div class="settings-icon">
+                <span class="icon"></span>
+            </div>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
 import logo1Component from "@/components/logo1Component.vue";
-import { mapGetters } from 'vuex';
-
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -30,16 +44,15 @@ export default {
       ]
     };
   },
-   components: {
+  components: {
     logo1Component
   },
-  computed:{
-        ...mapGetters({
-            theme: "getTheme"
-        })
-    }
+  computed: {
+    ...mapGetters({
+      theme: "getTheme"
+    })
+  }
 };
-
 </script>
 
 <style>
@@ -50,10 +63,15 @@ export default {
   position: fixed;
   top: 0;
   background-color: #333;
-  z-index: 999; 
+  z-index: 999;
+  align-items: center;
 }
+
 .logo {
-  width: 20%;
+  width: 10%;
+  display: flex;
+  margin: 0px 0px 0px 15px;
+  align-items: center;
 }
 
 .logo img {
@@ -63,6 +81,9 @@ export default {
 
 .links {
   width: 60%;
+  height: 70%;
+  background-color: #e8e8e8;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +91,7 @@ export default {
 
 .link-item {
   padding: 20px;
-  color: #fff;
+  color: #000;
   text-decoration: none;
   position: relative;
 }
@@ -96,7 +117,7 @@ export default {
   background-color: #999;
 }
 
-.link-item::after {
+.link-item:not(:last-child)::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -125,4 +146,62 @@ export default {
   background-color: #999;
 }
 
+.user-info {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-settings {
+  width: 65%;
+  height: 70%;
+  background-color: #b7b7b7;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #9e76db;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.user-details {
+  margin-left: 10px;
+  text-align: left;
+}
+
+.title {
+  font-size: 15px;
+}
+
+.subtitle {
+  font-size: 12px;
+}
+
+.settings-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-icon img {
+  width: 20px;
+  height: 20px;
+}
 </style>
