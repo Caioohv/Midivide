@@ -25,6 +25,32 @@
             </div>
         </div>
     </div>
+
+    <div class="hamburguer">
+      <div class="hamburger-menu" :class="{ open: isOpen }" @click="openMenu($event)">
+        <div class="hamburger-icon"></div>
+      </div>
+    </div>
+
+    <div class="menu-lateral" :class="{ open: isOpen }">
+      <div class="menu-user">
+        <div class="menu-user-info">
+          <div class="user-icon">
+            <i class="fa-solid fa-user icons"></i>
+          </div>
+          <div class="user-details">
+            <div class="title title-menu">Nome do usuário</div>
+            <div class="subtitle subtitle-menu">Cargo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-links">
+        <a v-for="(link, index) in links" :key="index" class="menu-link-item">
+          {{ link }}
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,7 +69,8 @@ export default {
         "Eventos",
         "Membros",
         "Minha República"
-      ]
+      ],
+      isOpen: false
     };
   },
   components: {
@@ -53,6 +80,12 @@ export default {
     ...mapGetters({
       theme: "getTheme"
     })
+  },
+  methods: {
+    openMenu()
+    {
+      this.isOpen = !this.isOpen;
+    }
   }
 };
 </script>
@@ -78,7 +111,7 @@ export default {
 }
 
 .logo img {
-  width: 100%;
+  width: 45px;
   height: auto;
 }
 
@@ -173,7 +206,7 @@ export default {
 
 .user-icon {
   width: 25%;
-  height: 90%;
+  height: 80%;
   background-color: #9e76db;
   border-radius: 50%;
   margin-left: 6px;
@@ -189,10 +222,13 @@ export default {
 .user-details {
   margin-left: 10px;
   text-align: left;
+  font-family: 'Montserrat';
 }
 
 .title {
   font-size: 15px;
+  font-weight: bold;
+
 }
 
 .subtitle {
@@ -216,4 +252,193 @@ export default {
 .icons {
   font-size: 20px;
 }
+
+.menu-lateral{
+  display: none;
+}
+
+@media (max-width: 1270px) {
+  .user-info {
+    width: 20%;
+    margin-left: 50px;
+  }
+
+  .user-settings {
+    width: 85%;
+  }
+
+  .user-icon {
+    width: 20%;
+    height: 65%;
+  }
+
+  .title{
+    font-size: 13px;
+  }
+
+  .icons {
+    font-size: 15px;
+}
+}
+@media (max-width: 1150px) {
+  .menu, .user-info {
+    display: none;
+  }
+  
+  .hamburguer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+  .hamburger-icon {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+
+  .hamburger-icon::before {
+    top: -8px;
+    transform-origin: top;
+  }
+
+  .hamburger-icon::after {
+    top: 8px;
+    transform-origin: bottom;
+  }
+
+  .hamburger-menu.open .hamburger-icon {
+    background-color: unset;
+  }
+
+  .hamburger-menu.open .hamburger-icon::after {
+    transform: rotate(45deg);
+    background-color: #000;
+  }
+
+  .hamburger-menu.open .hamburger-icon::before {
+    transform: rotate(-45deg);
+    top: 8px;
+    background-color: #000;
+  }
+
+  .menu-lateral.open{
+    width: 40%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    height: 100vh;
+    right: 0px;
+    box-shadow: 1px 5px 5px 5px #121212b8;
+    background-color: #9E76DB;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .menu-user {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-user:after{
+    right: 10px;
+    left: 10px;
+    content: "";
+    position: absolute;
+    width: 95%;
+    height: 1px;
+    top: 100px;
+    background-color: #e7e7e7;
+    transition: transform 0.3s ease;
+  }
+
+  .title-menu{
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .subtitle-menu{
+    color: #fff;
+  }
+
+  .menu-user-info{
+    display: flex;
+    width: 100%;
+  }
+
+  .user-icon{
+    width: 5%;
+    background-color: #fff;
+    padding: 10px;
+  }
+
+  .user-icon .icons{
+    color: #9E76DB;
+  }
+
+  .menu-links{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 100px;
+    flex-direction: column;
+  }
+
+  .menu-link-item{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    padding: 20px;
+    color: #fff;
+    border-bottom: 1px solid;
+  }
+}
+
+@media (max-width: 735px) {
+  .menu-lateral.open{
+    width: 60%;
+  }
+}
+
+@media (max-width: 475px) {
+  .menu-lateral.open{
+    width: 80%;
+  }
+}
+
+@media (max-width: 340px) {
+  .menu-lateral.open{
+    width: 100%;
+  }
+}
+
+
 </style>
