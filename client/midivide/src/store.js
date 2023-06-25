@@ -3,16 +3,17 @@ import router from "./routes";
 
 const store = createStore({
   state: {
-    theme: "dark",
+    theme: "light",
     user: {
       token: "",
-      logged: true,
+      logged: false,
       id: null,
       email: "",
       name: "",
       verified: null,
       house: null,
       phone: "",
+      admin: false
     },
     waitingHouse: false,
     registerEmail: "",
@@ -89,6 +90,7 @@ const store = createStore({
               state.user.verified = response.data.verified;
               state.user.house = response.data.house;
               state.user.phone = response.data.phone;
+              state.user.admin = response.data.admin;
 
               if (!state.user.verified) {
                 router.push("/verify");
@@ -97,7 +99,7 @@ const store = createStore({
               } else if (!state.user.house) {
                 router.push("/norep");
               } else {
-                router.push("/");
+                router.push("/main");
               }
             })
             .catch((error) => {
@@ -106,6 +108,7 @@ const store = createStore({
         })
         .catch((error) => {
           console.log(error);
+          window.alert("Algo deu errado!");
         });
     },
 

@@ -21,7 +21,7 @@
       <userIconComponent />
       <div class="userInfo">
         <textSubTitleComponent :content="user.name" />
-        <textSubTitleComponent class="houseName" :content="houseName" />
+        <textSubTitleComponent class="houseName" :content="user.house.name" />
       </div>
       <configIconComponent />
     </linksBoxComponent>
@@ -50,11 +50,6 @@ export default {
     configIconComponent,
   },
 
-  data() {
-    return {
-      houseName: "",
-    };
-  },
 
   computed: {
     ...mapGetters({
@@ -62,32 +57,6 @@ export default {
       token: "getToken",
     }),
   },
-
-  beforeMount(){
-      const API = require("../../config");
-
-      const axios = require("axios");
-      let data = "";
-
-      let config = {
-        method: "get",
-        maxBodyLength: Infinity,
-        url: `${API.url}/houses/${this.user.house}`,
-        headers: {
-          Authorization: this.token,
-        },
-        data: data,
-      };
-
-      axios
-        .request(config)
-        .then((response) => {
-            this.houseName = response.data.name;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-  }
 
 };
 </script>
@@ -99,7 +68,7 @@ export default {
   position: absolute;
   min-width: 100% !important;
   border-radius: 0px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 0px 10px 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,6 +84,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: left;
+}
+
+.userInfo > :first-child{
+  display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    font-size: 15px;
 }
 
 .houseName {
