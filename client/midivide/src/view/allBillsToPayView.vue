@@ -4,7 +4,7 @@
 
     <div class="sections">
       <boxComponent class="box-component" widths="40" heights="85">
-        <TextTitleComponent content="Todos os eventos" size="24" color="#333333" height="2"/>
+        <TextTitleComponent content="Todos as contas" size="24" color="#333333" height="2"/>
         <div class="register-new">
           <buttonComponent
             value="Cadastrar"
@@ -15,18 +15,8 @@
           />
         </div>
         <div class="events">
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Supermercado Semanal" dataEvent="R$33,50"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="2" content="Bebida pro evento" dataEvent="R$42,75"></checkBoxEventsWithDataComponent>
         </div>
         
       </boxComponent>
@@ -43,7 +33,7 @@ import buttonComponent from "@/components/buttonComponent.vue";
 
 export default {
   components: {
-    boxComponent,
+    boxComponent,   
     headerComponent,
     TextTitleComponent,
     checkBoxEventsWithDataComponent,

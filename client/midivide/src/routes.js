@@ -8,8 +8,9 @@ import verify from "./view/verifyView.vue";
 import repNear from "./view/nearRepView.vue";
 import createrep from "./view/createRepView.vue";
 import waitingrep from "./view/waitingRepView.vue";
-import main from "./view/mainView.vue"
-import allEvents from "./view/allEventsView.vue"
+import main from "./view/mainView.vue";
+import allEvents from "./view/allEventsView.vue";
+import allBills from "./view/allBillsToPayView.vue";
 
 import member from "./view/mainSubView/memberView.vue" 
 
@@ -60,6 +61,12 @@ const router = createRouter({
       path: "/allEvents",
       name: "allEvents",
       component: allEvents
+    },
+
+    {
+      path: "/allBills",
+      name: "allBills",
+      component: allBills
     },
 
     {
