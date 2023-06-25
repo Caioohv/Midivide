@@ -11,8 +11,10 @@ const store = createStore({
       email: "",
       name: "",
       verified: null,
-      house: null
+      house: null,
+      phone: "",
     },
+    waitingHouse: false,
     registerEmail: "",
   },
 
@@ -65,9 +67,9 @@ const store = createStore({
       axios
         .request(config)
         .then((response) => {
-
           state.user.token = response.data.token;
           state.user.logged = true;
+          state.waitingHouse = response.data.isWaiting;
 
           let config = {
             method: "get",
@@ -77,23 +79,25 @@ const store = createStore({
               Authorization: state.user.token,
             },
           };
-    
+
           axios
             .request(config)
             .then((response) => {
-    
-              state.user.id = response.data.id
-              state.user.email = response.data.email
-              state.user.name = response.data.name
-              state.user.verified = response.data.verified
+              state.user.id = response.data.id;
+              state.user.email = response.data.email;
+              state.user.name = response.data.name;
+              state.user.verified = response.data.verified;
               state.user.house = response.data.house;
-    
-              if(response.data.verified == 0){
-                router.push('/verify')
-              }else if(response.data.house == null){
-                router.push('/norep')
-              }else{
-                router.push('/')
+              state.user.phone = response.data.phone;
+
+              if (!state.user.verified) {
+                router.push("/verify");
+              } else if (state.waitingHouse) {
+                router.push("/waitingrep");
+              } else if (!state.user.house) {
+                router.push("/norep");
+              } else {
+                router.push("/");
               }
             })
             .catch((error) => {
@@ -109,10 +113,9 @@ const store = createStore({
       state.registerEmail = email;
     },
 
-    setHouse(state, house){
-      state.user.house = house
-    }
-
+    setHouse(state, house) {
+      state.user.house = house;
+    },
   },
 });
 

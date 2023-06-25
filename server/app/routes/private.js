@@ -35,16 +35,6 @@ module.exports = (app) => {
 			user.detail
 		)
 
-	app.route('/house')
-		.get(
-			authorize,
-			house.getMyHouse
-		)
-		.post(
-			authorize,
-			house.create
-		)
-
 	app.route('/houses/neighborhoods')
 		.get(
 			authorize,
@@ -57,6 +47,27 @@ module.exports = (app) => {
 			house.getHousesByCityAndNeighborhood
 		)
 
+	app.route('/houses/:code')
+		.get(
+			authorize,
+			house.getHousesByCode
+		)
+
+	app.route('/house')
+		.get(
+			authorize,
+			house.getMyHouse
+		)
+		.post(
+			authorize,
+			house.create
+		)
+		.delete(
+			authorize,
+			house.leave
+		)
+
+
 	app.route('/house/request')
 		.post(
 			authorize,
@@ -66,6 +77,34 @@ module.exports = (app) => {
 			authorize,
 			admin, 
 			request.listByHouse
+		)
+
+	app.route('/my-request')
+		.get(
+			authorize,
+			request.listMyRequest
+		)
+		.delete(
+			authorize,
+			request.cancelRequest
+		)
+
+	app.route('/house/request/:request_id/:decision')
+		.put(
+			authorize,
+			request.acceptOrDecline
+		)
+
+	app.route('/house/members')
+		.get(
+			authorize,
+			house.listMembers
+		)
+
+	app.route('/house/members/:memberId')
+		.delete(
+			authorize,
+			house.deleteMember
 		)
 
 	console.log('Private routes ok')

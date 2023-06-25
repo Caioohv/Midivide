@@ -13,9 +13,15 @@ class user {
 		})
 	}
 
-	register(email, name, verified){
+	findByHouse(house) {
+		return User.findAll({ 
+			where: { house }
+		})
+	}
+
+	register(email, phone, name, verified){
 		return User.create({ 
-			email, name, verified 
+			email, phone, name, verified 
 		})
 	} 
 
@@ -28,6 +34,13 @@ class user {
 	associate(house_identifier, user_id) {
 		return User.update({
 			house: house_identifier
+		}, { where: {
+			id: user_id
+		}})
+	}
+	dissociate(user_id) {
+		return User.update({
+			house: null
 		}, { where: {
 			id: user_id
 		}})

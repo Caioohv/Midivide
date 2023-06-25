@@ -49,6 +49,7 @@ class Register {
 	async start() {
 		try{
 			let email = this.payload.email
+			let phone = this.payload.phone
 			let name = this.payload.name
 			let password = this.payload.password
 
@@ -63,7 +64,7 @@ class Register {
 			const code = this.generateSecondFactor()
 
 			let user = 
-			await this.userDB.register(email, name, false)
+			await this.userDB.register(email, phone, name, false)
 			await this.authDB.register(user.id, hashedPassword)
 			await this.emailCodeDB.register(user.id, code, this.defineExpirationTime())
 			await this.sendSecondFactorEmail(email, code)

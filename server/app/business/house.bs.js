@@ -8,6 +8,7 @@ class House {
 		this.req = req
 		this.payload = req.body
 		this.query = req.query
+		this.params = req.params
 		this.user = req.user
 		this.houseDB = new houseRep()
 		this.userDB = new userRep()
@@ -30,10 +31,6 @@ class House {
 		}
 	
 		return identifier
-	}
-
-	async getGeolocationFromAddress() {
-		
 	}
 
 	async create() {
@@ -121,7 +118,80 @@ class House {
 				return await this.houseDB.findByCity(city)
 			}
 
-			return await this.houseDB.findByCityAndNeighborhood(city, neighborhood)
+			let houses = await this.houseDB.findByCityAndNeighborhood(city, neighborhood)
+
+			houses = houses.filter(house => house.vacancies - house.occupied > 0)
+
+			return houses
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async getHousesByCode() {
+		try{
+
+			let code = this.params.code
+
+			return await this.houseDB.searchByIdentifier(code)
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async leave(){
+		try{
+			let code = this.req.user.house
+
+			let house = await this.houseDB.searchByIdentifier(code)
+			await this.houseDB.updateOccupation(code, house.occupied -1)
+			await this.userDB.dissociate(this.req.user.id)
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async listMembers(){
+		try{
+			let code = this.req.user.house
+
+			let members = await this.userDB.findByHouse(code)
+
+			return members
+
+		}catch(err){
+
+			throw {
+				message: 'Ops! ocorreu um erro ao listar as casas!',
+				identifier: err.identifier || 'house not found',
+				status: status['NOT-FOUND']
+			}
+		}
+	}
+
+	async deleteMember(){
+		try{
+			let memberId = this.req.params.memberId
+
+			return await this.userDB.dissociate(memberId)
 
 		}catch(err){
 

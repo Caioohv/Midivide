@@ -14,6 +14,10 @@ class User extends Model {
 				type: DataTypes.STRING, 
 				allowNull: false
 			},
+			phone: {
+				type: DataTypes.STRING, 
+				allowNull: false
+			},
 			name: {
 				type: DataTypes.STRING, 
 				allowNull: false

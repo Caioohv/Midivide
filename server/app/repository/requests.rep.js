@@ -8,8 +8,14 @@ class request {
 	}
 
 	delete(requester_user_id){
-		return Request.delete({
+		return Request.destroy({
 			where: requester_user_id
+		})
+	}
+
+	deleteById(id){
+		return Request.destroy({
+			where: {id}
 		})
 	}
 

@@ -3,6 +3,7 @@ const moment = require('moment')
 
 const userRep = require('../repository/user.rep')
 const authRep = require('../repository/auth.rep')
+const requestRep = require('../repository/requests.rep')
 const authTokensRep = require('../repository/auth-tokens.rep')
 
 const status = require('../utils/status')
@@ -13,6 +14,7 @@ class Login {
 		this.payload = req.body
 		this.userDB = new userRep()
 		this.authDB = new authRep()
+		this.requestDB = new requestRep()
 		this.authTokensDB = new authTokensRep()
 	}
 
@@ -33,6 +35,11 @@ class Login {
 		return this.authTokensDB.register(user_id, token, new Date(expiration))
 	}
 
+	async isWaitingRequest(user_id) {
+		let requests = await this.requestDB.searchByUserId(user_id)
+		if(!requests) return false
+		return true
+	}
 
 	async signin() {
 		try{
@@ -44,12 +51,15 @@ class Login {
 
 			let authenticated = false
 
+			let isWaiting = await this.isWaitingRequest(user.id)
+
 			if(user && userauth && user.verified){
 				if(await bcrypt.compare(password, userauth.passphrase)){
 					authenticated = true
 					let token = await this.generateAuthToken(user.id)
 					return {
-						token: 'Basic '+token.token
+						token: 'Basic '+token.token,
+						isWaiting: isWaiting
 					}
 				}
 			}

@@ -52,6 +52,51 @@ class House {
 		}
 	}
 
+	async getHousesByCode(req, res) {
+		try {
+			let house = new HouseBs(req, res)
+			let response = await house.getHousesByCode()
+
+			res.status(status['SUCCESS']).json(response)
+
+		}catch(err) {
+			errorHandler(err, res)
+		}
+	}
+
+	async leave(req, res) {
+		try {
+			let house = new HouseBs(req, res)
+			let response = await house.leave()
+
+			res.status(status['SUCCESS']).json(response)
+
+		}catch(err) {
+			errorHandler(err, res)
+		}
+	}
+
+	async listMembers(req, res) {
+		try{
+			let house = new HouseBs(req, res)
+			let response = await house.listMembers()
+
+			res.status(status['SUCCESS']).json(response)
+		}catch(err) {
+			errorHandler(err, res)
+		}
+	}
+
+	async deleteMember(req, res) {
+		try{
+			let house = new HouseBs(req, res)
+			let response = await house.deleteMember()
+
+			res.status(status['SUCCESS']).json(response)
+		}catch(err) {
+			errorHandler(err, res)
+		}
+	}
 }
 
 module.exports = House

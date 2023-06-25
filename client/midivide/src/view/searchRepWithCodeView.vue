@@ -7,16 +7,30 @@
     </div>
 
     <div class="searchInput">
-      <InputSearchTextComponent  width='100' height='60'/>
+      <InputSearchTextComponent
+        @searhIconActive="searchCode"
+        width="100"
+        height="60"
+      />
     </div>
 
-    <republicBoxComponent title="Republica DNA" addres="Av. Henrrique Givisiez, 312, Givisiez"/>
-    
+    <republicBoxComponent
+      @showHouseDetailsActive="showDetails = true"
+      v-if="codeIsValid"
+      :title="title"
+      :addres="addres"
+    />
+
+    <entryRequest
+      @closeDetails="showDetails = false"
+      :code="showDetailsCode"
+      v-if="showDetails"
+    />
+
     <div class="toogleBox">
       <textSubTitleComponent content="Tema Escuro:" />
       <buttonToogleComponent />
     </div>
-
   </boxComponentVue>
 </template>
 
@@ -28,6 +42,9 @@ import buttonToogleComponent from "@/components/buttonToogleComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
 import InputSearchTextComponent from "@/components/InputSearchTextComponent.vue";
 import republicBoxComponent from "@/components/republicBoxComponent.vue";
+import entryRequest from "@/components/entryRequest.vue";
+
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -38,6 +55,59 @@ export default {
     textSubTitleComponent,
     InputSearchTextComponent,
     republicBoxComponent,
+    entryRequest,
+  },
+
+  data() {
+    return {
+      codeIsValid: false,
+      showDetails: false,
+      showDetailsCode: "",
+      title: "",
+      addres: "",
+    };
+  },
+
+  computed: {
+    ...mapGetters({
+      token: "getToken",
+      user: "getUser",
+    }),
+  },
+
+  methods: {
+    searchCode() {
+      const API = require("../config");
+
+      const axios = require("axios");
+      let data = "";
+
+      this.showDetailsCode =
+        document.querySelector(".searchInput").children[0].children[0].value;
+
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${API.url}/houses/${
+          document.querySelector(".searchInput").children[0].children[0].value
+        }`,
+        headers: {
+          Authorization: this.token,
+        },
+        data: data,
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          this.title = response.data.name;
+          this.addres = `${response.data.street}, ${response.data.number}, ${response.data.city}`;
+          this.codeIsValid = true;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -70,7 +140,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 20px;  
+  row-gap: 20px;
   margin-bottom: 30px;
 }
 
@@ -84,7 +154,6 @@ export default {
   align-items: center;
   column-gap: 10px;
 }
-
 
 @media (max-width: 1100px) {
   .box {
