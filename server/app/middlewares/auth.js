@@ -9,16 +9,18 @@ module.exports = async (req, res, next) => {
 	const userDB = new user()
 
 
-	let authorizationToken = req.headers.authorization
-		? req.headers.authorization.split(' ')[1] : 'unauthorized'
+	let authorization = req.headers.authorization
 
-	if(authorizationToken == 'unauthorized'){
+	if(!authorization || authorization == null || authorization == 'null'){
 		res.status(status['UNAUTHORIZED-TOKEN']).json({
 			identifier: 'unauthorized token',
 			message: 'Autenticação necessária'
 		})
 
 	}else {
+
+		let authorizationToken = authorization.split(' ')[1]
+
 		let tokenData = await authDB.findByToken(authorizationToken)
 	
 		if(!tokenData){
