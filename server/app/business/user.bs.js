@@ -28,8 +28,6 @@ class User {
 				house: userHouse
 			}
 
-			return userData
-
 		}catch(err) {
 			throw {
 				message: 'Ops! ocorreu um erro ao listar seus dados!',
