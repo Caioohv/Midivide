@@ -191,6 +191,9 @@ class House {
 		try{
 			let memberId = this.req.params.memberId
 
+			let house = await this.houseDB.searchByIdentifier(this.req.user.house)
+			await this.houseDB.updateOccupation(this.req.user.house, house.occupied - 1)
+
 			return await this.userDB.dissociate(memberId)
 
 		}catch(err){
