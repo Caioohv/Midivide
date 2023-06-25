@@ -415,7 +415,7 @@ export default {
   .menu-link-item{
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 15px;
     padding: 20px;
     color: #fff;
     border-bottom: 1px solid;

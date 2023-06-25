@@ -25,6 +25,7 @@ export default {
         default: true,
         themeLight: this.theme === "light",
         themeDark: this.theme === "dark",
+        inputText: true  
       };
     },
 

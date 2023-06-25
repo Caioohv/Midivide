@@ -1,5 +1,5 @@
 <template>
-  <a>{{ content }}</a>
+  <a class="link-component">{{ content }}</a>
 </template>
 
 <script>

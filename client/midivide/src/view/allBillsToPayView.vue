@@ -10,7 +10,7 @@
             value="Cadastrar"
             @click="nameFunction($event)"
             bgc="#F4F7F5"
-            border="1px solid #a9a1a1;"
+            border="1px solid #a9a1a1"
             id="1"
           />
         </div>

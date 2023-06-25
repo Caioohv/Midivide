@@ -11,6 +11,7 @@ import waitingrep from "./view/waitingRepView.vue";
 import main from "./view/mainView.vue";
 import allEvents from "./view/allEventsView.vue";
 import allBills from "./view/allBillsToPayView.vue";
+import myRepublic from "./view/myRepublicView.vue";
 
 import member from "./view/mainSubView/memberView.vue" 
 
@@ -73,6 +74,12 @@ const router = createRouter({
       path: "/waitingrep",
       name: "waitingrep",
       component: waitingrep,
+    },
+
+    {
+      path: "/myRepublic",
+      name: "myRepublic",
+      component: myRepublic,
     },
 
     {
