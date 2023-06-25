@@ -5,18 +5,30 @@
     <div class="sections">
       <boxComponent class="box-component" widths="40" heights="85">
         <TextTitleComponent content="Todos os eventos" size="24" color="#333333" height="2"/>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
-        <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+        <div class="register-new">
+          <buttonComponent
+            value="Cadastrar"
+            @click="createHouse($event)"
+            bgc="#F4F7F5"
+            border="1px solid #a9a1a1;"
+            id="1"
+          />
+        </div>
+        <div class="events">
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+          <checkBoxEventsWithDataComponent keyCheckbox="1" content="Rockzinho" dataEvent="20/08/2023"></checkBoxEventsWithDataComponent>
+        </div>
+        
       </boxComponent>
     </div>
   </div>
@@ -27,13 +39,15 @@ import boxComponent from "@/components/boxComponent.vue";
 import headerComponent from "@/components/headerComponent.vue";
 import TextTitleComponent from "@/components/textTitleComponent.vue";
 import checkBoxEventsWithDataComponent from "@/components/checkBoxEventsWithDataComponent.vue";
+import buttonComponent from "@/components/buttonComponent.vue";
 
 export default {
   components: {
     boxComponent,
     headerComponent,
     TextTitleComponent,
-    checkBoxEventsWithDataComponent
+    checkBoxEventsWithDataComponent,
+    buttonComponent
   }
 };
 </script>
@@ -48,10 +62,12 @@ export default {
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
   height: 80%
 }
 
 .box-component{
+  position: relative;
   background-color: #F4F7F5;
   text-align: center;
   padding: 30px;
@@ -79,6 +95,11 @@ export default {
 .box-component::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+.register-new {
+  margin-top: 20px;
+}
+
 
 @media (max-width: 700px) {
   .box-component{

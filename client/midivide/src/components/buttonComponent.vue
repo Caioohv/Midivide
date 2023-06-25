@@ -1,6 +1,6 @@
 <template>
 
-    <button :style="'background-color: ' + bgc + '; color: ' + color + '; height: ' + height + '%; width: ' + width + '%;'">{{ value }}</button>
+    <button :style="'background-color: ' + bgc + '; color: ' + color + '; height: ' + height + '%; width: ' + width + '%; border:'+ border">{{ value }}</button>
 
 </template>
 
@@ -12,7 +12,8 @@ export default {
         color: String,
         width: String,
         height: String,
-        bgc: String 
+        bgc: String,
+        border: String,
     }
 
 }
