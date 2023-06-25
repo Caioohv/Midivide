@@ -56,6 +56,7 @@ export default {
 .body{
   width: 100%;
 }
+
 .sections{
   position: absolute;
   top: 120px;

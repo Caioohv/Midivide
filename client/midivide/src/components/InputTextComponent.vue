@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :class="themeClassChange">
-      <input :type="setType" :placeholder="placeholder" />
+      <input :type="setType" :placeholder="placeholder" :value="value" />
     </div>
   </div>
 </template>
@@ -12,7 +12,8 @@ import { mapGetters } from "vuex";
 export default {
   props: {
     placeholder: String,
-    type: String
+    type: String,
+    value: String
   },
 
   computed: {
