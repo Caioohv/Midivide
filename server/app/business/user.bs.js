@@ -17,16 +17,24 @@ class User {
 		try{
 			let userData = await this.userDB.findById(user.id)
 
-			let userHouse = await this.houseDB.searchByIdentifier(userData.house)
-
 			delete userData.createdAt
 			delete userData.updatedAt
-
-			return {
+			
+			let response = {
 				...userData,
-				admin: userHouse.owner_user_id === userData.id,
-				house: userHouse
 			}
+
+			let userHouse = await this.houseDB.searchByIdentifier(userData.house)
+
+			if(userHouse) {
+				response.admin = userHouse.owner_user_id === userData.id,
+				response.house = userHouse	
+			}else{
+				response.admin = false
+				response.house = null
+			}
+			
+			return response
 
 		}catch(err) {
 			throw {
