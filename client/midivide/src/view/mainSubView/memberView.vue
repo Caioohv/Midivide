@@ -20,14 +20,14 @@
           />
           <div class="buttonBox">
             <buttonComponent
-            @click="requestAnswer('decline', request.request.id)"
+              @click="requestAnswer('decline', request.request.id)"
               value="Excluir"
               bgc="#DB2955"
               height="10"
               color="#FFF"
             />
             <buttonComponent
-            @click="requestAnswer('accept', request.request.id)"
+              @click="requestAnswer('accept', request.request.id)"
               value="Aceitar"
               bgc="#35FF69"
               height="10"
@@ -46,10 +46,7 @@
             v-if="atualUser.admin && atualUser.id != user.id"
             @click="removeMember(user.id)"
           ></i>
-          <i
-            class="fas fa-remove atualMember"
-            v-else
-          ></i>
+          <i class="fas fa-remove atualMember" v-else></i>
           <textSubTitleComponent :content="user.name" class="userName" />
           <textSubTitleComponent content="|" />
           <textSubTitleComponent :content="user.phone" />
@@ -66,7 +63,6 @@ import textTitleComponent from "../../components/textTitleComponent.vue";
 import buttonComponent from "@/components/buttonComponent.vue";
 
 import { mapGetters } from "vuex";
-
 
 export default {
   components: {
@@ -91,6 +87,62 @@ export default {
   },
 
   methods: {
+    bringUsers() {
+      const API = require("../../config");
+
+      const axios = require("axios");
+      let data = "";
+
+      let config;
+
+      config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${API.url}/house/members`,
+        headers: {
+          Authorization: this.token,
+        },
+        data: data,
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          this.users = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    bringRequests() {
+      const API = require("../../config");
+
+      const axios = require("axios");
+      let data = "";
+
+      let config;
+
+      config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${API.url}/house/request`,
+        headers: {
+          Authorization: this.token,
+        },
+        data: data,
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          this.requests = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     removeMember(id) {
       const API = require("../../config");
 
@@ -112,7 +164,8 @@ export default {
         .then((response) => {
           console.log(JSON.stringify(response.data));
           window.alert("Usuário Removido");
-          this.$router.replace({ path: '/main' });
+          this.bringUsers();
+          this.bringRequests();
         })
         .catch((error) => {
           console.log(error);
@@ -120,7 +173,7 @@ export default {
     },
 
     requestAnswer(awnser, id) {
-    const API = require("../../config");
+      const API = require("../../config");
 
       const axios = require("axios");
       let data = "";
@@ -139,12 +192,13 @@ export default {
         .request(config)
         .then((response) => {
           console.log(JSON.stringify(response.data));
-          if(awnser == "accept"){
+          if (awnser == "accept") {
             window.alert("Pedido aceito!");
-          }else{
+          } else {
             window.alert("Pedido negado!");
           }
-          this.$router.replace({ path: '/main' });
+          this.bringUsers();
+          this.bringRequests();
         })
         .catch((error) => {
           console.log(error);
@@ -153,50 +207,8 @@ export default {
   },
 
   beforeMount() {
-    const API = require("../../config");
-
-    const axios = require("axios");
-    let data = "";
-
-    let config;
-
-    config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `${API.url}/house/members`,
-      headers: {
-        Authorization: this.token,
-      },
-      data: data,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        this.users = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `${API.url}/house/request`,
-      headers: {
-        Authorization: this.token,
-      },
-      data: data,
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        this.requests = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.bringUsers();
+    this.bringRequests();
   },
 };
 </script>
@@ -297,8 +309,8 @@ export default {
   max-width: 180px;
 }
 
-.atualMember{
-    color: grey !important;
-    cursor: auto;
+.atualMember {
+  color: grey !important;
+  cursor: auto;
 }
 </style>
