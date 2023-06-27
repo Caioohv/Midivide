@@ -156,6 +156,12 @@ class House {
 			let code = this.req.user.house
 
 			let house = await this.houseDB.searchByIdentifier(code)
+
+			if(house.owner_user_id == this.req.user.id){
+				return await this.houseDB.delete(house.identifier)
+			}
+
+
 			await this.houseDB.updateOccupation(code, house.occupied -1)
 			await this.userDB.dissociate(this.req.user.id)
 
