@@ -45,6 +45,12 @@ class tasks {
 		})
 	}
 
+	searchById(id){
+		return Task.findOne({
+			where: {id}
+		})
+	}
+
 	searchByUserId(responsible_user_id) {
 		return Task.findAll({
 			where: {responsible_user_id}

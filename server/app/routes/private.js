@@ -122,6 +122,12 @@ module.exports = (app) => {
 			task.allocateTasks
 		)
 
+	app.route('/tasks/:task_id/done')
+		.put(
+			authorize,
+			task.markAsDone
+		)
+
 	app.route('/tasks')
 		.get(
 			authorize, 

@@ -56,6 +56,19 @@ class Task {
 		}
 	}
 
+	async markAsDone(req, res) {
+		const task = new TaskBs(req, res)
+
+		try{
+			let response = await task.markAsDone()
+			res.status(status['SUCCESS']).json(response)
+
+		}catch(err){
+			error(err, res)
+			
+		}
+	}
+
 }
 
 module.exports = Task

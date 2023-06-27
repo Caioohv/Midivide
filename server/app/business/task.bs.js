@@ -99,7 +99,6 @@ class Task {
 			return this.associateTasksWithUser(tasks, users)
 
 		}catch(err) {
-			console.log('\n','----------->err: ', (err))
 			throw {
 				message: 'Ops! ocorreu um erro listar as tarefas da casa '+this.req.user.house,
 				identifier: err.identifier ? err.identifier : 'error listing tasks',
@@ -116,7 +115,17 @@ class Task {
 
 			tasks = this.checkIfTasksAreDone(tasks)
 
-			return tasks
+			let response = {
+				done: [],
+				pending: []
+			}
+
+			tasks.forEach(task => {
+				if(task.done) response.done.push(task)
+				else response.pending.push(task)
+			})
+
+			return response
 
 		}catch(err) {
 			throw {
@@ -155,6 +164,29 @@ class Task {
 				status: status['FAILED-PROCESS']
 			}
 		}
+	}
+
+	async markAsDone() {
+		let taskId = this.req.params.task_id
+
+		try{
+			let task = await this.taskDB.searchById(taskId)
+
+			task.last_done = moment()
+			
+			return await this.taskDB.markAsDone(task.id, task.last_done)
+
+		}catch(err) {
+			throw {
+				message: 'Ops! ocorreu um erro ao concluir tarefa',
+				identifier: err.identifier ? err.identifier : 'error concluding task',
+				status: status['FAILED-PROCESS']
+			}
+		}
+
+
+
+
 	}
 
 	
