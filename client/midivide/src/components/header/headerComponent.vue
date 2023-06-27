@@ -14,7 +14,7 @@
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Membros" target="/members" />
       <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Minha Moradia" target="/main" />
+      <headreLinkComponent content="Minha Moradia" target="/myrep" />
     </linksBoxComponent>
 
     <linksBoxComponent class="userBox">
