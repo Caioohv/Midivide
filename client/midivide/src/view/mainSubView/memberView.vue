@@ -9,13 +9,13 @@
 
       <div class="requestList">
         <div class="requestBody" v-for="request in requests" :key="request.id">
-          <textSubTitleComponent
+          <textSubTitleComponent class="subTitle"
             :content="`Nome: ${request.request.requester.name}`"
           />
-          <textSubTitleComponent
+          <textSubTitleComponent class="subTitle"
             :content="`Tel: ${request.request.requester.phone}`"
           />
-          <textSubTitleComponent
+          <textSubTitleComponent class="subTitle"
             :content="`${request.request.requester.email}`"
           />
           <div class="buttonBox">
@@ -228,6 +228,14 @@ export default {
   align-items: center;
   text-align: center;
   height: fit-content;
+}
+
+.subTitle{
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.rightBox{
   min-width: 600px;
 }
 
@@ -238,23 +246,24 @@ export default {
   align-items: flex-start;
   overflow-y: auto;
   overflow-x: hidden;
-  text-align: left;
   row-gap: 15px;
   max-height: 200px;
 }
 
 .requestBody {
   display: flex;
+  text-align: left;
   flex-direction: column;
   border-radius: 20px;
   border: #9e76db 2px solid;
-  padding: 10px;
+  padding: 12px 15px 12px 15px;
   row-gap: 5px;
 }
 
 .buttonBox {
   display: flex;
   column-gap: 8px;
+  margin-top: 10px;
 }
 
 .userList::-webkit-scrollbar,

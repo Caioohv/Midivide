@@ -1,6 +1,6 @@
 <template>
   <boxComponent class="body" widths="100" heights="10">
-    <logo1Component />
+    <logo1Component class="logo"/>
     <linksBoxComponent>
       <headreLinkComponent content="Inico" target="/main" />
       <textSubTitleComponent content="|" />
@@ -77,6 +77,10 @@ export default {
 
 .userBox {
   padding: 2px;
+}
+
+.logo{
+  max-width: 60px;
 }
 
 .userInfo {
