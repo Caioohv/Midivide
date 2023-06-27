@@ -160,16 +160,16 @@ class House {
 
 			let house = await this.houseDB.searchByIdentifier(code)
 
+			await this.userDB.dissociate(this.req.user.id)
+
 			if(house.owner_user_id == this.req.user.id){
 				return await this.houseDB.delete(house.identifier)
 			}
 
-
 			await this.houseDB.updateOccupation(code, house.occupied -1)
-			await this.userDB.dissociate(this.req.user.id)
+			
 
 		}catch(err){
-
 			throw {
 				message: 'Ops! ocorreu um erro ao listar as casas!',
 				identifier: err.identifier || 'house not found',
