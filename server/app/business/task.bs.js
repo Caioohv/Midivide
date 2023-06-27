@@ -15,6 +15,52 @@ class Task {
 		this.taskDB = new taskRep()
 	}
 
+	checkIfTasksAreDone(tasks) {
+		tasks.map(task => {
+			if(task.last_done && task.repeat){
+				
+				let difference
+
+				if(task.interval == 'day'){
+					difference = moment().diff(moment(task.last_done), 'days')
+				} 
+				if(task.interval == 'week'){
+					difference = moment().diff(moment(task.last_done), 'weeks')
+				} 
+				if(task.interval == 'month'){
+					difference = moment().diff(moment(task.last_done), 'months')
+				} 
+
+				if(difference == 0)
+					task.done = true
+				else 
+					task.done = false
+			} else task.done = false
+
+			return task
+		})
+
+		return tasks
+	}
+	
+	associateTasksWithUser(tasks, users) {
+		tasks.map(task => {
+			task.responsible = users.find(user => user.id === task.responsible_user_id)
+			delete task.responsible_user_id
+		})
+		
+		return tasks
+	}
+	
+	associateUserWithTasks(users, tasks) {
+		users.map(user => {
+			user.tasks = []
+			user.tasks = tasks.filter(task => user.id === task.responsible_user_id)
+		})
+		
+		return users
+	}
+
 	async create() {
 		try{
 			let current = this.req.user
@@ -37,7 +83,7 @@ class Task {
 			}
 		}
 	}
-
+	
 	async listHouseTasks() {
 		try{
 			let current = this.req.user
@@ -48,14 +94,12 @@ class Task {
 
 			let users = await this.userDB.findByIds(userIds)
 
-			tasks.map(task => {
-				task.responsible = users.find(user => user.id === task.responsible_user_id)
-				delete task.responsible_user_id
-			})
+			tasks = this.checkIfTasksAreDone(tasks)
 
-			return tasks
+			return this.associateTasksWithUser(tasks, users)
 
 		}catch(err) {
+			console.log('\n','----------->err: ', (err))
 			throw {
 				message: 'Ops! ocorreu um erro listar as tarefas da casa '+this.req.user.house,
 				identifier: err.identifier ? err.identifier : 'error listing tasks',
@@ -70,30 +114,7 @@ class Task {
 
 			let tasks = await this.taskDB.searchByUserId(current.id)	
 
-			tasks.map(task => {
-				if(task.last_done && task.repeat){
-					
-					let difference
-
-					if(task.interval == 'day'){
-						difference = moment().diff(moment(task.last_done), 'days')
-					} 
-					if(task.interval == 'week'){
-						difference = moment().diff(moment(task.last_done), 'weeks')
-					} 
-					if(task.interval == 'month'){
-						difference = moment().diff(moment(task.last_done), 'months')
-					} 
-
-					if(difference == 0)
-						task.done = true
-					else 
-						task.done = false
-
-				}
-			})
-
-
+			tasks = this.checkIfTasksAreDone(tasks)
 
 			return tasks
 
@@ -106,7 +127,35 @@ class Task {
 		}
 	}
 
+	async allocateTasks() {
+		try{
+			let current = this.req.user
 
+			let users = await this.userDB.findByHouse(current.house)
+			let tasks = await this.taskDB.searchByHouse(current.house)
+
+			users = this.associateUserWithTasks(users, tasks)
+
+			let notSpecificTasks = tasks.map(task => {if (task.specific == false) return task}) 
+
+			users.sort((a, b) => a.tasks.length - b.tasks.length)
+
+			for (const task of notSpecificTasks) {
+				await users[0].tasks.push(task)
+				await this.taskDB.associate(task.id, users[0].id)
+				users.sort((a, b) => a.tasks.length - b.tasks.length)
+			}
+
+			return notSpecificTasks
+
+		}catch(err) {
+			throw {
+				message: 'Ops! ocorreu um erro listar as tarefas da casa '+this.req.user.house,
+				identifier: err.identifier ? err.identifier : 'error listing tasks',
+				status: status['FAILED-PROCESS']
+			}
+		}
+	}
 
 	
 }

@@ -109,15 +109,29 @@ module.exports = (app) => {
 			house.deleteMember
 		)
 
-	app.route('/tasks')
-		.post(
-			authorize,
-			task.create
-		)
+	app.route('/tasks/all')
 		.get(
 			authorize,
 			task.listHouseTasks
 		)
+
+	app.route('/tasks/allocate')
+		.post(
+			authorize,
+			admin,
+			task.allocateTasks
+		)
+
+	app.route('/tasks')
+		.get(
+			authorize, 
+			task.listMyTasks
+		)
+		.post(
+			authorize,
+			task.create
+		)
+
 
 	console.log('Private routes ok')
 } 

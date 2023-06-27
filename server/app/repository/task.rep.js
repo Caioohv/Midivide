@@ -15,6 +15,22 @@ class tasks {
 		})
 	}
 
+	associate(id, responsible_user_id){
+		return Task.update({ 
+			responsible_user_id
+		},{
+			where: {id}
+		})
+	}
+
+	dissociate(id){
+		return Task.update({ 
+			responsible_user_id: null
+		},{
+			where: {id}
+		})
+	}
+
 	markAsDone(id, last_done){
 		return Task.update({ 
 			last_done
