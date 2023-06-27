@@ -35,6 +35,9 @@ class House {
 
 	async create() {
 		try{
+
+			if(this.req.user.house) throw { identifier: 'user already in house'}
+
 			let identifier = this.generateIdentifier()
 			let owner_user_id = this.req.user.id
 			let name = this.payload.name
@@ -51,7 +54,7 @@ class House {
 
 			let association = await this.userDB.associate(result.identifier, owner_user_id)
 
-			return { house_code: result.identifier }
+			return { house_code: result }
 
 		}catch(err){
 			console.error(err)
