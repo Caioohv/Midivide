@@ -17,6 +17,19 @@ class Task {
 		}
 	}
 
+	async listHouseTasks(req, res) {
+		const task = new TaskBs(req, res)
+
+		try{
+			let response = await task.listHouseTasks()
+			res.status(status['SUCCESS']).json(response)
+
+		}catch(err){
+			error(err, res)
+			
+		}
+	}
+
 
 }
 

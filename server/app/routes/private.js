@@ -114,6 +114,10 @@ module.exports = (app) => {
 			authorize,
 			task.create
 		)
+		.get(
+			authorize,
+			task.listHouseTasks
+		)
 
 	console.log('Private routes ok')
 } 

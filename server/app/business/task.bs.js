@@ -36,6 +36,33 @@ class Task {
 		}
 	}
 
+	async listHouseTasks() {
+		try{
+			let current = this.req.user
+
+			let tasks = await this.taskDB.searchByHouse(current.house)	
+
+			let userIds = tasks.map(task => task.responsible_user_id)
+
+			let users = await this.userDB.findByIds(userIds)
+
+			tasks.map(task => {
+				task.responsible = users.find(user => user.id === task.responsible_user_id)
+				delete task.responsible_user_id
+			})
+
+			return tasks
+
+		}catch(err) {
+			console.log('\n','----------->err: ', (err))
+			throw {
+				message: 'Ops! ocorreu um erro listar as tarefas da casa '+this.req.user.house,
+				identifier: err.identifier ? err.identifier : 'error listing tasks',
+				status: status['FAILED-PROCESS']
+			}
+		}
+	}
+
 
 
 

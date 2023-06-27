@@ -13,6 +13,12 @@ class user {
 		})
 	}
 
+	findByIds(ids) {
+		return User.findAll({ 
+			where: { id: {in: ids} }
+		})
+	}
+
 	findByHouse(house) {
 		return User.findAll({ 
 			where: { house }
