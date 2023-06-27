@@ -15,10 +15,23 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: false		
 			},
-			requester_user_id: {
-				type: Sequelize.INTEGER,
-				allowNull: false,
-				unique: true	
+			name: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
+			specific: {
+				type: Sequelize.BOOLEAN,
+				allowNull: false
+			},
+			responsible_user_id: {
+				type: Sequelize.INTEGER
+			},
+			repeat: {
+				type: Sequelize.BOOLEAN,
+				allowNull: false
+			},
+			interval: {
+				type: Sequelize.STRING
 			},
 			created_at: {
 				type: Sequelize.DATE, 
