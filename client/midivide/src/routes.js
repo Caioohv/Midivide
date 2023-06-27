@@ -12,6 +12,7 @@ import main from "./view/mainView.vue";
 import allEvents from "./view/allEventsView.vue";
 import allBills from "./view/allBillsToPayView.vue";
 import myRepublic from "./view/myRepublicView.vue";
+import newBills from "./view/registerNewBillsView.vue";
 
 import member from "./view/mainSubView/memberView.vue" 
 
@@ -80,6 +81,12 @@ const router = createRouter({
       path: "/myRepublic",
       name: "myRepublic",
       component: myRepublic,
+    },
+
+    {
+      path: "/newBills",
+      name: "newBills",
+      component: newBills,
     },
 
     {

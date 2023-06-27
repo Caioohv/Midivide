@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div :class="themeClassChange">
-      <input :type="setType" :placeholder="placeholder" :value="value" />
+    <div :class="themeClassChange" :style="'background-color: ' + bgc + ';border:' + border + ';border-radius:'+borderRadius+'px;color:'+color">
+      <input :type="setType" :placeholder="placeholder" :value="value"/>
     </div>
   </div>
 </template>
@@ -13,7 +13,11 @@ export default {
   props: {
     placeholder: String,
     type: String,
-    value: String
+    value: String,
+    color: String,
+    bgc: String,
+    border: String,
+    borderRadius: String,
   },
 
   computed: {
