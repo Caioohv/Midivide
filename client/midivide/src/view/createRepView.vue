@@ -215,9 +215,9 @@ export default {
         axios
           .request(config)
           .then((response) => {
-            this.setHouse(response.data.house_code);
+            this.setHouse(response.data);
             window.alert("Moradia criada com sucesso!");
-            router.push("/");
+            router.push("/main");
           })
           .catch((error) => {
             console.log(error);

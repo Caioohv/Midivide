@@ -228,6 +228,7 @@ export default {
   align-items: center;
   text-align: center;
   height: fit-content;
+  min-width: 600px;
 }
 
 .requestList {
@@ -255,16 +256,6 @@ export default {
   display: flex;
   column-gap: 8px;
 }
-.userList {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  overflow-y: auto;
-  overflow-x: hidden;
-  row-gap: 10px;
-  max-height: 300px;
-}
 
 .userList::-webkit-scrollbar,
 .requestList::-webkit-scrollbar {
@@ -290,23 +281,40 @@ export default {
   background-color: #555;
 }
 
-.users {
+.userList {
   display: flex;
-  column-gap: 30px;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  row-gap: 10px;
+  max-height: 300px;
+  min-width: 100%;
 }
 
-.fas {
-  color: #db2955;
-  cursor: pointer;
-  margin-right: -25px;
+.users {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  min-width: 100%;
+  column-gap: 20px;
 }
 
 .userName {
-  min-width: 180px;
-  max-width: 180px;
+  flex:0.4;
+}
+
+.users > :last-child{
+  flex: 0.4;
+}
+
+.fas {
+  margin-right: -60px;
+  flex: 0.1;
+  color: #db2955;
+  cursor: pointer;
 }
 
 .atualMember {

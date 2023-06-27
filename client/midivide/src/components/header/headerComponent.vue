@@ -23,7 +23,7 @@
         <textSubTitleComponent :content="user.name" />
         <textSubTitleComponent class="houseName" :content="user.house.name" />
       </div>
-      <configIconComponent />
+        <configIconComponent @click="this.$router.push('/config')"/>
     </linksBoxComponent>
   </boxComponent>
 </template>
@@ -84,6 +84,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  min-width: fit-content;
+  max-width: 120px;
 }
 
 .userInfo > :first-child{

@@ -12,7 +12,7 @@
 
       <div class="inputBox">
         <textInputComponent placeholder="Seu usuário" id="user" />
-        <textInputComponent placeholder="Sua senha" type="password" id="pass" />
+        <textInputComponent placeholder="Sua senha" type="password" id="pass" @keydown.enter="login"/>
       </div>
 
       <div class="buttonBox">

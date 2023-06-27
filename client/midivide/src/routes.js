@@ -11,6 +11,7 @@ import waitingrep from "./view/waitingRepView.vue";
 import main from "./view/mainView.vue"
 
 import member from "./view/mainSubView/memberView.vue" 
+import config from "./view/mainSubView/configView.vue"
 
 import store from "./store";
 
@@ -69,6 +70,10 @@ const router = createRouter({
         {
           path: '/members',
           component: member
+        },
+        {
+          path: '/config',
+          component: config
         }
       ]
     },
