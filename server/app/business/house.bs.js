@@ -54,7 +54,7 @@ class House {
 
 			let association = await this.userDB.associate(result.identifier, owner_user_id)
 
-			return { house_code: result }
+			return result
 
 		}catch(err){
 			console.error(err)
