@@ -14,8 +14,8 @@ class house {
 	}
 
 	delete(identifier){
-		return House.delete({
-			where: identifier
+		return House.destroy({
+			where: { identifier }
 		})
 	}
 
