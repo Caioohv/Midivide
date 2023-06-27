@@ -63,6 +63,8 @@ export default {
   background: #e8e8e8;
 }
 
+
+
 input {
   width: 100%;
   height: 45px;

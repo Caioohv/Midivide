@@ -2,7 +2,8 @@
     <select :class="themeClassChange">
       <option value="">{{placeholder}}</option>
       <option :key="item.id" v-for="item in itens" :value="item.id">
-        {{ item.nome }}
+        <span v-if="task">{{ item.name }}</span>
+        <span v-else>{{ item.nome }}</span>
       </option>
     </select>
 </template>
@@ -14,6 +15,7 @@ export default {
   props: {
     itens: [],
     placeholder: String,
+    task: Boolean
   },
 
 

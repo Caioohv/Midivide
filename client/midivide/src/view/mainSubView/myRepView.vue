@@ -146,6 +146,7 @@ export default {
 
 .formBox {
   row-gap: 10px;
+  margin-bottom: 20px;
 }
 
 .inputBox {

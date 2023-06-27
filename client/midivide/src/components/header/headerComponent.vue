@@ -6,7 +6,7 @@
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Avisos" target="/main" />
       <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Tarefas" target="/main" />
+      <headreLinkComponent content="Tarefas" target="/task" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Contas" target="/main" />
       <textSubTitleComponent content="|" />

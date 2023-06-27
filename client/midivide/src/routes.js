@@ -13,6 +13,7 @@ import main from "./view/mainView.vue"
 import member from "./view/mainSubView/memberView.vue" 
 import config from "./view/mainSubView/configView.vue"
 import myrep from "./view/mainSubView/myRepView.vue"
+import task from "./view/mainSubView/taskView.vue"
 
 import store from "./store";
 
@@ -79,6 +80,10 @@ const router = createRouter({
         {
           path: '/myrep',
           component: myrep
+        },
+        {
+          path: '/task',
+          component: task
         }
       ]
     },
