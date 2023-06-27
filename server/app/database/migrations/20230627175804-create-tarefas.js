@@ -33,6 +33,9 @@ module.exports = {
 			interval: {
 				type: Sequelize.STRING
 			},
+			last_done: {
+				type: Sequelize.DATE, 
+			},
 			created_at: {
 				type: Sequelize.DATE, 
 				allowNull: false
