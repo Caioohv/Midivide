@@ -32,6 +32,9 @@ class Task extends Model {
 			interval: {
 				type: DataTypes.STRING
 			},
+			last_done: {
+				type: DataTypes.DATE, 
+			},
 		}, {
 			sequelize: sequelize
 		})
