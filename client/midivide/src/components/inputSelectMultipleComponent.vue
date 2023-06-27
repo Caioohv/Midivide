@@ -110,6 +110,8 @@ export default {
 .selected-option{
   font-size: 14px;
   margin-right: 5px;
+  color: #333333ab;
+  font-weight: 500;
 }
 
 .row{

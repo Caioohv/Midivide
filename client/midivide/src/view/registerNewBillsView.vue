@@ -27,6 +27,14 @@
                 <textAreaComp class="margin-top-10"/>
             </div>
         </div>
+
+        <buttonComponent value="Cadastrar"
+          @click="nameFunction($event)"
+          bgc="#F4F7F5"
+          border="1px solid #a9a1a1"
+          id="1" 
+          class="margin-top-20"
+        />
         
       </boxComponent>
     </div>
@@ -41,6 +49,7 @@ import InputTextComponent from "@/components/InputTextComponent.vue";
 import textSubTitleComponent from "@/components/textSubTitleComponent.vue";
 import inputSelect from "@/components/inputSelectMultipleComponent.vue";
 import textAreaComp from "@/components/textAreaComponent.vue";
+import buttonComponent from "@/components/buttonComponent.vue";
 
 export default {
   components: {
@@ -50,7 +59,8 @@ export default {
     InputTextComponent,
     textSubTitleComponent,
     inputSelect,
-    textAreaComp
+    textAreaComp,
+    buttonComponent
   }
 };
 </script>
