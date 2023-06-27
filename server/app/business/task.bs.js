@@ -4,6 +4,8 @@ const taskRep = require('../repository/task.rep')
 
 const status = require('../utils/status')
 
+const moment = require('moment')
+
 class Task {
 	constructor(req){
 		this.req = req
@@ -54,7 +56,6 @@ class Task {
 			return tasks
 
 		}catch(err) {
-			console.log('\n','----------->err: ', (err))
 			throw {
 				message: 'Ops! ocorreu um erro listar as tarefas da casa '+this.req.user.house,
 				identifier: err.identifier ? err.identifier : 'error listing tasks',
@@ -63,7 +64,47 @@ class Task {
 		}
 	}
 
+	async listMyTasks() {
+		try{
+			let current = this.req.user
 
+			let tasks = await this.taskDB.searchByUserId(current.id)	
+
+			tasks.map(task => {
+				if(task.last_done && task.repeat){
+					
+					let difference
+
+					if(task.interval == 'day'){
+						difference = moment().diff(moment(task.last_done), 'days')
+					} 
+					if(task.interval == 'week'){
+						difference = moment().diff(moment(task.last_done), 'weeks')
+					} 
+					if(task.interval == 'month'){
+						difference = moment().diff(moment(task.last_done), 'months')
+					} 
+
+					if(difference == 0)
+						task.done = true
+					else 
+						task.done = false
+
+				}
+			})
+
+
+
+			return tasks
+
+		}catch(err) {
+			throw {
+				message: 'Ops! ocorreu um erro listar as tarefas da casa '+this.req.user.house,
+				identifier: err.identifier ? err.identifier : 'error listing tasks',
+				status: status['FAILED-PROCESS']
+			}
+		}
+	}
 
 
 
