@@ -15,6 +15,9 @@ import myRepublic from "./view/myRepublicView.vue";
 import newBills from "./view/registerNewBillsView.vue";
 
 import member from "./view/mainSubView/memberView.vue" 
+import config from "./view/mainSubView/configView.vue"
+import myrep from "./view/mainSubView/myRepView.vue"
+import task from "./view/mainSubView/taskView.vue"
 
 import store from "./store";
 
@@ -97,6 +100,18 @@ const router = createRouter({
         {
           path: '/members',
           component: member
+        },
+        {
+          path: '/config',
+          component: config
+        },
+        {
+          path: '/myrep',
+          component: myrep
+        },
+        {
+          path: '/task',
+          component: task
         }
       ]
     },
@@ -112,6 +127,8 @@ router.beforeEach((to, from, next) => {
     store.state.user.logged
   ) {
     next(); // Permite a navegação para a primeira rota
+  }else{
+    router.push('/');
   }
 });
 

@@ -35,6 +35,9 @@ class House {
 
 	async create() {
 		try{
+
+			if(this.req.user.house) throw { identifier: 'user already in house'}
+
 			let identifier = this.generateIdentifier()
 			let owner_user_id = this.req.user.id
 			let name = this.payload.name
@@ -51,7 +54,7 @@ class House {
 
 			let association = await this.userDB.associate(result.identifier, owner_user_id)
 
-			return { house_code: result.identifier }
+			return result
 
 		}catch(err){
 			console.error(err)
@@ -156,11 +159,17 @@ class House {
 			let code = this.req.user.house
 
 			let house = await this.houseDB.searchByIdentifier(code)
-			await this.houseDB.updateOccupation(code, house.occupied -1)
+
 			await this.userDB.dissociate(this.req.user.id)
 
-		}catch(err){
+			if(house.owner_user_id == this.req.user.id){
+				return await this.houseDB.delete(house.identifier)
+			}
 
+			await this.houseDB.updateOccupation(code, house.occupied -1)
+			
+
+		}catch(err){
 			throw {
 				message: 'Ops! ocorreu um erro ao listar as casas!',
 				identifier: err.identifier || 'house not found',
@@ -190,6 +199,9 @@ class House {
 	async deleteMember(){
 		try{
 			let memberId = this.req.params.memberId
+
+			let house = await this.houseDB.searchByIdentifier(this.req.user.house)
+			await this.houseDB.updateOccupation(this.req.user.house, house.occupied - 1)
 
 			return await this.userDB.dissociate(memberId)
 

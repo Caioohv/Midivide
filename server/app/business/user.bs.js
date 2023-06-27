@@ -1,4 +1,5 @@
 const userRep = require('../repository/user.rep')
+const houseRep = require('../repository/house.rep')
 
 const status = require('../utils/status')
 
@@ -7,6 +8,7 @@ class User {
 		this.req = req
 		this.payload = req.body
 		this.userDB = new userRep()
+		this.houseDB = new houseRep()
 	}
 
 	async detail(){
@@ -17,8 +19,22 @@ class User {
 
 			delete userData.createdAt
 			delete userData.updatedAt
+			
+			let response = {
+				...userData,
+			}
 
-			return userData
+			let userHouse = await this.houseDB.searchByIdentifier(userData.house)
+
+			if(userHouse) {
+				response.admin = userHouse.owner_user_id === userData.id,
+				response.house = userHouse	
+			}else{
+				response.admin = false
+				response.house = null
+			}
+			
+			return response
 
 		}catch(err) {
 			throw {

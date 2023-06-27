@@ -1,5 +1,5 @@
 <template>
-    <div :style="size" :class="themeClassChange" >
+    <div :class="themeClassChange" >
         <slot></slot>    
     </div>
 </template>
@@ -8,17 +8,6 @@
  import { mapGetters } from "vuex";
 
 export default {
-
-    props:{
-        heights: String,
-        widths: String,
-    },
-
-    data(){
-        return{
-            size: `height: ${this.heights}%; width: ${this.widths}%;`
-        }
-    },
 
     computed:{
         ...mapGetters({

@@ -3,6 +3,7 @@ const authCtrl = require('../controllers/auth.ctrl')
 const userCtrl = require('../controllers/user.ctrl')
 const houseCtrl = require('../controllers/house.ctrl')
 const requestCtrl = require('../controllers/request.ctrl')
+const taskCtrl = require('../controllers/task.ctrl')
 
 const authorize = require('../middlewares/auth')
 const admin = require('../middlewares/admin')
@@ -11,6 +12,7 @@ const auth = new authCtrl()
 const user = new userCtrl()
 const house = new houseCtrl()
 const request = new requestCtrl()
+const task = new taskCtrl()
 
 module.exports = (app) => {
 
@@ -106,6 +108,36 @@ module.exports = (app) => {
 			authorize,
 			house.deleteMember
 		)
+
+	app.route('/tasks/all')
+		.get(
+			authorize,
+			task.listHouseTasks
+		)
+
+	app.route('/tasks/allocate')
+		.post(
+			authorize,
+			admin,
+			task.allocateTasks
+		)
+
+	app.route('/tasks/:task_id/done')
+		.put(
+			authorize,
+			task.markAsDone
+		)
+
+	app.route('/tasks')
+		.get(
+			authorize, 
+			task.listMyTasks
+		)
+		.post(
+			authorize,
+			task.create
+		)
+
 
 	console.log('Private routes ok')
 } 

@@ -47,6 +47,7 @@ export default {
   border-radius: 30px;
   padding: 20px 30px 20px 30px;
   max-width: 23%;
+  column-gap: 10px;
 }
 
 .textBox {
@@ -56,10 +57,12 @@ export default {
   flex-wrap: wrap;
   max-width: 80%;
   text-align: left;
+  row-gap: 20px;
 }
 
 .title {
-  margin: -20px -20px -5px -20px;
+  line-height: 20px;
+  margin: -20px;
 }
 
 .fas {

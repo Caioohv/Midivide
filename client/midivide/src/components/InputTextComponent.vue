@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="themeClassChange" :style="'background-color: ' + bgc + ';border:' + border + ';border-radius:'+borderRadius+'px;color:'+color">
+    <div :class="themeClassChange" :style="'background-color: ' + bgc + ';border:' + border + ';border-radius:'+borderRadius+'px;color:'+color" :readonly="readonly">
       <input :type="setType" :placeholder="placeholder" :value="value"/>
     </div>
   </div>
@@ -18,6 +18,7 @@ export default {
     bgc: String,
     border: String,
     borderRadius: String,
+    readonly: Boolean, 
   },
 
   computed: {
@@ -66,6 +67,8 @@ export default {
 .themeDark {
   background: #e8e8e8;
 }
+
+
 
 input {
   width: 100%;

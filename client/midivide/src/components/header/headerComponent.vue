@@ -1,12 +1,12 @@
 <template>
   <boxComponent class="body" widths="100" heights="10">
-    <logo1Component />
+    <logo1Component class="logo"/>
     <linksBoxComponent>
       <headreLinkComponent content="Inico" target="/main" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Avisos" target="/main" />
       <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Tarefas" target="/main" />
+      <headreLinkComponent content="Tarefas" target="/task" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Contas" target="/main" />
       <textSubTitleComponent content="|" />
@@ -14,16 +14,16 @@
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Membros" target="/members" />
       <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Minha Moradia" target="/main" />
+      <headreLinkComponent content="Minha Moradia" target="/myrep" />
     </linksBoxComponent>
 
     <linksBoxComponent class="userBox">
       <userIconComponent />
       <div class="userInfo">
         <textSubTitleComponent :content="user.name" />
-        <textSubTitleComponent class="houseName" :content="houseName" />
+        <textSubTitleComponent class="houseName" :content="user.house.name" />
       </div>
-      <configIconComponent />
+        <configIconComponent @click="this.$router.push('/config')"/>
     </linksBoxComponent>
   </boxComponent>
 </template>
@@ -50,11 +50,6 @@ export default {
     configIconComponent,
   },
 
-  data() {
-    return {
-      houseName: "",
-    };
-  },
 
   computed: {
     ...mapGetters({
@@ -62,32 +57,6 @@ export default {
       token: "getToken",
     }),
   },
-
-  beforeMount(){
-      const API = require("../../config");
-
-      const axios = require("axios");
-      let data = "";
-
-      let config = {
-        method: "get",
-        maxBodyLength: Infinity,
-        url: `${API.url}/houses/${this.user.house}`,
-        headers: {
-          Authorization: this.token,
-        },
-        data: data,
-      };
-
-      axios
-        .request(config)
-        .then((response) => {
-            this.houseName = response.data.name;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-  }
 
 };
 </script>
@@ -99,7 +68,7 @@ export default {
   position: absolute;
   min-width: 100% !important;
   border-radius: 0px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 0px 10px 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,11 +79,26 @@ export default {
   padding: 2px;
 }
 
+.logo{
+  max-width: 60px;
+}
+
 .userInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  min-width: fit-content;
+  max-width: 120px;
+}
+
+.userInfo > :first-child{
+  display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    font-size: 15px;
 }
 
 .houseName {
