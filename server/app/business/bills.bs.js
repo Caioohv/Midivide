@@ -146,6 +146,24 @@ class House {
 		}
 	}
 
+	async markAsPaid() {
+		try{
+			let current = this.req.user
+			let debtId = this.req.params.bill_id
+
+			return await this.debtDB.markAsPaid(debtId)
+
+
+		}catch(err){
+			console.log('\n','----------->err: ', (err))
+			throw {
+				message: 'Ops! ocorreu um erro ao listar suas contas!',
+				identifier: err.identifier || 'error listing bills',
+				status: status['INVALID-DATA']
+			}
+		}
+	}
+
 }
 
 module.exports = House

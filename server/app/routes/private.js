@@ -163,5 +163,11 @@ module.exports = (app) => {
 			bills.getHouseBills
 		)
 
+	app.route('/bills/pay/:bill_id')
+		.put(
+			authorize,
+			bills.markAsPaid
+		)
+
 	console.log('Private routes ok')
 } 

@@ -29,5 +29,19 @@ class bill {
 		})
 	}
 
+	findByPayerUserIdAndBillId(payer_user_id, bill_id){
+		return Debt.findOne({
+			where: { payer_user_id, bill_id },
+			logging: console.log
+		})
+	}
+
+	markAsPaid(id){
+		return Debt.update(
+			{ paid: true},
+			{where: { id }}
+		)
+	}
+
 }
 module.exports = bill
