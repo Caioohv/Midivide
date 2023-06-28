@@ -9,13 +9,16 @@
 
       <div class="requestList">
         <div class="requestBody" v-for="request in requests" :key="request.id">
-          <textSubTitleComponent class="subTitle"
+          <textSubTitleComponent
+            class="subTitle"
             :content="`Nome: ${request.request.requester.name}`"
           />
-          <textSubTitleComponent class="subTitle"
+          <textSubTitleComponent
+            class="subTitle"
             :content="`Tel: ${request.request.requester.phone}`"
           />
-          <textSubTitleComponent class="subTitle"
+          <textSubTitleComponent
+            class="subTitle"
             :content="`${request.request.requester.email}`"
           />
           <div class="buttonBox">
@@ -48,7 +51,7 @@
           ></i>
           <i class="fas fa-remove atualMember" v-else></i>
           <textSubTitleComponent :content="user.name" class="userName" />
-          <textSubTitleComponent content="|" />
+          <textSubTitleComponent content="|" class="mid" />
           <textSubTitleComponent :content="user.phone" />
         </div>
       </div>
@@ -230,12 +233,12 @@ export default {
   height: fit-content;
 }
 
-.subTitle{
+.subTitle {
   font-size: 15px;
   line-height: 18px;
 }
 
-.rightBox{
+.rightBox {
   min-width: 600px;
 }
 
@@ -312,10 +315,10 @@ export default {
 }
 
 .userName {
-  flex:0.4;
+  flex: 0.4;
 }
 
-.users > :last-child{
+.users > :last-child {
   flex: 0.4;
 }
 
@@ -329,5 +332,39 @@ export default {
 .atualMember {
   color: grey !important;
   cursor: auto;
+}
+
+@media (max-width: 500px) {
+  .box {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mid {
+    display: none;
+  }
+
+  .users {
+    column-gap: 10px;
+    text-align: left;
+  }
+
+  .rightBox {
+    min-width: fit-content;
+  }
+
+  .fas {
+    margin: 0;
+    flex: auto;
+    max-width: 20px;
+  }
+
+  .userName {
+    flex: auto;
+  }
+
+  .users > :last-child {
+    flex: auto;
+  }
 }
 </style>

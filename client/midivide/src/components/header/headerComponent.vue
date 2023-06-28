@@ -1,7 +1,7 @@
 <template>
   <boxComponent class="body" widths="100" heights="10">
     <logo1Component class="logo"/>
-    <linksBoxComponent>
+    <linksBoxComponent class="links">
       <headreLinkComponent content="Inico" target="/main" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Avisos" target="/main" />
@@ -25,6 +25,11 @@
       </div>
         <configIconComponent @click="this.$router.push('/config')"/>
     </linksBoxComponent>
+
+    <i class="fas fa-bars menu" @click="showMobileMenu = !showMobileMenu"></i>
+
+    <mobileMenuComponent @closeMobileMenu="showMobileMenu = !showMobileMenu" class="mobileMenu" v-if="showMobileMenu"/>
+
   </boxComponent>
 </template>
 
@@ -36,8 +41,10 @@ import headreLinkComponent from "./headerLinkComponent.vue";
 import textSubTitleComponent from "../textSubTitleComponent.vue";
 import userIconComponent from "./userIconComponent.vue";
 import configIconComponent from "./configIconComponent.vue";
+import mobileMenuComponent from './mobileMenuComponent.vue';
 
 import { mapGetters } from "vuex";
+
 
 export default {
   components: {
@@ -48,8 +55,15 @@ export default {
     textSubTitleComponent,
     userIconComponent,
     configIconComponent,
+    mobileMenuComponent
   },
 
+
+  data(){
+    return{
+      showMobileMenu: false
+    }
+  },
 
   computed: {
     ...mapGetters({
@@ -105,4 +119,27 @@ export default {
   margin-top: -8px;
   font-size: 10px;
 }
+
+.menu{
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .links{
+    display: none;
+  }
+
+  .body{
+    column-gap: 20px;
+  }
+
+  .menu{
+    display: contents;
+    font-size: 35px;
+    color: #B7B7B7;
+    cursor: pointer;
+  }
+
+}
+
 </style>

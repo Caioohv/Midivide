@@ -47,4 +47,11 @@ export default {
   background-color: #001011;
 }
 
+@media(max-width:500px){
+  .default{
+    min-height: 100%;
+      height: fit-content;
+  }
+}
+
 </style>

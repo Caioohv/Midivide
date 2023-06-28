@@ -1,5 +1,4 @@
 <template>
-  <div>
     <boxComponent class="configBody">
       <textTitleComponent content="Configurações" class="title" />
 
@@ -16,7 +15,6 @@
         />
       </div>
     </boxComponent>
-  </div>
 </template>
 
 <script>
@@ -100,5 +98,9 @@ export default {
 
 .title {
   line-height: 10px;
+}
+
+@media (max-width: 500px){
+  
 }
 </style>

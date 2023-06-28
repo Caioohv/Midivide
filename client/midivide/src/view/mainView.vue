@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mainBody">
     <headerComponent />
     <router-view></router-view>
   </div>
@@ -16,5 +16,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .mainBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>

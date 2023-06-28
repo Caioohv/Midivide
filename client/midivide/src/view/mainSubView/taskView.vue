@@ -489,4 +489,25 @@ export default {
 .taskList::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+@media (max-width: 500px){
+  .taskBody{
+    margin-top: 120px;
+    margin-bottom: 60px;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+
+  .taskList {
+    max-height: 150px;
+  }
+
+  .leftBox, .rightBox, .centerBox{
+    width: 100%;
+  }
+
+}
 </style>
