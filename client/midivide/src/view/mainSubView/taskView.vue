@@ -98,6 +98,7 @@
           />
           <div class="buttonBox">
             <buttonComponent
+              @click="deleteTask(all.id)"
               value="Apagar Tarefa"
               bgc="#DB2955"
               height="10"
@@ -170,8 +171,36 @@ export default {
   },
 
   methods: {
-    balanceTask() {
+    deleteTask(id) {
 
+      const API = require("../../config");
+
+      const axios = require("axios");
+      let data = "";
+
+      let config = {
+        method: "delete",
+        maxBodyLength: Infinity,
+        url: `${API.url}/tasks/${id}`,
+        headers: {
+          Authorization: this.token,
+        },
+        data: data,
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          console.log(response.data);
+          this.bringAllTask();
+          this.bringMyTask();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    balanceTask() {
       const API = require("../../config");
 
       const axios = require("axios");
@@ -490,8 +519,8 @@ export default {
   background-color: #555;
 }
 
-@media (max-width: 500px){
-  .taskBody{
+@media (max-width: 500px) {
+  .taskBody {
     margin-top: 120px;
     margin-bottom: 60px;
     flex-direction: column;
@@ -505,9 +534,10 @@ export default {
     max-height: 150px;
   }
 
-  .leftBox, .rightBox, .centerBox{
+  .leftBox,
+  .rightBox,
+  .centerBox {
     width: 100%;
   }
-
 }
 </style>
