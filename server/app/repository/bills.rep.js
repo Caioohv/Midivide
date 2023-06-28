@@ -14,9 +14,9 @@ class bill {
 		})
 	}
 
-	findByHouse(id){
+	findByHouse(house_identifier){
 		return Bill.findAll({
-			where: { id }
+			where: { house_identifier }
 		})
 	}
 }

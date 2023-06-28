@@ -9,8 +9,8 @@ class Bill {
 		const bills = new Bills(req, res)
 
 		try{
-			await bills.create()
-			res.status(status['SUCCESS']).send()
+			let response = await bills.create()
+			res.status(status['SUCCESS']).json(response)
 
 		}catch(err){
 			error(err, res)
@@ -22,8 +22,8 @@ class Bill {
 		const bills = new Bills(req, res)
 
 		try{
-			await bills.getMyBills()
-			res.status(status['SUCCESS']).send()
+			let response = await bills.getMyBills()
+			res.status(status['SUCCESS']).json(response)
 
 		}catch(err){
 			error(err, res)
@@ -31,12 +31,12 @@ class Bill {
 		}
 	}
 
-	async getAllBills(req, res) {
+	async getHouseBills(req, res) {
 		const bills = new Bills(req, res)
 
 		try{
-			await bills.getAllBills()
-			res.status(status['SUCCESS']).send()
+			let response = await bills.getHouseBills()
+			res.status(status['SUCCESS']).json(response)
 
 		}catch(err){
 			error(err, res)

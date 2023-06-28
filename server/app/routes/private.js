@@ -157,5 +157,11 @@ module.exports = (app) => {
 			bills.getMyBills
 		)
 
+	app.route('/bills/all')
+		.get(
+			authorize,
+			bills.getHouseBills
+		)
+
 	console.log('Private routes ok')
 } 

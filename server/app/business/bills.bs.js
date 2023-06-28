@@ -79,26 +79,72 @@ class House {
 		try{
 			let current = this.req.user
 			
-			let debts = this.debtDB.findByPayerUserId(current.id)
+			let debts = await this.debtDB.findByPayerUserId(current.id)
 
 			let myBills = {
 				paid: [],
 				unpaid: []
 			}
 
-			// for(let debt of debts) {
-			// 	if(debt.paid) myBills.paid(push)
-			// }
+			for(let debt of debts) {
+				let bill = await this.billDB.findById(debt.bill_id)
+
+				debt.value = bill.value / bill.shared_to
+
+				if(debt.paid) myBills.paid.push(debt)
+				else myBills.unpaid.push(debt)
+			}
+
+			return myBills
 
 		}catch(err){
 			throw {
-				message: 'Ops! ocorreu um erro ao criar a casa!',
-				identifier: err.identifier || 'duplicated property',
+				message: 'Ops! ocorreu um erro ao listar suas contas!',
+				identifier: err.identifier || 'error listing bills',
 				status: status['INVALID-DATA']
 			}
 		}
 	}
 
+	async getHouseBills() {
+		try{
+			let current = this.req.user
+			
+			let bills = await this.billDB.findByHouse(current.house)
+
+			let response = {
+				bills: []
+			}
+
+			for(let bill of bills){
+				let debts = await this.debtDB.findByBillId(bill.id)
+
+				bill.paid = []
+				bill.unpaid = []
+
+
+				for(let debt of debts) {
+					let user = await this.userDB.findById(debt.payer_user_id)
+
+					if(debt.paid) bill.paid.push(user)
+					else bill.unpaid.push(user)
+				}
+
+				response.bills.push(bill)
+			}
+
+			return response
+
+
+		}catch(err){
+			console.log('\n','----------->err: ', (err))
+			throw {
+				message: 'Ops! ocorreu um erro ao listar suas contas!',
+				identifier: err.identifier || 'error listing bills',
+				status: status['INVALID-DATA']
+			}
+		}
+	}
 
 }
 

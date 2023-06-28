@@ -17,6 +17,12 @@ class bill {
 		})
 	}
 
+	findByBillId(bill_id){
+		return Debt.findAll({
+			where: { bill_id }
+		})
+	}
+
 	findByPayerUserId(payer_user_id){
 		return Debt.findAll({
 			where: { payer_user_id }
