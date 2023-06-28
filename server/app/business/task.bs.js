@@ -183,12 +183,24 @@ class Task {
 				status: status['FAILED-PROCESS']
 			}
 		}
-
-
-
-
 	}
 
+	async delete(){
+		let taskId = this.req.params.task_id
+
+		try{
+			let task = await this.taskDB.delete(taskId)
+
+			return task			
+
+		}catch(err) {
+			throw {
+				message: 'Ops! ocorreu um erro ao deletar tarefa',
+				identifier: err.identifier ? err.identifier : 'error concluding task',
+				status: status['FAILED-PROCESS']
+			}
+		}
+	}
 	
 }
 

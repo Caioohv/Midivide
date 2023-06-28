@@ -128,6 +128,13 @@ module.exports = (app) => {
 			task.markAsDone
 		)
 
+	app.route('/tasks/:task_id')
+		.delete(
+			authorize,
+			admin,
+			task.delete
+		)
+
 	app.route('/tasks')
 		.get(
 			authorize, 

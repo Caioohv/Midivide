@@ -69,6 +69,19 @@ class Task {
 		}
 	}
 
+	async delete(req, res) {
+		const task = new TaskBs(req, res)
+
+		try{
+			let response = await task.delete()
+			res.status(status['SUCCESS']).json(response)
+
+		}catch(err){
+			error(err, res)
+			
+		}
+	}
+
 }
 
 module.exports = Task
