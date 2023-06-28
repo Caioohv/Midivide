@@ -4,6 +4,7 @@ const userCtrl = require('../controllers/user.ctrl')
 const houseCtrl = require('../controllers/house.ctrl')
 const requestCtrl = require('../controllers/request.ctrl')
 const taskCtrl = require('../controllers/task.ctrl')
+const billsCtrl = require('../controllers/bills.ctrl')
 
 const authorize = require('../middlewares/auth')
 const admin = require('../middlewares/admin')
@@ -13,6 +14,7 @@ const user = new userCtrl()
 const house = new houseCtrl()
 const request = new requestCtrl()
 const task = new taskCtrl()
+const bills = new billsCtrl()
 
 module.exports = (app) => {
 
@@ -145,6 +147,11 @@ module.exports = (app) => {
 			task.create
 		)
 
+	app.route('/bills')
+		.post(
+			authorize,
+			bills.create
+		)
 
 	console.log('Private routes ok')
 } 
