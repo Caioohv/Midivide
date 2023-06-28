@@ -152,6 +152,10 @@ module.exports = (app) => {
 			authorize,
 			bills.create
 		)
+		.get(
+			authorize,
+			bills.getMyBills
+		)
 
 	console.log('Private routes ok')
 } 

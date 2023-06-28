@@ -1,9 +1,9 @@
 const Bill = require('../database/models/Bill.js')
 
 class bill {
-	create(house_identifier, name, value, due_date, destination){
+	create(house_identifier, name, value, shared_to, due_date, destination){
 		return Bill.create({ 
-			house_identifier, name, value, due_date, destination 
+			house_identifier, name, value, shared_to, due_date, destination 
 		},
 		{logging: console.log})
 	}

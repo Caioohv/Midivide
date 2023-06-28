@@ -23,6 +23,10 @@ module.exports = {
 				type: Sequelize.FLOAT,
 				allowNull: false
 			},
+			shared_to: {
+				type: Sequelize.INTEGER,
+				allowNull: false
+			},
 			due_date: {
 				type: Sequelize.DATE
 			},

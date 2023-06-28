@@ -17,5 +17,11 @@ class bill {
 		})
 	}
 
+	findByPayerUserId(payer_user_id){
+		return Debt.findAll({
+			where: { payer_user_id }
+		})
+	}
+
 }
 module.exports = bill

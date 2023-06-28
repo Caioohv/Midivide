@@ -22,6 +22,10 @@ class Bill extends Model {
 				type: DataTypes.FLOAT,
 				allowNull: false
 			},
+			shared_to: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
 			due_date: {
 				type: DataTypes.DATE
 			},

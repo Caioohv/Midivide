@@ -46,9 +46,9 @@ class House {
 			let due_date = new Date(this.req.body.due_date)
 			let destination = this.req.body.destination
 			
-			let numberOfUsers = usersToShare.length
+			let shared_to = usersToShare.length
 
-			let bill = await this.billDB.create(house_identifier, name, value, due_date, destination)
+			let bill = await this.billDB.create(house_identifier, name, value, shared_to, due_date, destination)
 
 			let debts = []
 
@@ -63,8 +63,32 @@ class House {
 			await this.debtDB.bulkCreate(debts)
 			
 			return {
-				value: value / numberOfUsers
+				value: value / shared_to
 			} 
+
+		}catch(err){
+			throw {
+				message: 'Ops! ocorreu um erro ao criar a conta!',
+				identifier: err.identifier || 'duplicated property',
+				status: status['INVALID-DATA']
+			}
+		}
+	}
+
+	async getMyBills() {
+		try{
+			let current = this.req.user
+			
+			let debts = this.debtDB.findByPayerUserId(current.id)
+
+			let myBills = {
+				paid: [],
+				unpaid: []
+			}
+
+			// for(let debt of debts) {
+			// 	if(debt.paid) myBills.paid(push)
+			// }
 
 		}catch(err){
 			throw {
