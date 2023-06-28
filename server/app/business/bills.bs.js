@@ -32,9 +32,11 @@ class House {
 				usersToShare.push(current.id)			
 
 			let users = await this.userDB.findByHouse(current.house)
+			let houseUsers = users.map(user => user.id)
 
-			for(let user of users){
-				if(!usersToShare.includes(user.id)) 
+
+			for(let user of usersToShare){
+				if(!houseUsers.includes(user)) 
 					throw { identifier: 'user not in this house'}
 			}
 
