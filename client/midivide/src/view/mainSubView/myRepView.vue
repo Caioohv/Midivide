@@ -1,34 +1,41 @@
 <template>
   <boxComponent class="myHomeBody">
     <textTitleComponent content="Minha Moradia" />
-    <!--<div class="inputBox">
-                <textSubTitleComponent content="Nome" />
-                <InputTextComponent :readonly="!user.admin" :value="user.house.name"/>
-            </div>-->
     <div class="formBox">
       <div class="inputBox">
-        <textSubTitleComponent content="Nome e Vagas" />
+        <textSubTitleComponent content="Nome e Vagas" class="subTitle"/>
         <div>
-          <InputTextComponent class="nameInput" :readonly="!user.admin" :value="user.house.name"/>
+          <InputTextComponent
+            class="nameInput"
+            :readonly="!user.admin"
+            :value="user.house.name"
+          />
           <InputTextComponent
             type="number"
             class="vacInput"
-            :readonly="!user.admin" :value="user.house.vacancies"
+            :readonly="!user.admin"
+            :value="user.house.vacancies"
           />
         </div>
       </div>
       <div class="inputBox">
-        <textSubTitleComponent content="Estado" />
-        <inputOptionComponent v-if="user.admin"
+        <textSubTitleComponent content="Estado" class="subTitle"/>
+        <inputOptionComponent
+          v-if="user.admin"
           @change="cityFilter"
           placeholder="Estados"
           :itens="states"
           class="stateInput"
         />
-        <InputTextComponent v-else class="stateInput" :readonly="!user.admin" :value="user.house.state"/>
+        <InputTextComponent
+          v-else
+          class="stateInput"
+          :readonly="!user.admin"
+          :value="user.house.state"
+        />
       </div>
       <div class="inputBox">
-        <textSubTitleComponent content="Cidade e Bairro" />
+        <textSubTitleComponent content="Cidade e Bairro" class="subTitle"/>
         <div>
           <inputOptionComponent
             v-if="user.admin"
@@ -36,20 +43,51 @@
             class="cityInput"
             placeholder="Cidades"
           />
-          <InputTextComponent v-else class="cityInput" :readonly="!user.admin" :value="user.house.city"/>
-          <InputTextComponent placeholder="Bairro" class="hoodInput" :readonly="!user.admin" :value="user.house.neighborhood"/>
+          <InputTextComponent
+            v-else
+            class="cityInput"
+            :readonly="!user.admin"
+            :value="user.house.city"
+          />
+          <InputTextComponent
+            placeholder="Bairro"
+            class="hoodInput"
+            :readonly="!user.admin"
+            :value="user.house.neighborhood"
+          />
         </div>
       </div>
       <div class="inputBox">
-        <textSubTitleComponent content="Rua e Nº da Casa" />
+        <textSubTitleComponent content="Rua e Nº da Casa" class="subTitle"/>
         <div>
-          <InputTextComponent placeholder="Rua" class="streetInput" :readonly="!user.admin" :value="user.house.street"/>
-          <InputTextComponent placeholder="Nº" class="numberInput" :readonly="!user.admin" :value="user.house.number"/>
+          <InputTextComponent
+            placeholder="Rua"
+            class="streetInput"
+            :readonly="!user.admin"
+            :value="user.house.street"
+          />
+          <InputTextComponent
+            placeholder="Nº"
+            class="numberInput"
+            :readonly="!user.admin"
+            :value="user.house.number"
+          />
+        </div>
+      </div>
+      <div class="inputBox">
+        <div>
+          <input
+            type="checkbox"
+            :checked="user.house.is_public"
+            class="publicInput"
+          />
+          <textSubTitleComponent content="Publico" class="subTitle"/>
         </div>
       </div>
     </div>
 
     <buttonComponent
+      @click="editHouse"
       value="Editar"
       bgc="#9E76DB"
       color="#FFF"
@@ -78,7 +116,7 @@ export default {
     InputTextComponent,
     textSubTitleComponent,
     buttonComponent,
-    inputOptionComponent
+    inputOptionComponent,
   },
 
   data() {
@@ -116,6 +154,85 @@ export default {
           console.error(error);
         });
     },
+
+    editHouse() {
+      if (
+        document.querySelector(".nameInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".vacInput").childNodes[0].childNodes[0].value !=
+          "" &&
+        document.querySelector(".hoodInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".streetInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".numberInput").childNodes[0].childNodes[0]
+          .value != "" &&
+        document.querySelector(".stateInput").selectedIndex != 0 &&
+        document.querySelector(".cityInput").selectedIndex != 0
+      ) {
+        var obj = {
+          public: document.querySelector(".publicInput").checked,
+          name: document.querySelector(".nameInput").childNodes[0].childNodes[0]
+            .value,
+          vac: document.querySelector(".vacInput").childNodes[0].childNodes[0]
+            .value,
+          state:
+            this.states[document.querySelector(".stateInput").selectedIndex - 1]
+              .sigla,
+          city: this.cities[
+            document.querySelector(".cityInput").selectedIndex - 1
+          ].nome.toUpperCase(),
+          hood: document
+            .querySelector(".hoodInput")
+            .childNodes[0].childNodes[0].value.toUpperCase(),
+          street: document
+            .querySelector(".streetInput")
+            .childNodes[0].childNodes[0].value.toUpperCase(),
+          number: document
+            .querySelector(".numberInput")
+            .childNodes[0].childNodes[0].value.toUpperCase(),
+        };
+
+        const API = require("../../config");
+
+        const axios = require("axios");
+        let data = JSON.stringify({
+          name: obj.name,
+          is_public: obj.public,
+          vacancies: obj.vac,
+          address: {
+            state: obj.state,
+            city: obj.city,
+            neighborhood: obj.hood,
+            street: obj.street,
+            number: obj.number,
+          },
+        });
+
+        let config = {
+          method: "put",
+          maxBodyLength: Infinity,
+          url: `${API.url}/house`,
+          headers: {
+            Authorization: this.token,
+            "Content-Type": "application/json",
+          },
+          data: data,
+        };
+
+        axios
+          .request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+            window.alert("Alterado com sucesso!");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        window.alert("Algum campo está em branco!");
+      }
+    },
   },
 
   computed: {
@@ -142,6 +259,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.subTitle{
+  font-size: 15px;
+  line-height: 15px;
 }
 
 .formBox {
@@ -186,5 +308,4 @@ export default {
 .hoodInput {
   flex: 0.3;
 }
-
 </style>
