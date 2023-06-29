@@ -19,6 +19,14 @@ class bill {
       where: { house_identifier }
     })
   }
+
+  delete(id){
+    return Bill.destroy({
+      where: { id }
+    })
+  }
+
+
 }
 
 module.exports = bill

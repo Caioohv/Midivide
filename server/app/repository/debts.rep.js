@@ -1,6 +1,6 @@
 const Debt = require('../database/models/Debt')
 
-class bill {
+class debt {
   create(payer_user_id, bill_id){
     return Debt.create({ 
       bill_id, payer_user_id, paid: false
@@ -43,5 +43,13 @@ class bill {
     )
   }
 
+  deleteByBillId(bill_id){
+    return Debt.destroy({
+      where: { bill_id }
+    })
+  }
+
+
+
 }
-module.exports = bill
+module.exports = debt

@@ -57,6 +57,19 @@ class Bill {
     }
   }
 
+  async delete(req, res) {
+    const bills = new Bills(req, res)
+
+    try{
+      let response = await bills.delete()
+      res.status(status['SUCCESS']).json(response)
+
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
+
 }
 
 module.exports = Bill

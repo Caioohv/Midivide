@@ -179,5 +179,11 @@ module.exports = (app) => {
       bills.markAsPaid
     )
 
+  app.route('/bills/cancel/:bill_id')
+    .delete(
+      authorize,
+      bills.delete
+    )
+
   console.log('Private routes ok')
 } 

@@ -4,6 +4,7 @@ const houseRep = require('../repository/house.rep')
 const userRep = require('../repository/user.rep')
 const billsRep = require('../repository/bills.rep')
 const debtsRep = require('../repository/debts.rep')
+const bill = require('../repository/bills.rep')
 
 class House {
   constructor(req){
@@ -167,6 +168,29 @@ class House {
       }
     }
   }
+
+  async delete(){
+    try{
+
+      let current = this.req.user
+      let billId = this.req.params.bill_id
+
+      await this.debtDB.deleteByBillId(billId)
+
+      return await this.billDB.delete(billId)
+
+    }catch(err){
+      throw {
+        message: 'Ops! ocorreu um erro ao deletar a conta!',
+        identifier: err.identifier || 'error deleting bill',
+        status: status['INVALID-DATA']
+      }
+    }
+
+
+
+  }
+
 
 }
 
