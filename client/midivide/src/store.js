@@ -13,7 +13,7 @@ const store = createStore({
       verified: null,
       house: null,
       phone: "",
-      admin: false
+      admin: false,
     },
     waitingHouse: false,
     registerEmail: "",
@@ -38,6 +38,32 @@ const store = createStore({
   },
 
   mutations: {
+    updateHouse(state) {
+
+      const API = require("./config");
+      const axios = require("axios");
+      let data = "";
+
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${API.url}/house`,
+        headers: {
+          Authorization: state.user.token,
+        },
+        data: data,
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          state.user.house = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     setThemeDark(state) {
       state.theme = "dark";
     },

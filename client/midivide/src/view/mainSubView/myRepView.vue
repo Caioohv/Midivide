@@ -106,6 +106,7 @@ import buttonComponent from "@/components/buttonComponent.vue";
 import inputOptionComponent from "@/components/inputOptionComponent.vue";
 
 import { mapGetters } from "vuex";
+import { mapMutations } from "vuex";
 
 import axios from "axios";
 
@@ -140,6 +141,9 @@ export default {
   },
 
   methods: {
+
+    ...mapMutations(['updateHouse']),
+
     cityFilter() {
       var UF = document.querySelector(".stateInput").value;
 
@@ -225,6 +229,7 @@ export default {
           .then((response) => {
             console.log(JSON.stringify(response.data));
             window.alert("Alterado com sucesso!");
+            this.updateHouse();
           })
           .catch((error) => {
             console.log(error);
@@ -238,6 +243,7 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUser",
+      token: "getToken"
     }),
   },
 };
