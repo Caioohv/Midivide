@@ -14,6 +14,7 @@ import member from "./view/mainSubView/memberView.vue"
 import config from "./view/mainSubView/configView.vue"
 import myrep from "./view/mainSubView/myRepView.vue"
 import task from "./view/mainSubView/taskView.vue"
+import bill from "./view/mainSubView/billView.vue"
 
 import store from "./store";
 
@@ -84,6 +85,10 @@ const router = createRouter({
         {
           path: '/task',
           component: task
+        },
+        {
+          path: '/bill',
+          component: bill
         }
       ]
     },

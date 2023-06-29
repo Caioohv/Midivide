@@ -8,7 +8,7 @@
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Tarefas" target="/task" />
       <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Contas" target="/main" />
+      <headreLinkComponent content="Contas" target="/bill" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Eventos" target="/main" />
       <textSubTitleComponent content="|" />

@@ -82,7 +82,7 @@
       />
     </boxComponent>
 
-    <boxComponent class="rightBox" v-if="user.admin">
+    <boxComponent class="rightBox">
       <textTitleComponent content="Todas Tarefas" />
 
       <div class="taskList">
@@ -96,7 +96,7 @@
             class="taskInfo"
             :content="veirifyDone(all.done)"
           />
-          <div class="buttonBox">
+          <div class="buttonBox" v-if="user.admin">
             <buttonComponent
               @click="deleteTask(all.id)"
               value="Apagar Tarefa"

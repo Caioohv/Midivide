@@ -3,7 +3,7 @@
     <headreLinkComponent content="Inico" target="/main" />
     <headreLinkComponent content="Avisos" target="/main" />
     <headreLinkComponent content="Tarefas" target="/task" />
-    <headreLinkComponent content="Contas" target="/main" />
+    <headreLinkComponent content="Contas" target="/bill" />
     <headreLinkComponent content="Eventos" target="/main" />
     <headreLinkComponent content="Membros" target="/members" />
     <headreLinkComponent content="Minha Moradia" target="/myrep" />
