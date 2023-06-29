@@ -90,6 +90,7 @@ class House {
 				let bill = await this.billDB.findById(debt.bill_id)
 
 				debt.value = bill.value / bill.shared_to
+        debt.bill_data = bill
 
 				if(debt.paid) myBills.paid.push(debt)
 				else myBills.unpaid.push(debt)
