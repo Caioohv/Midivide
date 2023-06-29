@@ -4,13 +4,11 @@
     <linksBoxComponent class="links">
       <headreLinkComponent content="Inico" target="/main" />
       <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Avisos" target="/main" />
+      <headreLinkComponent content="Avisos" target="/notice" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Tarefas" target="/task" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Contas" target="/bill" />
-      <textSubTitleComponent content="|" />
-      <headreLinkComponent content="Eventos" target="/main" />
       <textSubTitleComponent content="|" />
       <headreLinkComponent content="Membros" target="/members" />
       <textSubTitleComponent content="|" />

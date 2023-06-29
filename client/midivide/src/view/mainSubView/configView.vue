@@ -100,7 +100,4 @@ export default {
   line-height: 10px;
 }
 
-@media (max-width: 500px){
-  
-}
 </style>

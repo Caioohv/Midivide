@@ -15,6 +15,8 @@ import config from "./view/mainSubView/configView.vue"
 import myrep from "./view/mainSubView/myRepView.vue"
 import task from "./view/mainSubView/taskView.vue"
 import bill from "./view/mainSubView/billView.vue"
+import notice from "./view/mainSubView/noticeView.vue"
+import dashboard from "./view/mainSubView/dashboardView.vue"
 
 import store from "./store";
 
@@ -89,6 +91,14 @@ const router = createRouter({
         {
           path: '/bill',
           component: bill
+        },
+        {
+          path: '/notice',
+          component: notice
+        },
+        {
+          path: '/main',
+          component: dashboard
         }
       ]
     },

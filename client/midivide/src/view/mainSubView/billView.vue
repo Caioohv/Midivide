@@ -10,7 +10,7 @@
             class="subTitle billTitle"
           />
           <textSubTitleComponent
-            :content="`Valor: R$${unpaid.value}`"
+            :content="`Valor: R$${unpaid.value.toFixed(2)}`"
             class="subTitle"
           />
           <textSubTitleComponent
@@ -55,7 +55,7 @@
       </div>
     </boxComponent>
 
-    <boxComponent class="centerBox">
+    <boxComponent class="centerBox" v-if="!dash">
       <textTitleComponent content="Cadastrar Conta" class="title" />
 
       <div class="formBox">
@@ -120,7 +120,7 @@
       />
     </boxComponent>
 
-    <boxComponent class="rightBox" v-if="allBill.length > 0">
+    <boxComponent class="rightBox" v-if="allBill.length > 0 && !dash" >
       <textTitleComponent content="Todas Contas" class="title" />
 
       <div class="allList">
@@ -194,6 +194,11 @@ import buttonComponent from "@/components/buttonComponent.vue";
 import { mapGetters } from "vuex";
 
 export default {
+
+  props:{
+    dash: Boolean
+  },
+
   components: {
     boxComponent,
     InputTextComponent,
@@ -479,7 +484,7 @@ export default {
   justify-content: center;
   align-items: flex-start;
   column-gap: 15px;
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 .title {
@@ -498,15 +503,23 @@ export default {
   width: fit-content;
 }
 
-.formBox,
-.rightBox,
-.leftBox {
+.formBox
+ {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 5px;
   margin-bottom: 15px;
+}
+
+.rightBox,
+.leftBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 5px;
 }
 
 .subTitle {
@@ -650,4 +663,17 @@ export default {
 .unpaidList::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+@media (max-width: 500px){
+  .billBody{
+    flex-direction: column;
+    margin-top: 120px;
+    row-gap: 15px;
+  }
+
+  .centerBox{
+    min-width: 95%;
+  }
+}
+
 </style>

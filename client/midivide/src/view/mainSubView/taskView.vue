@@ -39,7 +39,7 @@
       </div>
     </boxComponent>
 
-    <boxComponent class="centerBox">
+    <boxComponent class="centerBox" v-if="!dash">
       <textTitleComponent content="Tarefas" />
 
       <div class="formBox">
@@ -82,7 +82,7 @@
       />
     </boxComponent>
 
-    <boxComponent class="rightBox" v-if="allTask.length > 0">
+    <boxComponent class="rightBox" v-if="allTask.length > 0 && !dash">
       <textTitleComponent content="Todas Tarefas" />
 
       <div class="taskList">
@@ -109,6 +109,7 @@
       </div>
 
       <buttonComponent
+        v-if="user.admin"
         @click="balanceTask()"
         class="balanceButton"
         value="Equilibrar tarefas"
@@ -139,6 +140,12 @@ export default {
     textSubTitleComponent,
     buttonComponent,
   },
+
+
+  props:{
+    dash: Boolean
+  },
+
 
   data() {
     return {
@@ -283,6 +290,7 @@ export default {
         resp: document.querySelector(".respInput").value,
       };
 
+
       var specific = true;
       var repeat = true;
 
@@ -290,10 +298,11 @@ export default {
         repeat = false;
         obj.interval = null;
       }
-      if (obj.resp != "") {
+      if (obj.resp == "") {
         specific = false;
         obj.resp = null;
       }
+
 
       const API = require("../../config");
 
@@ -322,6 +331,8 @@ export default {
         .then((response) => {
           console.log(JSON.stringify(response.data));
           window.alert("Tarefa cadastrada com sucesso!");
+          this.bringMyTask();
+          this.bringAllTask();
         })
         .catch((error) => {
           console.log(error);
@@ -348,6 +359,7 @@ export default {
       axios
         .request(config)
         .then((response) => {
+          console.log(response.data);
           this.pendingTask = response.data.pending;
           this.doneTask = response.data.done;
         })
@@ -386,10 +398,7 @@ export default {
 
   beforeMount() {
     this.bringMyTask();
-
-    if (this.user.admin) {
-      this.bringAllTask();
-    }
+    this.bringAllTask();
 
     const API = require("../../config");
 
@@ -471,7 +480,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
   row-gap: 15px;
@@ -489,6 +498,7 @@ export default {
   border: #9e76db 2px solid;
   padding: 12px 15px 12px 15px;
   row-gap: 5px;
+  min-width: 150px;
 }
 
 .taskInfo {
@@ -527,7 +537,6 @@ export default {
     row-gap: 20px;
     justify-content: center;
     align-items: center;
-    width: 80%;
   }
 
   .taskList {
@@ -537,7 +546,7 @@ export default {
   .leftBox,
   .rightBox,
   .centerBox {
-    width: 100%;
+    width: 90%;
   }
 }
 </style>
