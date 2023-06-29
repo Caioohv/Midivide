@@ -1,6 +1,6 @@
 <template>
   <div class="billBody">
-    <boxComponent class="leftBox">
+    <boxComponent class="leftBox" v-if="myBillPaid.length + myBillUnpaid.length > 0">
       <textTitleComponent content="Minhas Contas" class="title" />
 
       <div class="myBillList">
@@ -120,7 +120,7 @@
       />
     </boxComponent>
 
-    <boxComponent class="rightBox">
+    <boxComponent class="rightBox" v-if="allBill.length > 0">
       <textTitleComponent content="Todas Contas" class="title" />
 
       <div class="allList">

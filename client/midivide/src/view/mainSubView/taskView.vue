@@ -82,7 +82,7 @@
       />
     </boxComponent>
 
-    <boxComponent class="rightBox">
+    <boxComponent class="rightBox" v-if="allTask.length > 0">
       <textTitleComponent content="Todas Tarefas" />
 
       <div class="taskList">
