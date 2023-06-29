@@ -2,7 +2,7 @@ const RequestBs = require('../business/request.bs')
 const errorHandler = require('../utils/error-handler')
 const status = require('../utils/status')
 
-class House {
+class Request {
 
   async create(req, res) {
     try {
@@ -62,4 +62,4 @@ class House {
 
 }
 
-module.exports = House
+module.exports = Request

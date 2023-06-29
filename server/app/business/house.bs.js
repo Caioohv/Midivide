@@ -215,6 +215,38 @@ class House {
     }
   }
 
+  async update(){
+    try{
+      let identifier = this.req.user.house
+      let owner_user_id = this.req.user.id
+
+      let oldHouse = await this.houseDB.searchByIdentifier(identifier)
+
+      let name = this.payload.name
+      let isPublic = this.payload.isPublic
+      let vacancies = this.payload.vacancies
+      let occupied = oldHouse.occupied
+      let state = this.payload.address.state.toUpperCase()
+      let city = this.payload.address.city.toUpperCase()
+      let neighborhood   = this.payload.address.neighborhood.toUpperCase()
+      let street = this.payload.address.street
+      let number = this.payload.address.number
+
+      if(oldHouse.occupied > vacancies) throw { identifier: 'occupied greater than vacancies'}
+      
+      return await this.houseDB.update(identifier, name, isPublic, vacancies, occupied, state, city, neighborhood, street, number)
+
+
+    }catch(err){
+
+      throw {
+        message: 'Ops! ocorreu um erro ao editar a casa!',
+        identifier: err.identifier || 'cant update house',
+        status: status['NOT-FOUND']
+      }
+    }
+  }
+
 }
 
 module.exports = House

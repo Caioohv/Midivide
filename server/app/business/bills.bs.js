@@ -6,7 +6,7 @@ const billsRep = require('../repository/bills.rep')
 const debtsRep = require('../repository/debts.rep')
 const bill = require('../repository/bills.rep')
 
-class House {
+class Bills {
   constructor(req){
     this.req = req
     this.payload = req.body
@@ -194,4 +194,4 @@ class House {
 
 }
 
-module.exports = House
+module.exports = Bills

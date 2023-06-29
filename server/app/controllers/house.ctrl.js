@@ -97,6 +97,17 @@ class House {
       errorHandler(err, res)
     }
   }
+
+  async update(req, res) {
+    try{
+      let house = new HouseBs(req, res)
+      let response = await house.update()
+
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 }
 
 module.exports = House

@@ -68,6 +68,11 @@ module.exports = (app) => {
       authorize,
       house.create
     )
+    .put(
+      authorize,
+      admin,
+      house.update
+    )
     .delete(
       authorize,
       house.leave
