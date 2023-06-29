@@ -4,61 +4,61 @@ const status = require('../utils/status')
 
 class House {
 
-	async create(req, res) {
-		try {
-			let request = new RequestBs(req, res)
-			let response = await request.create()
+  async create(req, res) {
+    try {
+      let request = new RequestBs(req, res)
+      let response = await request.create()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async listByHouse(req, res) {
-		try{
-			let request = new RequestBs(req, res)
-			let response = await request.listByHouse()
+  async listByHouse(req, res) {
+    try{
+      let request = new RequestBs(req, res)
+      let response = await request.listByHouse()
 
-			res.status(status['SUCCESS']).json(response)
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async acceptOrDecline(req, res) {
-		try{
-			let request = new RequestBs(req, res)
-			let response = await request.acceptOrDecline()
+  async acceptOrDecline(req, res) {
+    try{
+      let request = new RequestBs(req, res)
+      let response = await request.acceptOrDecline()
 
-			res.status(status['SUCCESS']).json(response)
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async listMyRequest(req, res) {
-		try{
-			let request = new RequestBs(req, res)
-			let response = await request.listMyRequest()
+  async listMyRequest(req, res) {
+    try{
+      let request = new RequestBs(req, res)
+      let response = await request.listMyRequest()
 
-			res.status(status['SUCCESS']).json(response)
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async cancelRequest(req, res) {
-		try{
-			let request = new RequestBs(req, res)
-			let response = await request.cancelRequest()
+  async cancelRequest(req, res) {
+    try{
+      let request = new RequestBs(req, res)
+      let response = await request.cancelRequest()
 
-			res.status(status['SUCCESS']).json(response)
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
 }
 

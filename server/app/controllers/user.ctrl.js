@@ -4,18 +4,18 @@ const status = require('../utils/status')
 
 class User {
 
-	async detail(req, res) {
-		const user = new UserBs(req, res)
+  async detail(req, res) {
+    const user = new UserBs(req, res)
 
-		try{
-			let response = await user.detail()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await user.detail()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
 
 }

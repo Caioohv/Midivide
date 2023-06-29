@@ -6,22 +6,22 @@ O corpo dessa requisição segue o formato:
 
 ```js
 {
-	"name": "República DNA",
-	"isPublic": true, 
-	"vacancies": 10, 
-	"address": {
-		"state": "MG", 
-		"city": "JUIZ DE FORA",
-		"neighborhood": "SÃO PEDRO",
-		"street": "RUA OCTAVIO MALVACCINI",
-		"number": 580
-	}
+  "name": "República DNA",
+  "isPublic": true, 
+  "vacancies": 10, 
+  "address": {
+    "state": "MG", 
+    "city": "JUIZ DE FORA",
+    "neighborhood": "SÃO PEDRO",
+    "street": "RUA OCTAVIO MALVACCINI",
+    "number": 580
+  }
 }
 ```
 O retorno dessa requisição é:
 ```js
 {
-	house_code: ABCD12
+  house_code: ABCD12
 }
 ```
 

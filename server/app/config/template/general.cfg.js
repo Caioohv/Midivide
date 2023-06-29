@@ -1,5 +1,5 @@
 module.exports = {
-	app: {
-		port: 8080
-	}
+  app: {
+    port: 8080
+  }
 }

@@ -5,9 +5,9 @@ const auth = new authCtrl()
 
 module.exports = (app) => {
 
-	app.get('/healthcheck', (req, res) => {
-		res.status(200).json('Ok!')
-	})
+  app.get('/healthcheck', (req, res) => {
+    res.status(200).json('Ok!')
+  })
 
-	console.log('Public routes ok')
+  console.log('Public routes ok')
 } 

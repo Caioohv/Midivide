@@ -4,99 +4,99 @@ const status = require('../utils/status')
 
 class House {
 
-	async create(req, res) {
-		try {
-			let house = new HouseBs(req, res)
-			let response = await house.create()
+  async create(req, res) {
+    try {
+      let house = new HouseBs(req, res)
+      let response = await house.create()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async getMyHouse(req, res) {
-		try {
-			let house = new HouseBs(req, res)
-			let response = await house.getMyHouse()
+  async getMyHouse(req, res) {
+    try {
+      let house = new HouseBs(req, res)
+      let response = await house.getMyHouse()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async getneighborHoodsByCity(req, res) {
-		try {
-			let house = new HouseBs(req, res)
-			let response = await house.getneighborHoodsByCity()
+  async getneighborHoodsByCity(req, res) {
+    try {
+      let house = new HouseBs(req, res)
+      let response = await house.getneighborHoodsByCity()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async getHousesByCityAndNeighborhood(req, res) {
-		try {
-			let house = new HouseBs(req, res)
-			let response = await house.getHousesByCityAndNeighborhood()
+  async getHousesByCityAndNeighborhood(req, res) {
+    try {
+      let house = new HouseBs(req, res)
+      let response = await house.getHousesByCityAndNeighborhood()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async getHousesByCode(req, res) {
-		try {
-			let house = new HouseBs(req, res)
-			let response = await house.getHousesByCode()
+  async getHousesByCode(req, res) {
+    try {
+      let house = new HouseBs(req, res)
+      let response = await house.getHousesByCode()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async leave(req, res) {
-		try {
-			let house = new HouseBs(req, res)
-			let response = await house.leave()
+  async leave(req, res) {
+    try {
+      let house = new HouseBs(req, res)
+      let response = await house.leave()
 
-			res.status(status['SUCCESS']).json(response)
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async listMembers(req, res) {
-		try{
-			let house = new HouseBs(req, res)
-			let response = await house.listMembers()
+  async listMembers(req, res) {
+    try{
+      let house = new HouseBs(req, res)
+      let response = await house.listMembers()
 
-			res.status(status['SUCCESS']).json(response)
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 
-	async deleteMember(req, res) {
-		try{
-			let house = new HouseBs(req, res)
-			let response = await house.deleteMember()
+  async deleteMember(req, res) {
+    try{
+      let house = new HouseBs(req, res)
+      let response = await house.deleteMember()
 
-			res.status(status['SUCCESS']).json(response)
-		}catch(err) {
-			errorHandler(err, res)
-		}
-	}
+      res.status(status['SUCCESS']).json(response)
+    }catch(err) {
+      errorHandler(err, res)
+    }
+  }
 }
 
 module.exports = House

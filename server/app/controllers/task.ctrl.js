@@ -4,83 +4,83 @@ const status = require('../utils/status')
 
 class Task {
 
-	async create(req, res) {
-		const task = new TaskBs(req, res)
+  async create(req, res) {
+    const task = new TaskBs(req, res)
 
-		try{
-			let response = await task.create()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await task.create()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
-	async listHouseTasks(req, res) {
-		const task = new TaskBs(req, res)
+  async listHouseTasks(req, res) {
+    const task = new TaskBs(req, res)
 
-		try{
-			let response = await task.listHouseTasks()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await task.listHouseTasks()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
-	async listMyTasks(req, res) {
-		const task = new TaskBs(req, res)
+  async listMyTasks(req, res) {
+    const task = new TaskBs(req, res)
 
-		try{
-			let response = await task.listMyTasks()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await task.listMyTasks()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
-	async allocateTasks(req, res) {
-		const task = new TaskBs(req, res)
+  async allocateTasks(req, res) {
+    const task = new TaskBs(req, res)
 
-		try{
-			let response = await task.allocateTasks()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await task.allocateTasks()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
-	async markAsDone(req, res) {
-		const task = new TaskBs(req, res)
+  async markAsDone(req, res) {
+    const task = new TaskBs(req, res)
 
-		try{
-			let response = await task.markAsDone()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await task.markAsDone()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
-	async delete(req, res) {
-		const task = new TaskBs(req, res)
+  async delete(req, res) {
+    const task = new TaskBs(req, res)
 
-		try{
-			let response = await task.delete()
-			res.status(status['SUCCESS']).json(response)
+    try{
+      let response = await task.delete()
+      res.status(status['SUCCESS']).json(response)
 
-		}catch(err){
-			error(err, res)
-			
-		}
-	}
+    }catch(err){
+      error(err, res)
+      
+    }
+  }
 
 }
 
