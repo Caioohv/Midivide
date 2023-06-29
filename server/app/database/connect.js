@@ -10,6 +10,7 @@ const Requests = require('./models/Request')
 const Tasks = require('./models/Task')
 const Bills = require('./models/Bill')
 const Debts = require('./models/Debt')
+const Notices = require('./models/Notice')
 
 const db = new Sequelize(config)
 
@@ -22,5 +23,6 @@ Requests.init(db)
 Tasks.init(db)
 Bills.init(db)
 Debts.init(db)
+Notices.init(db)
 
 module.exports = db
