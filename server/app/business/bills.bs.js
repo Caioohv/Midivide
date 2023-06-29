@@ -154,7 +154,7 @@ class House {
   async markAsPaid() {
     try{
       let current = this.req.user
-      let debtId = this.req.params.bill_id
+      let debtId = this.req.body.debt_id
 
       return await this.debtDB.markAsPaid(debtId)
 
@@ -173,7 +173,7 @@ class House {
     try{
 
       let current = this.req.user
-      let billId = this.req.params.bill_id
+      let billId = this.req.body.bill_id
 
       await this.debtDB.deleteByBillId(billId)
 

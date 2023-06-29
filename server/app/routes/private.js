@@ -173,13 +173,13 @@ module.exports = (app) => {
       bills.getHouseBills
     )
 
-  app.route('/bills/pay/:bill_id')
+  app.route('/bills/pay')
     .put(
       authorize,
       bills.markAsPaid
     )
 
-  app.route('/bills/cancel/:bill_id')
+  app.route('/bills/cancel')
     .delete(
       authorize,
       bills.delete
