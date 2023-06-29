@@ -6,7 +6,7 @@
       <div class="myBillList">
         <div class="myBill" v-for="unpaid in myBillUnpaid" :key="unpaid.id">
           <textSubTitleComponent
-            content="Nome(Pendente)"
+            :content="unpaid.bill_data.name"
             class="subTitle billTitle"
           />
           <textSubTitleComponent
@@ -14,11 +14,11 @@
             class="subTitle"
           />
           <textSubTitleComponent
-            content="Pix: email@email.com(Pendente)"
+            :content="`Pix: ${unpaid.bill_data.destination}`"
             class="subTitle"
           />
           <textSubTitleComponent
-            content="Vencimento: dd/mm/yyyy(Pendente)"
+            :content="`Vencimento: ${formatData(unpaid.bill_data.due_date)}`"
             class="subTitle"
           />
           <buttonComponent
@@ -32,7 +32,7 @@
 
         <div class="myBill" v-for="paid in myBillPaid" :key="paid.id">
           <textSubTitleComponent
-            content="Nome(Pendente)"
+            :content="paid.bill_data.name"
             class="subTitle billTitle"
           />
           <textSubTitleComponent
@@ -40,11 +40,11 @@
             class="subTitle"
           />
           <textSubTitleComponent
-            content="Pix: email@email.com(Pendente)"
+            :content="`Pix: ${paid.bill_data.destination}`"
             class="subTitle"
           />
           <textSubTitleComponent
-            content="Vencimento: dd/mm/yyyy(Pendente)"
+            :content="`Vencimento: ${formatData(paid.bill_data.due_date)}`"
             class="subTitle"
           />
           <textSubTitleComponent
@@ -170,6 +170,7 @@
             </div>
           </div>
           <buttonComponent
+            @click="deleteBill(bill.id)"
             class="deleteButton"
             value="Apagar conta!"
             bgc="#DB2955"
@@ -212,15 +213,18 @@ export default {
   },
 
   methods: {
-    payBill(id) {
+    deleteBill(id) {
       const API = require("../../config");
+
       const axios = require("axios");
-      let data = "";
+      let data = JSON.stringify({
+        bill_id: id,
+      });
 
       let config = {
-        method: "put",
+        method: "delete",
         maxBodyLength: Infinity,
-        url: `${API.url}/bills/pay/${id}`,
+        url: `${API.url}/bills/cancel`,
         headers: {
           Authorization: this.token,
           "Content-Type": "application/json",
@@ -232,8 +236,39 @@ export default {
         .request(config)
         .then((response) => {
           console.log(JSON.stringify(response.data));
-          this.bringAllBill;
-          this.bringMyBill;
+          window.alert("Deletado com sucesso!");
+          this.bringAllBill();
+          this.bringMyBill();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    payBill(id) {
+      const API = require("../../config");
+      const axios = require("axios");
+      let data = JSON.stringify({
+        debt_id: id,
+      });
+
+      let config = {
+        method: "put",
+        maxBodyLength: Infinity,
+        url: `${API.url}/bills/pay`,
+        headers: {
+          Authorization: this.token,
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+
+      axios
+        .request(config)
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+          this.bringAllBill();
+          this.bringMyBill();
         })
         .catch((error) => {
           console.log(error);
@@ -527,7 +562,8 @@ export default {
   max-height: 60px;
 }
 
-.allList, .myBillList {
+.allList,
+.myBillList {
   max-height: 330px !important;
   padding: 5px;
 }
